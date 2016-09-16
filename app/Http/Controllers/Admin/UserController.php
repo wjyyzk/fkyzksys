@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 //  データベース
-//use
+use App\User;
 
 /*
  *  【管理コントローラ】ユーザー
@@ -22,7 +22,9 @@ class UserController extends MasterAdmin
      */
     public function index()
     {
-        return view('admin/user/index');
+        $users = User::all();
+
+        return view('admin/user/index')->with('users', $users);
     }
 
     /**

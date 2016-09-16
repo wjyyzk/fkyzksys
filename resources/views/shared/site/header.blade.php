@@ -1,10 +1,11 @@
-    <!--ヘッダー スタート-->
-    <header class="header black-bg">
-        <div class="sidebar-toggle-box">
-            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-        </div>
-        <!--ロゴ スタート-->
-        <a class="logo"><b>★HV部品管理台帳</b></a>
-        <!--ロゴ　エンド-->
-    </header>
-    <!--ヘッダー　エンド-->
+    <!-- ヘッダー -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand"><b>HC部品管理台帳</b></a>
+    </div>
+    <!-- /.navbar-header -->

@@ -6,6 +6,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $table = 'users';
+    protected $softDelete = true;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * ユーザーリスト
+     *
+     * @return array
+     */
+    public function getListUsers()
+    {
+        return User::all();
+    }
 }

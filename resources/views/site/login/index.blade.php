@@ -4,31 +4,37 @@
 
 @section('content')
 
-<section id="main-content">
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">サインイン</h3>
+                </div>
+                <div class="panel-body">
+					<!--　ログイン -->
+					{!! Form::open(array('url' => 'login', 'class' => 'form-panel')) !!}
+					{{ csrf_field() }}
 
-	<section class="wrapper">
+                        <fieldset>
 
-		<!--　ログイン -->
-		{!! Form::open(array('url' => 'login', 'class' => 'form-panel')) !!}
-		{{ csrf_field() }}
+                            <div class="form-group">
+                                <input class="form-control" placeholder="ユーザー" name="user" type="text" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="パスワード" name="password" type="password" value="">
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-success btn-block">ログイン</button>
 
-		    <input type="text" id="user" name="user" class="form-control" placeholder="ユーザー ID" autofocus>
-		    <br />
-		    <input type="password" id="password" name="password" class="form-control" placeholder="パスワード">
-		    <label class="checkbox">
-		        <span class="pull-right">
-		            <a data-toggle="modal" href="login.html#myModal"> パスワードを忘れた方へ</a>
-		        </span>
-		    </label>
-		    <button class="btn btn-theme btn-block" href="index.html" type="submit">
-		    	<i class="fa fa-lock"></i>ログイン
-		    </button>
+                        </fieldset>
 
-		{!! Form::close() !!}
-		<!--　./ログイン -->
+					{!! Form::close() !!}
+					<!--　./ログイン -->
 
-	</section>
-
-</section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

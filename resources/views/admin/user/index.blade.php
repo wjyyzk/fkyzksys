@@ -4,38 +4,88 @@
 
 @section('content')
 
-	<section id="main-content">
-		<section class="wrapper">
+<div id="page-wrapper">
+    
+    <!-- メッセージ -->
+    <div class="row">
+        <br />
+    </div>
+    <!-- /.row -->
 
-			<div class="row mt">
-				<div class="col-md-12">
-					<div class="content-panel">
-						<table class="table table-striped table-advance table-hover text-center">
-							<h4>ユーザー一覧</h4>
-							<hr>
-							<thead>
-							<tr>
-								<th class="text-center">ユーザー</th>
-								<th class="text-center">パスワード</th>
-								<th class="text-center"></th>
-							</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>ユーザー名</a></td>
-									<td>12345</td>
-									<td>
-										<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-										<button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div><!-- /content-panel -->
-				</div><!-- /col-md-12 -->
-			</div><!-- /row -->
+    <!-- 検索条件 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a href="#" class="panel-title" data-toggle="collapse" data-target="#search">検索</a>
+                </div>
+                <div id="search" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+                            search
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 
-		</section><!--/wrapper -->
-	</section><!-- /MAIN CONTENT -->
+    <!-- テーブル -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <p class="panel-title">ユーザー一覧</p>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <a name="table"></a>
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">ユーザー</th>
+                                    <th class="text-center">パスワード</th>
+                                    <th class="text-center">編集</th>
+                                    <th class="text-center">削除</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	@foreach($users as $user)
+                            	<tr>
+                            		<td>{{ $user->user }}</td>
+                            		<td>{{ $user->password }}</td>
+                            		<td>
+                            			<a href="{{ url('admin/user', [$user->id]) }}" class="btn btn-outline btn-warning">編集</a>
+                            		</td>
+                            		<td>
+                            			{{ Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) }}
+										<button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
+											削除
+										</button>
+										{{ Form::close() }}
+                            		</td>
+                            	</tr>
+                            	@endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /#page-wrapper -->	
 
 @endsection

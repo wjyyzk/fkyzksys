@@ -23,6 +23,16 @@ class CreateStorageTable extends Migration
             $table->boolean('other');
             $table->string('hinban2');
             $table->string('zuuban');
+            $table->string('gyousha');
+            $table->integer('unit_price');
+            $table->integer('stock_curr');
+            $table->integer('stock_prev');
+            $table->string('shiyougaki');
+            $table->string('shashu');
+            $table->string('bui');
+            $table->string('lock');
+            $table->string('comment');
+            $table->string('pic');
             $table->timestamps();
             $table->softDeletes();
         });

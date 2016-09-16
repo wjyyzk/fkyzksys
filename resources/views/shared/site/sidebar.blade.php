@@ -1,25 +1,17 @@
-    <!--サイドバー スタート-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <!-- メニュ スタート-->
-            <ul class="sidebar-menu" id="nav-accordion">
-            
-                <li class="mt">
-                    <a href="/storage">
-                        <i class="fa fa-list"></i>
-                        <span>在庫リスト</span>
-                    </a>
+    <!-- ナビゲーション -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <!-- 在庫リスト -->
+                <li {{ Request::is('storage') ? 'active' : '' }}>
+                    <a href="/storage"> 在庫リスト</a>
                 </li>
-
-                <li class="sub-menu">
-                    <a href="/login">
-                        <i class="fa fa-cogs"></i>
-                        <span>ログイン</span>
-                    </a>
+                <!-- ログイン -->
+                <li {{ Request::is('login') ? 'active' : '' }}>
+                    <a href="/login"> ログイン</a>
                 </li>
-
             </ul>
-            <!-- メニュ エンド-->
         </div>
-    </aside>
-    <!--サイドバー エンド-->
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
