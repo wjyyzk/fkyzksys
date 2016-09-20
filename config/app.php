@@ -160,6 +160,7 @@ return [
          *  フォーム
          */
         'Collective\Html\HtmlServiceProvider',
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
     ],
 
     /*
@@ -207,6 +208,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Helper' => App\Helpers\Helper::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
     ],
 
 ];

@@ -3,11 +3,11 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <!-- 在庫リスト -->
-                <li {{ Request::is('storage') ? 'active' : '' }}>
+                <li {{ Helper::set_active('storage') }}>
                     <a href="/storage"> 在庫リスト</a>
                 </li>
                 <!-- ログイン -->
-                <li {{ Request::is('login') ? 'active' : '' }}>
+                <li {{ Helper::set_active('login') }}>
                     <a href="/login"> ログイン</a>
                 </li>
             </ul>

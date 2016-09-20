@@ -20,8 +20,10 @@ Route::get('/', function () { return Redirect('/storage'); });
 
 //	【管理】
 Route::group(['prefix' => 'admin'], function() {
-	Route::resource('storage', 'Admin\StorageController', ['except' => ['show']]);
-	Route::resource('user', 'Admin\UserController', ['except' => ['show']]);
+	Route::get('storage/index', 'Admin\StorageController@index');
+	Route::resource('storage', 'Admin\StorageController', ['except' => ['index', 'show']]);
+	Route::get('user/index', 'Admin\UserController@index');
+	Route::resource('user', 'Admin\UserController', ['except' => ['index', 'show']]);
 });
 
 //	【API】

@@ -4,52 +4,86 @@
 
 @section('content')
 
-	<section id="main-content">
-		<section class="wrapper">
+    <div id="page-wrapper">
 
-			<div class="row mt">
-				<div class="col-lg-12">
-					<div class="form-panel">
-						<h4 class="mb">ユーザー作成</h4>
-						<!-- フォーム -->
-						{!! Form::open(array(
-							'method' => 'post',
-							'url' => '/admin/user', 
-							'class' => 'form-horizontal tasi-form')) 
-						!!}
-							<div class="form-group">
-								<label class="col-sm-2 col-sm-2 control-label">ユーザー</label>
-								<div class="col-sm-10">
-									{!! Form::text('user', null, 
-									array(
-										'required',
-										'class' => 'form-control',
-										'autocomplete' => 'off'
-									)) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 col-sm-2 control-label">パスワード</label>
-								<div class="col-sm-10">
-									{!! Form::text('password', null, 
-									array(
-										'required',
-										'class' => 'form-control',
-										'autocomplete' => 'off'
-									)) !!}
-									@if($errors->has('inputDate'))
-										<span class="help-block">{{$errors->first('inputDate')}}</span>
-									@endif
-								</div>
-							</div>
-							{!! Form::submit('登録', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
-						{!! Form::close() !!}
-						<!-- /フォーム -->
-					</div>
-				</div><!-- col-lg-12-->
-			</div><!-- /row -->
+        <!-- メッセージ -->
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                @if(Session::has('message'))
+                    <div class="alert alert-success">
+                        <label class="control-label">{{ Session::get('message') }}</label>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <!-- /.row -->
 
-		</section><!--/wrapper -->
-	</section><!-- /MAIN CONTENT -->
+        <!-- フォーム -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p class="panel-title">ユーザーデータ</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+        						{!! Form::open(array(
+									'method' => 'POST',
+                                    'class' => 'form-horizontal',
+									'route' => 'admin.user.store')) !!}
+
+                                    <!-- ユーザー名 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">ユーザー</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('name', null, 
+                                            array(
+                                                'required',
+                                                'class' => 'form-control hankaku',
+                                                'autocomplete' => 'off'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
+                                    <!-- パスワード -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">パスワード</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('password', null, 
+                                            array(
+                                                'required',
+                                                'class' => 'form-control hankaku',
+                                                'autocomplete' => 'off'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">登録</button>
+                                    <button type="reset" class="btn btn-primary">リセット</button>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /#page-wrapper -->
 
 @endsection
+
+@push('js-script')
+
+    <!-- Laravel Javascript Validation -->
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
+    {!! JsValidator::formRequest('App\Http\Requests\Admin\UserRequest') !!}
+
+@endpush

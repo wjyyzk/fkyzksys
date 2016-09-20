@@ -5,6 +5,7 @@
     <link href="{{ asset('/assets/content/metisMenu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/content/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/content/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/content/myStyle.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

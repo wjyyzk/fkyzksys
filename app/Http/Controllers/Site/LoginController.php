@@ -28,6 +28,6 @@ class LoginController extends MasterSite
 	 */
 	public function postIndex()
     {
-        return redirect('admin/storage');
+        return redirect('admin/storage/index');
     }
 }

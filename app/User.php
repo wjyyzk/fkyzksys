@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
+    //  テーブル名
     protected $table = 'users';
-    protected $softDelete = true;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user', 'password',
+        'name', 'password',
     ];
 
     /**
@@ -28,12 +30,9 @@ class User extends Authenticatable
     ];
 
     /**
-     * ユーザーリスト
+     * The dates attributes 
      *
-     * @return array
+     * @var array
      */
-    public function getListUsers()
-    {
-        return User::all();
-    }
+    protected $dates = ['deleted_at'];
 }

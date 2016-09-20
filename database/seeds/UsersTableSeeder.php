@@ -11,14 +11,20 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $currDate = date("Y-m-d");
+
         DB::table('users')->insert([
-        	'user'		=>	'admin',
-        	'password'	=>	'admin'
+            'name'             =>  'admin',
+            'password'         =>  'admin',
+            'created_at'       =>  $currDate,
+            'updated_at'       =>  $currDate
         ]);
 
         DB::table('users')->insert([
-            'user'      =>  'takaoka',
-            'password'  =>  'takaoka'
+            'name'             =>  'takaoka',
+            'password'         =>  'takaoka',
+            'created_at'       =>  $currDate,
+            'updated_at'       =>  $currDate
         ]);
     }
 }
