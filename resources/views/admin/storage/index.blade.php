@@ -11,7 +11,8 @@
             <div class="col-lg-12">
                 <br />
                 @if(Session::has('message'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
                 @endif
@@ -85,17 +86,17 @@
                                         <td>{{ $model->name }}</td>
                                         <td>
                                             @if ($model->ac)
-                                                <button type="button" class="btn btn-default btn-circle"><i class="fa fa-check"></i></button>
+                                                <i class="fa fa-check"></i>
                                             @endif
                                         </td>
                                         <td>
                                             @if ($model->cf)
-                                                <button type="button" class="btn btn-default btn-circle"><i class="fa fa-check"></i></button>
+                                                <i class="fa fa-check"></i>
                                             @endif
                                         </td>
                                         <td>
                                             @if ($model->other)
-                                                <button type="button" class="btn btn-default btn-circle"><i class="fa fa-check"></i></button>
+                                                <i class="fa fa-check"></i>
                                             @endif                                        
                                         </td>
                                         <td>

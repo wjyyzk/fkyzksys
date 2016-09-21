@@ -48,8 +48,14 @@ class UserController extends MasterAdmin
      */
     public function store(UserRequest $request)
     {
+        //  レクエストを取得
+        $input = array(
+            'username'  =>  $request->username,
+            'password'  =>  bcrypt($request->password)
+        );
+
         //  ユーザーを作成する
-        User::create($request->all());
+        User::create($input);
 
         //  メッセージ
         Session::flash('message', 'データを作成しました。');
@@ -71,7 +77,7 @@ class UserController extends MasterAdmin
         //  モデルを取得する
         $model = User::findOrFail($id);
 
-        return view('admin/user/edit')->with('user', $model);
+        return view('admin/user/edit')->with('model', $model);
     }
 
     /**
@@ -86,8 +92,14 @@ class UserController extends MasterAdmin
         //  モデルを取得する
         $model = User::findOrFail($id);
 
+        //  レクエストを取得
+        $input = array(
+            'username'  =>  $request->username,
+            'password'  =>  bcrypt($request->password)
+        );
+
         //  データを更新する
-        $model->fill($request->all())->save();
+        $model->fill($input)->save();
 
         //  メッセージ
         Session::flash('message', 'データを更新しました。');
@@ -114,7 +126,7 @@ class UserController extends MasterAdmin
         $model->delete();
 
         //  メッセージ
-        Session::flash('message', 'データを更新しました。');
+        Session::flash('message', 'データを削除しました。');
 
         //  保存したURLに移動する
         return redirect(Session::get('requestReferrer'));

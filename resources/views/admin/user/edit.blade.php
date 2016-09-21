@@ -11,7 +11,8 @@
         	<div class="col-lg-12">
         		<br />
 		        @if(Session::has('message'))
-		            <div class="alert alert-success">
+		            <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		                <label class="control-label">{{ Session::get('message') }}</label>
 		            </div>
 		        @endif
@@ -32,13 +33,13 @@
         						{!! Form::open(array(
 									'method' => 'PUT',
                                     'class' => 'form-horizontal',
-									'route' => ['admin.user.update', $user->id])) !!}
+									'route' => ['admin.user.update', $model->id])) !!}
 
                                     <!-- ユーザー名 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">ユーザー</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('name', $user->name, 
+                                            {!! Form::tel('username', $model->username, 
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
@@ -51,7 +52,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">パスワード</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('password', $user->password, 
+                                            {!! Form::password('password', 
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
@@ -59,6 +60,19 @@
                                             )) !!}
                                         </div>
                                     </div>
+
+                                    <!-- パスワード確認 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">パスワード確認</label>
+                                        <div class="col-md-10">
+                                            {!! Form::password('password_conf', 
+                                            array(
+                                                'required',
+                                                'class' => 'form-control hankaku',
+                                                'autocomplete' => 'off'
+                                            )) !!}
+                                        </div>
+                                    </div>                                    
 
                                     <button type="submit" class="btn btn-primary">登録</button>
                                     <button type="reset" class="btn btn-primary">リセット</button>

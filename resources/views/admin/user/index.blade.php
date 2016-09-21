@@ -11,7 +11,8 @@
             <div class="col-lg-12">
                 <br />
                 @if(Session::has('message'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
                 @endif
@@ -76,8 +77,8 @@
                                 <tbody>
                                 	@foreach($users as $user)
                                 	<tr>
-                                		<td>{{ $user->name }}</td>
-                                		<td>{{ $user->password }}</td>
+                                		<td>{{ $user->username }}</td>
+                                		<td>******</td>
                                 		<td>
                                 			<a href="{{ route('admin.user.edit', [$user->id]) }}" class="btn btn-outline btn-warning">編集</a>
                                 		</td>

@@ -14,7 +14,7 @@ class UserRequest extends Request
     public function attributes()
     {
         return [
-            'name'          =>  'ユーザー',
+            'username'      =>  'ユーザー',
             'password'      =>  'パスワード',            
         ];
     }
@@ -40,8 +40,9 @@ class UserRequest extends Request
     	$id = $this->route('user');
 
         return [
-            'name'          =>  'required|unique:users,name,'.$id,
-            'password'      =>  'required',
+            'username'      =>  'required|unique:users,username,'.$id,
+            'password'      =>  'required|same:password_conf',
+            'password_conf' =>  'required',            
         ];
     }
 }

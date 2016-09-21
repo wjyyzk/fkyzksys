@@ -19,7 +19,7 @@ Route::get('logout', 'Site\LogoutController@getIndex');
 Route::get('/', function () { return Redirect('/storage'); });
 
 //	【管理】
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('storage/index', 'Admin\StorageController@index');
 	Route::resource('storage', 'Admin\StorageController', ['except' => ['index', 'show']]);
 	Route::get('user/index', 'Admin\UserController@index');

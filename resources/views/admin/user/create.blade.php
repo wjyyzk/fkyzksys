@@ -11,7 +11,8 @@
             <div class="col-lg-12">
                 <br />
                 @if(Session::has('message'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
                 @endif
@@ -38,7 +39,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">ユーザー</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('name', null, 
+                                            {!! Form::tel('username', null, 
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
@@ -51,7 +52,20 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">パスワード</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('password', null, 
+                                            {!! Form::password('password', 
+                                            array(
+                                                'required',
+                                                'class' => 'form-control hankaku',
+                                                'autocomplete' => 'off'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
+                                    <!-- パスワード確認 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">パスワード確認</label>
+                                        <div class="col-md-10">
+                                            {!! Form::password('password_conf', 
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',

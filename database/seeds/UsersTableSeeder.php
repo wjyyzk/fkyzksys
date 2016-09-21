@@ -14,15 +14,15 @@ class UsersTableSeeder extends Seeder
         $currDate = date("Y-m-d");
 
         DB::table('users')->insert([
-            'name'             =>  'admin',
-            'password'         =>  'admin',
+            'username'         =>  'admin',
+            'password'         =>  bcrypt('admin'),
             'created_at'       =>  $currDate,
             'updated_at'       =>  $currDate
         ]);
 
         DB::table('users')->insert([
-            'name'             =>  'takaoka',
-            'password'         =>  'takaoka',
+            'username'         =>  'takaoka',
+            'password'         =>  bcrypt('takaoka'),
             'created_at'       =>  $currDate,
             'updated_at'       =>  $currDate
         ]);
