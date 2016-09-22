@@ -16,7 +16,7 @@
 
                     @if(Session::has('message'))
                     <!-- メッセージ -->
-                    <div class="alert alert-success alert-dismissable">
+                    <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
@@ -48,7 +48,7 @@
                                     'autofocus'
                                 )) !!}
                             </div>
-                            <button type="submit" class="btn btn-lg btn-success btn-block">ログイン</button>
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="ログイン" />
 
                         </fieldset>
 

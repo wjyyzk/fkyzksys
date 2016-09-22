@@ -12,7 +12,7 @@
 */
 
 //	【サイト】
-Route::controller('storage', 'Site\StorageController');
+Route::get('storage', 'Site\StorageController@index');
 Route::get('login', 'Site\LoginController@getIndex');
 Route::post('login', 'Site\LoginController@postIndex');
 Route::get('logout', 'Site\LogoutController@getIndex');

@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://fukaya.jp.yazaki.com'),
+    'url' => env('APP_URL', 'http://fukaya.jp.yazaki.local'),
 
     /*
     |--------------------------------------------------------------------------
