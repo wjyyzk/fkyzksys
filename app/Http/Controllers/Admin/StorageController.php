@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Session;
 
 //  バリデータ
 use App\Http\Requests;
+use App\Http\Requests\Admin\StorageRequest;
 
 //  データベース
 use App\Storage;
@@ -23,9 +25,11 @@ class StorageController extends MasterAdmin
     public function index()
     {
         //  在庫リストを取得する
-        $models = Storage::orderBy('id', 'desc')->paginate(10);
+        $models = Storage::Filter();
 
-        return view('admin/storage/index')->with('models', $models);
+        return view('admin/storage/index')
+            ->with('models', $models)
+            ->with('totalFee', Storage::totalFee()->total);
     }
 
     /**
@@ -44,8 +48,29 @@ class StorageController extends MasterAdmin
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorageRequest $request)
     {
+        $input = array(
+            'hinban'            =>  $request->hinban,
+            'seppenfugou'       =>  $request->seppenfugou,
+            'hinmei'            =>  $request->hinmei,
+            'af'                =>  $request->af,
+            'cf'                =>  $request->cf,
+            'other'             =>  $request->other,
+            'chikouguhinban'    =>  $request->chikouguhinban,
+            'zuuban'            =>  $request->zuuban,
+            'gyousha'           =>  $request->gyousha,
+            'unit_price'        =>  $request->unit_price,
+            'stock'             =>  $request->stock,
+            'stock_secondhand'  =>  $request->stock_secondhand,
+            'shashu'            =>  $request->shashu,
+            'bui'               =>  $request->bui,
+            'lock'              =>  $request->lock,
+            'comment'           =>  $request->comment,
+            'pic'               =>  $request->pic,
+            'who'               =>  $request->who,
+        );
+
         //  在庫リストを作成する
         Storage::create($request->all());
 
@@ -79,7 +104,7 @@ class StorageController extends MasterAdmin
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorageRequest $request, $id)
     {
         //  モデルを取得する
         $model = Storage::findOrFail($id);

@@ -21,24 +21,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Storage::class, function (Faker\Generator $faker) {
 	return [
-		'hinban1'			=>	$faker->word,
-		'search_hinban'		=>	$faker->word,
+		'hinban'			=>	$faker->word,
 		'seppenfugou'		=>	$faker->word,
 		'name'				=>	$faker->word,
-		'ac'				=>	$faker->boolean($changeOfGettingTrue = 50),
+		'af'				=>	$faker->boolean($changeOfGettingTrue = 50),
 		'cf'				=>	$faker->boolean($changeOfGettingTrue = 50),
 		'other'				=>	$faker->boolean($changeOfGettingTrue = 50),
-		'hinban2'			=>	$faker->word,
+		'chikouguhinban'	=>	$faker->word,
 		'zuuban'			=>	$faker->word,
 		'gyousha'			=>	$faker->word,
 		'unit_price'		=>	$faker->randomDigit,
-		'stock_curr'		=>	$faker->randomDigit,
-		'stock_prev'		=>	$faker->randomDigit,
-		'shiyougaki'		=>	$faker->word,
+		'stock'				=>	$faker->randomDigit,
+		'stock_secondhand'	=>	$faker->randomDigit,
 		'shashu'			=>	$faker->word,
 		'bui'				=>	$faker->word,
 		'lock'				=>	$faker->word,
 		'comment'			=>	$faker->word,
-		'pic'				=>	$faker->lastName
+		'pic'				=>	$faker->lastName,
+		'who'				=>	$faker->randomDigit,
+		'created_at'		=>	date("Y-m-d H:m:s"),
+		'updated_at'		=>	date("Y-m-d H:m:s"),
 	];
 });

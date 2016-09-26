@@ -25,7 +25,7 @@ class UserController extends MasterAdmin
     public function index()
     {
         //  ユーザーリストを取得する
-        $users = User::orderBy('id', 'desc')->paginate(10);
+        $users = User::filter();
 
         return view('admin/user/index')->with('users', $users);
     }

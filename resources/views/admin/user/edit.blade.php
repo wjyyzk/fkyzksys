@@ -72,7 +72,7 @@
                                                 'autocomplete' => 'off'
                                             )) !!}
                                         </div>
-                                    </div>                                    
+                                    </div>
 
                                     <button type="submit" class="btn btn-primary">登録</button>
                                     <button type="reset" class="btn btn-primary">リセット</button>

@@ -30,18 +30,27 @@
                     <div id="search" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="col-lg-12">
-                                <!-- ユーザー名 -->
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">ユーザー</label>
-                                    <div class="col-md-10">
-                                        {!! Form::tel('sName', null, 
-                                        array(
-                                            'class' => 'form-control hankaku',
-                                        )) !!}
+
+                                {!! Form::open(array(
+                                    'method' => 'GET',
+                                    'url' => '/admin/user/index', 
+                                    'class' => 'form-horizontal')) !!}
+
+                                    <!-- ユーザー名 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">ユーザー</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('sUsername', Request::get('sUsername'), 
+                                            array(
+                                                'class' => 'form-control hankaku',
+                                            )) !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <a class="btn btn-primary" href="#">検索</a>
-                                <a class="btn btn-primary" href="/admin/user/index">リセット</a>
+                                    <input type="submit" class="btn btn-primary" value="検索" />
+                                    <a class="btn btn-primary" href="/admin/user/index">リセット</a>
+
+                                {!! Form::close() !!}
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -64,7 +73,7 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                             <a name="table"></a>
-                            {{ $users->links() }}
+                            {{ $users->appends(request()->input())->fragment('table')->links() }}
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
@@ -93,7 +102,7 @@
                                 	@endforeach
                                 </tbody>
                             </table>
-                            {{ $users->links() }}
+                            {{ $users->appends(request()->input())->fragment('table')->links() }}
                         </div>
                         <!-- /.table-responsive -->
                     </div>

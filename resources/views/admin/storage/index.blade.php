@@ -16,6 +16,11 @@
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
                 @endif
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p class="panel-title">金額合計： {{ $totalFee }}円</p>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.row -->
@@ -30,18 +35,74 @@
                     <div id="search" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="col-lg-12">
-                                <!-- 品番 -->
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">品番</label>
-                                    <div class="col-md-10">
-                                        {!! Form::tel('sName', null, 
-                                        array(
-                                            'class' => 'form-control hankaku',
-                                        )) !!}
+
+                                {!! Form::open(array(
+                                    'method' => 'GET',
+                                    'url' => '/admin/storage/index', 
+                                    'class' => 'form-horizontal')) !!}
+
+                                    <!-- 品番 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">品番</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('sHinban', Request::get('sHinban'), 
+                                            array(
+                                                'class' => 'form-control hankaku',
+                                            )) !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <a class="btn btn-primary" href="#">検索</a>
-                                <a class="btn btn-primary" href="/admin/storage/index">リセット</a>
+                                    <!-- A/F -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">A/F</label>
+                                        <div class="col-md-10">
+                                            <div class="control-label" style="text-align: left;">
+                                                {!! Form::checkbox('sAF', 'af', Request::get('sAF')) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- C/F -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">C/F</label>
+                                        <div class="col-md-10">
+                                            <div class="control-label" style="text-align: left;">
+                                               {!! Form::checkbox('sCF', 'cf', Request::get('sCF')) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- その他 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">その他</label>
+                                        <div class="col-md-10">
+                                            <div class="control-label" style="text-align: left;">
+                                               {!! Form::checkbox('sOther', 'other', Request::get('sOther')) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 治工具品番 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">治工具品番</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
+                                            array(
+                                                'class' => 'form-control hankaku',
+                                            )) !!}
+                                        </div>
+                                    </div>
+                                    <!-- 業者 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">業者</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('sGyousha', Request::get('sGyousha'), 
+                                            array(
+                                                'class' => 'form-control hankaku',
+                                            )) !!}
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn btn-primary" value="検索" />
+                                    <a class="btn btn-primary" href="/storage">リセット</a>
+
+                                {!! Form::close() !!}
+
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -64,16 +125,19 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                             <a name="table"></a>
-                            {{ $models->links() }}
+                            {{ $models->appends(request()->input())->fragment('table')->links() }}
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">品番1</th>
+                                        <th class="text-center">品番</th>
                                         <th class="text-center">設変符号</th>
-                                        <th class="text-center">品番名</th>
-                                        <th class="text-center">AC</th>
-                                        <th class="text-center">CF</th>
+                                        <th class="text-center">A/F</th>
+                                        <th class="text-center">C/F</th>
                                         <th class="text-center">その他</th>
+                                        <th class="text-center">治工具品番</th>
+                                        <th class="text-center">業者</th>
+                                        <th class="text-center">単価</th>
+                                        <th class="text-center">在庫数</th>
                                         <th class="text-center">編集</th>
                                         <th class="text-center">削除</th>
                                     </tr>
@@ -81,11 +145,10 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        <td>{{ $model->hinban1 }}</td>
+                                        <td>{{ $model->hinban }}</td>
                                         <td>{{ $model->seppenfugou }}</td>
-                                        <td>{{ $model->name }}</td>
                                         <td>
-                                            @if ($model->ac)
+                                            @if ($model->af)
                                                 <i class="fa fa-check"></i>
                                             @endif
                                         </td>
@@ -99,6 +162,10 @@
                                                 <i class="fa fa-check"></i>
                                             @endif                                        
                                         </td>
+                                        <td>{{ $model->chikouguhinban }}</td>
+                                        <td>{{ $model->gyousha }}</td>
+                                        <td>{{ $model->unit_price }}</td>
+                                        <td>{{ $model->stock }}</td>
                                         <td>
                                             <a href="{{ route('admin.storage.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
                                         </td>
@@ -113,7 +180,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $models->links() }}
+                            {{ $models->appends(request()->input())->fragment('table')->links() }}
                         </div>
                         <!-- /.table-responsive -->
                     </div>

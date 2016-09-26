@@ -26,6 +26,9 @@ class LoginController extends MasterSite
 	//	GET
     public function getIndex()
     {
+        if(Auth::user())
+            return redirect('/admin/storage/index');
+
         return view('site/login/index');
     }
 

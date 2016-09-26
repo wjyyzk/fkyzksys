@@ -14,8 +14,9 @@ class UserRequest extends Request
     public function attributes()
     {
         return [
-            'username'      =>  'ユーザー',
-            'password'      =>  'パスワード',            
+            'username'          =>  'ユーザー',
+            'password'          =>  'パスワード',
+            'password_conf'     =>  'パスワード確認',
         ];
     }
 
@@ -42,7 +43,7 @@ class UserRequest extends Request
         return [
             'username'      =>  'required|unique:users,username,'.$id,
             'password'      =>  'required|same:password_conf',
-            'password_conf' =>  'required',            
+            'password_conf' =>  'required|same:password',            
         ];
     }
 }
