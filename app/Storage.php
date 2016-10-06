@@ -23,6 +23,7 @@ class Storage extends Model
 		'hinban',
 		'seppenfugou',
 		'name',
+		'tanaban',
 		'af',
 		'cf',
 		'other',
@@ -30,14 +31,14 @@ class Storage extends Model
 		'zuuban',
 		'gyousha',
 		'unit_price',
-		'stock',
-		'stock_secondhand',
 		'shashu',
 		'bui',
 		'lock',
 		'comment',
 		'pic',
-		'who',
+		'whq',
+		'file1',
+		'file2'
 	];
 
 	/**
@@ -46,6 +47,22 @@ class Storage extends Model
 	 *	@var array
 	 */
 	protected $dates = ['deleted_at'];
+
+	/**
+	 *	入庫テーブルの関連
+	 */
+	public function storage_in()
+	{
+		return $this->hasMany('App\StorageIn');
+	}
+
+	/**
+	 *	出庫テーブルの関連
+	 */
+	public function storage_out()
+	{
+		return $this->hasMany('App\StorageOut');
+	}
 
 	/**
 	 *	検索
@@ -88,7 +105,7 @@ class Storage extends Model
 	public function scopeTotalFee()
 	{
 		return DB::table('storage')
-				->select(DB::raw('SUM(stock*unit_price) as total'))
+				->select(DB::raw('SUM(1*unit_price) as total'))
 				->where('deleted_at', '=', null)
 				->first();
 	}

@@ -23,6 +23,10 @@ Route::get('/', function () { return Redirect('/storage'); });
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('storage/index', 'Admin\StorageController@index');
 	Route::resource('storage', 'Admin\StorageController', ['except' => ['index', 'show']]);
+	Route::get('stock/index', 'Admin\StockController@index');
+	Route::post('stock/index', 'Admin\StockController@update');
+	Route::get('print/index', 'Admin\PrintController@index');
+	Route::get('print/{id}', 'Admin\PrintController@runPrint');
 	Route::get('user/index', 'Admin\UserController@index');
 	Route::resource('user', 'Admin\UserController', ['except' => ['index', 'show']]);
 });

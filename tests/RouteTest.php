@@ -46,6 +46,12 @@ class RouteTest extends TestCase
             $this->visit('/admin/storage/index')
                 ->seePageIs('/admin/storage/index');
 
+            $this->visit('/admin/print/index')
+                ->seePageIs('/admin/print/index');
+
+            $this->visit('/admin/stock/index')
+                ->seePageIs('/admin/stock/index');
+
             $this->visit('/admin/user/index')
                 ->seePageIs('/admin/user/index');
         }

@@ -41,9 +41,9 @@ class UserRequest extends Request
     	$id = $this->route('user');
 
         return [
-            'username'      =>  'required|unique:users,username,'.$id,
-            'password'      =>  'required|same:password_conf',
-            'password_conf' =>  'required|same:password',            
+            'username'      =>  'required|max:255|unique:users,username,'.$id,
+            'password'      =>  'required|max:10|same:password_conf',
+            'password_conf' =>  'required|max:10|same:password',            
         ];
     }
 }

@@ -48,10 +48,10 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills panel-heading">
                                 <li class="active">
-                                    <a href="#1" data-toggle="tab">在庫リストデータ1</a>
+                                    <a href="#1" data-toggle="tab">基本情報</a>
                                 </li>
                                 <li>
-                                    <a href="#2" data-toggle="tab">在庫リストデータ2</a>
+                                    <a href="#2" data-toggle="tab">詳細</a>
                                 </li>
                             </ul>
 
@@ -86,11 +86,21 @@
                                                 </div>
                                             </div>
 
+                                            <!-- 棚番 -->
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">棚番</label>
+                                                <div class="col-md-10">
+                                                    <label class="form-control">{{ $model->tanaban }}</label>
+                                                </div>
+                                            </div>
+
                                             <!-- A/F -->
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">A/F</label>
                                                 <div class="col-md-10">
-                                                    <input type="checkbox" readonly="readonly" {{ $model->af ? 'checked' : null }}>
+                                                    <div class="control-label" style="text-align: left;">
+                                                        <input type="checkbox" disabled="disabled" {{ $model->af ? 'checked' : null }}>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -98,7 +108,9 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">C/F</label>
                                                 <div class="col-md-10">
-                                                    <input type="checkbox" readonly="readonly" {{ $model->cf ? 'checked' : null }}>
+                                                    <div class="control-label" style="text-align: left;">
+                                                        <input type="checkbox" disabled="disabled" {{ $model->cf ? 'checked' : null }}>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -106,7 +118,9 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">その他</label>
                                                 <div class="col-md-10">
-                                                    <input type="checkbox" readonly="readonly" {{ $model->other ? 'checked' : null }}>
+                                                    <div class="control-label" style="text-align: left;">
+                                                        <input type="checkbox" disabled="disabled" {{ $model->other ? 'checked' : null }}>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -147,14 +161,6 @@
                                                 <label class="col-md-2 control-label">在庫数</label>
                                                 <div class="col-md-10">
                                                     <label class="form-control">{{ $model->stock }}</label>
-                                                </div>
-                                            </div>
-
-                                            <!-- 中古品 -->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">中古品</label>
-                                                <div class="col-md-10">
-                                                    <label class="form-control">{{ $model->stock_secondhand }}</label>
                                                 </div>
                                             </div>
 
@@ -212,7 +218,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">WHQ単価報告</label>
                                                 <div class="col-md-10">
-                                                    <label class="form-control">{{ $model->who }}</label>
+                                                    <label class="form-control">{{ $model->whq }}</label>
                                                 </div>
                                             </div>
 

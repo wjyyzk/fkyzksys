@@ -17,6 +17,15 @@ use App\User;
  */
 class UserController extends MasterAdmin
 {
+    //  レクエスト
+    private function setInput($request)
+    {
+        return array(
+            'username'  =>  $request->username,
+            'password'  =>  bcrypt($request->password)
+        );
+    }
+
     /**
      * 一覧
      *
@@ -49,10 +58,7 @@ class UserController extends MasterAdmin
     public function store(UserRequest $request)
     {
         //  レクエストを取得
-        $input = array(
-            'username'  =>  $request->username,
-            'password'  =>  bcrypt($request->password)
-        );
+        $input = $this->setInput($request);
 
         //  ユーザーを作成する
         User::create($input);
@@ -93,10 +99,7 @@ class UserController extends MasterAdmin
         $model = User::findOrFail($id);
 
         //  レクエストを取得
-        $input = array(
-            'username'  =>  $request->username,
-            'password'  =>  bcrypt($request->password)
-        );
+        $input = $this->setInput($request);
 
         //  データを更新する
         $model->fill($input)->save();

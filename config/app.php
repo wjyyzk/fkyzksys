@@ -157,6 +157,16 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
+         *  QRコード
+         */
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+        /*
+         *  PDF
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        /*
          *  フォーム
          */
         'Collective\Html\HtmlServiceProvider',
@@ -210,6 +220,8 @@ return [
         'Html' => 'Collective\Html\HtmlFacade',
         'Helper' => App\Helpers\Helper::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

@@ -16,6 +16,20 @@
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
                 @endif
+                @if(Session::has('warning'))
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <label class="control-label">{{ Session::get('warning') }}</label>
+                    </div>
+                @endif
+                @if(count($errors) > 0)                
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @foreach($errors->all() as $error)
+                        <label class="control-label">{{ $error }}</label>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
         <!-- /.row -->
@@ -27,17 +41,18 @@
                 {!! Form::open(array(
                     'method' => 'POST',
                     'class' => 'form-horizontal',
-                    'route' => 'admin.storage.store')) !!}
+                    'route' => 'admin.storage.store',
+                    'files' => 'true')) !!}
 
                     <div class="panel panel-default">
 
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills panel-heading">
                             <li class="active">
-                                <a href="#1" data-toggle="tab">在庫リストデータ1</a>
+                                <a href="#1" data-toggle="tab">基本情報</a>
                             </li>
                             <li>
-                                <a href="#2" data-toggle="tab">在庫リストデータ2</a>
+                                <a href="#2" data-toggle="tab">詳細</a>
                             </li>
                         </ul>
 
@@ -55,7 +70,8 @@
                                                 {!! Form::tel('hinban', null, 
                                                 array(
                                                     'required',
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '50'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -66,7 +82,32 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('seppenfugou', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '10'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- 品名 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">品名</label>
+                                            <div class="col-md-10">
+                                                {!! Form::tel('name', null, 
+                                                array(
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '100'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- 棚番 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">棚番</label>
+                                            <div class="col-md-10">
+                                                {!! Form::tel('tanaban', null, 
+                                                array(
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '100'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -107,7 +148,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('chikouguhinban', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '50'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -118,7 +160,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('zuuban', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '20'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -129,7 +172,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('gyousha', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '20'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -139,28 +183,6 @@
                                             <label class="col-md-2 control-label">単価</label>
                                             <div class="col-md-10">
                                                 {!! Form::tel('unit_price', null, 
-                                                array(
-                                                    'class' => 'form-control hankaku'
-                                                )) !!}
-                                            </div>
-                                        </div>
-
-                                        <!-- 在庫数 -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">在庫数</label>
-                                            <div class="col-md-10">
-                                                {!! Form::tel('stock', null, 
-                                                array(
-                                                    'class' => 'form-control hankaku'
-                                                )) !!}
-                                            </div>
-                                        </div>
-
-                                        <!-- 中古品 -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">中古品</label>
-                                            <div class="col-md-10">
-                                                {!! Form::tel('stock_secondhand', null, 
                                                 array(
                                                     'class' => 'form-control hankaku'
                                                 )) !!}
@@ -183,7 +205,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('shashu', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '20'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -194,7 +217,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('bui', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '20'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -205,7 +229,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('lock', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '20'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -216,7 +241,8 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('comment', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '255'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -227,18 +253,42 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('pic', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '50'
                                                 )) !!}
                                             </div>
                                         </div>
 
                                         <!-- WHO単価報告 -->
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">WHO単価報告</label>
+                                            <label class="col-md-2 control-label">WHQ単価報告</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('who', null, 
+                                                {!! Form::tel('whq', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '10'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- ファイル1 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">ファイル1</label>
+                                            <div class="col-md-10">
+                                                {!! Form::file('file1',  
+                                                array(
+                                                    'class' => 'form-control'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- ファイル2 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">ファイル2</label>
+                                            <div class="col-md-10">
+                                                {!! Form::file('file2', 
+                                                array(
+                                                    'class' => 'form-control'
                                                 )) !!}
                                             </div>
                                         </div>

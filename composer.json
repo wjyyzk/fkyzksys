@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "predis/predis": "^1.0",
         "laravelcollective/html": "~5.0",
-        "proengsoft/laravel-jsvalidation": "~1.1"
+        "proengsoft/laravel-jsvalidation": "~1.1",
+        "simplesoftwareio/simple-qrcode": "~1",
+        "barryvdh/laravel-dompdf": "^0.7.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

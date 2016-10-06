@@ -16,6 +16,14 @@
 		                <label class="control-label">{{ Session::get('message') }}</label>
 		            </div>
 		        @endif
+                @if(count($errors) > 0)                
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @foreach($errors->all() as $error)
+                        <label class="control-label">{{ $error }}</label>
+                        @endforeach
+                    </div>
+                @endif
 	       	</div>
         </div>
         <!-- /.row -->
@@ -43,6 +51,7 @@
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '255',
                                                 'autocomplete' => 'off'
                                             )) !!}
                                         </div>
@@ -56,6 +65,7 @@
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '10',
                                                 'autocomplete' => 'off'
                                             )) !!}
                                         </div>
@@ -69,12 +79,13 @@
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '10',
                                                 'autocomplete' => 'off'
                                             )) !!}
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">登録</button>
+                                    <input type="submit" class="btn btn-primary" value="登録" />
                                     <button type="reset" class="btn btn-primary">リセット</button>
                                     <button type="button" class="btn btn-primary" onclick="return history.back()">戻る</button>
                                 {!! Form::close() !!}

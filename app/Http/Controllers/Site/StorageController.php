@@ -16,6 +16,7 @@ class StorageController extends MasterSite
     	//  在庫リストを取得する
         $models = Storage::Filter();
 
+        //  画面を表示する
         return view('site/storage/index')
         	->with('models', $models)
             ->with('totalFee', Storage::totalFee()->total);
@@ -27,6 +28,8 @@ class StorageController extends MasterSite
         //  モデルを取得する
         $model = Storage::findOrFail($id);
 
-        return view('site/storage/show')->with('model', $model);
+        //  画面を表示する
+        return view('site/storage/show')
+            ->with('model', $model);
     }
 }

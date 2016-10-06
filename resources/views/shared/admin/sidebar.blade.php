@@ -4,7 +4,7 @@
             <ul class="nav" id="side-menu">
                 <!-- 在庫リスト -->
                 <li>
-                    <a href="#">
+                    <a href="#a">
                         <i class="fa fa-inbox fa-fw"></i> 在庫リスト<span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
@@ -17,9 +17,21 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <!-- QR発行ラベル -->
+                <li>
+                    <a href="/admin/print/index">
+                        <i class="fa fa-print fa-fw"></i> QR発行ラベル
+                    </a>
+                </li>                
+                <!-- データ更新 -->
+                <li>
+                    <a href="/admin/stock/index">
+                        <i class="fa fa-table fa-fw"></i> 在庫データ更新
+                    </a>
+                </li>
                 <!-- ログイン -->
                 <li>
-                    <a href="#">
+                    <a href="#b">
                         <i class="fa fa-users fa-fw"></i> ユーザー<span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">

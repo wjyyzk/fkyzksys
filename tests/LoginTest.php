@@ -30,7 +30,7 @@ class LoginTest extends TestCase
         //  入力間違っている場合
         $this->visit('/login')
             ->type('admin', 'username')
-            ->type('wrongpassword', 'password')
+            ->type('wrong', 'password')
             ->press('ログイン')
             ->seePageIs('/login')
             ->see('ログインに失敗しました。');
@@ -43,6 +43,6 @@ class LoginTest extends TestCase
             ->type('test', 'password')
             ->press('ログイン')
             ->seePageIs('/login')
-            ->see('ログインに失敗しました。');            
+            ->see('ログインに失敗しました。');
     }
 }

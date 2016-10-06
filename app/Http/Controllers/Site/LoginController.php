@@ -7,6 +7,7 @@ use Request;
 
 //  バリデータ
 use App\Http\Requests;
+use App\Http\Requests\LoginRequest;
 
 //  データベース
 use App\User;
@@ -16,6 +17,15 @@ use App\User;
  */
 class LoginController extends MasterSite
 {
+    //  レクエスト
+    private function setInput($request)
+    {
+        return array(
+            'username'  =>  $request->username,
+            'password'  =>  $request->password,
+        );
+    }
+
     /**
      * Where to redirect users after login / registration.
      *
@@ -37,12 +47,9 @@ class LoginController extends MasterSite
 	 *	@param request
 	 *	@return view
 	 */
-	public function postIndex()
+	public function postIndex(LoginRequest $request)
     {
-        $user = array(
-            'username'  =>  Request::get('username'),
-            'password'  =>  Request::get('password'),
-        );
+        $user = $this->setInput($request);
 
         //  ログイン確認
         if (Auth::attempt($user)) {

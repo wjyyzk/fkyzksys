@@ -124,6 +124,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">品番</th>
+                                        <th class="text-center">棚番</th>
                                         <th class="text-center">詳細</th>
                                         <th class="text-center">設変符号</th>
                                         <th class="text-center">A/F</th>
@@ -138,7 +139,8 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        <td>{{ $model->hinban }}</td>
+                                        <td>{{ $model->myHinban }}</td>
+                                        <td>{{ $model->tanaban }}</td>
                                         <td>
                                             <a href="/storage/{{ $model->id }}"
                                                class="btn btn-primary btn-circle" target="_blank">
@@ -161,10 +163,10 @@
                                                 <i class="fa fa-check"></i>
                                             @endif                                        
                                         </td>
-                                        <td>{{ $model->chikouguhinban }}</td>
+                                        <td>{{ $model->myChikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
                                         <td>{{ $model->unit_price }}</td>
-                                        <td>{{ $model->stock }}</td>
+                                        <td></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

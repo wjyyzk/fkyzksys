@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 //  バリデータ
@@ -17,6 +17,30 @@ use App\Storage;
  */
 class StorageController extends MasterAdmin
 {
+    //  レクエスト
+    private function setInput($request)
+    {
+        return array(
+            'hinban'            =>  $request->hinban,
+            'seppenfugou'       =>  $request->seppenfugou,
+            'name'              =>  $request->name,
+            'tanaban'           =>  $request->tanaban,
+            'af'                =>  $request->af ? true : false,
+            'cf'                =>  $request->cf ? true : false,
+            'other'             =>  $request->other ? true : false,
+            'chikouguhinban'    =>  $request->chikouguhinban,
+            'zuuban'            =>  $request->zuuban,
+            'gyousha'           =>  $request->gyousha,
+            'unit_price'        =>  $request->unit_price,
+            'shashu'            =>  $request->shashu,
+            'bui'               =>  $request->bui,
+            'lock'              =>  $request->lock,
+            'comment'           =>  $request->comment,
+            'pic'               =>  $request->pic,
+            'whq'               =>  $request->whq
+        );
+    }
+
     /**
      * 一覧
      *
@@ -27,6 +51,7 @@ class StorageController extends MasterAdmin
         //  在庫リストを取得する
         $models = Storage::Filter();
 
+        //  画面を表示する
         return view('admin/storage/index')
             ->with('models', $models)
             ->with('totalFee', Storage::totalFee()->total);
@@ -50,32 +75,50 @@ class StorageController extends MasterAdmin
      */
     public function store(StorageRequest $request)
     {
-        $input = array(
-            'hinban'            =>  $request->hinban,
-            'seppenfugou'       =>  $request->seppenfugou,
-            'hinmei'            =>  $request->hinmei,
-            'af'                =>  $request->af,
-            'cf'                =>  $request->cf,
-            'other'             =>  $request->other,
-            'chikouguhinban'    =>  $request->chikouguhinban,
-            'zuuban'            =>  $request->zuuban,
-            'gyousha'           =>  $request->gyousha,
-            'unit_price'        =>  $request->unit_price,
-            'stock'             =>  $request->stock,
-            'stock_secondhand'  =>  $request->stock_secondhand,
-            'shashu'            =>  $request->shashu,
-            'bui'               =>  $request->bui,
-            'lock'              =>  $request->lock,
-            'comment'           =>  $request->comment,
-            'pic'               =>  $request->pic,
-            'who'               =>  $request->who,
-        );
+        $input = $this->setInput($request);
 
-        //  在庫リストを作成する
-        Storage::create($request->all());
+        try
+        {
+            DB::beginTransaction();
 
-        //  メッセージ
-        Session::flash('message', 'データを作成しました。');
+            //  在庫リストを作成する
+            $model = Storage::create($input);
+
+            //  アプロードファイルを確認する
+            if($request->hasFile('file1'))
+            {
+                $fName = 'file2_'.time().$model->id.'.'.$request->file1->extension();
+                $request->file1->move('upload/file1/', $fName);
+                $model->file1 = $fName;
+            }
+
+            //  アプロードファイルを確認する
+            if($request->hasFile('file2'))
+            {
+                $fName = 'file2_'.time().$model->id.'.'.$request->file2->extension();
+                $request->file2->move('upload/file2/', $fName);
+                $model->file2 = $fName;
+            }
+
+            //  データを更新する
+            $model->save();
+
+            //  メッセージ
+            Session::flash('message', 'データを作成しました。');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+
+            //  エラーメッセージ
+            Session::flash('warning', 'データの更新が失敗しました。');
+
+            return redirect('admin/storage/create');
+        }
+        finally
+        {
+            DB::commit();
+        }
 
         return redirect('/admin/storage/index');
     }
@@ -94,7 +137,9 @@ class StorageController extends MasterAdmin
         //  モデルを取得する
         $model = Storage::findOrFail($id);
 
-        return view('admin/storage/edit')->with('model', $model);
+        //  画面を表示する
+        return view('admin/storage/edit')
+                ->with('model', $model);
     }
 
     /**
@@ -109,11 +154,45 @@ class StorageController extends MasterAdmin
         //  モデルを取得する
         $model = Storage::findOrFail($id);
 
-        //  データを更新する
-        $model->fill($request->all())->save();
+        try
+        {
+            DB::beginTransaction();
 
-        //  メッセージ
-        Session::flash('message', 'データを更新しました。');
+            $input = $this->setInput($request);
+
+            //  アプロードファイルを確認する
+            if($request->hasFile('file1'))
+            {
+                $fName = 'file1_'.time().$model->id.'.'.$request->file1->extension();
+                $request->file1->move('upload/file1/', $fName);
+                $input['file1'] = $fName;
+            }
+
+            //  アプロードファイルを確認する
+            if($request->hasFile('file2'))
+            {
+                $fName = 'file2_'.time().$model->id.'.'.$request->file2->extension();
+                $request->file2->move('upload/file2/', $fName);
+                $input['file2'] = $fName;
+            }
+
+            //  データを更新する
+            $model->fill($input)->save();
+
+            //  メッセージ
+            Session::flash('message', 'データを更新しました。');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+
+            //  エラーメッセージ
+            Session::flash('warning', 'データの登録が失敗しました。');
+        }
+        finally
+        {
+            DB::commit();
+        }
 
         //  保存したURLに移動する
         return redirect(Session::get('requestReferrer'));
@@ -140,6 +219,6 @@ class StorageController extends MasterAdmin
         Session::flash('message', 'データを更新しました。');
 
         //  保存したURLに移動する
-        return redirect(Session::get('requestReferrer'));        
+        return redirect(Session::get('requestReferrer'));
     }
 }
