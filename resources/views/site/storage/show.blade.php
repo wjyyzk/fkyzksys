@@ -160,7 +160,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">在庫数</label>
                                                 <div class="col-md-10">
-                                                    <label class="form-control">{{ $model->stock }}</label>
+                                                    <label class="form-control">{{ $model->stock_in - $model->stock_out }}</label>
                                                 </div>
                                             </div>
 
@@ -221,6 +221,26 @@
                                                     <label class="form-control">{{ $model->whq }}</label>
                                                 </div>
                                             </div>
+
+                                            <!-- 部品図面 -->
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">部品図面</label>
+                                                <div class="col-md-10">
+                                                    @if ($model->file1)
+                                                    <a href="{{ asset('/upload/file1/'.$model->file1) }}" class="form-control" target="_blank">リンク</a>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <!-- 予備 -->
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">予備</label>
+                                                <div class="col-md-10">
+                                                    @if ($model->file2)
+                                                    <a href="{{ asset('/upload/file2/'.$model->file2) }}" class="form-control" target="_blank">リンク</a>
+                                                    @endif
+                                                </div>
+                                            </div>                                            
 
                                         </div>
                                     </div>

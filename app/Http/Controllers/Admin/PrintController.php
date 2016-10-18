@@ -33,7 +33,7 @@ class PrintController extends MasterAdmin
 
         //  PDF設定
         $pdf = \PDF::loadView('admin/print/print', compact('model'))
-                ->setPaper(array(0, 0, 360, 151));
+                ->setPaper(array(0, 0, 340, 151));
 
         //  表示する
         return $pdf->stream('print.pdf');

@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
 
         //  在庫データ
-        factory(App\Storage::class, 50)->create()
+        factory(App\Storage::class, 10)->create()
             ->each(function ($u)
             {
                 $u->storage_in()->saveMany(factory(App\StorageIn::class, 2)->make());
             })
             ->each(function ($u)
             {
-                $u->storage_out()->saveMany(factory(App\StorageOut::class, 2)->make());
+                $u->storage_out()->save(factory(App\StorageOut::class)->make());
             });
     }
 }

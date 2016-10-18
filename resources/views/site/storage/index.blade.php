@@ -139,7 +139,7 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        <td>{{ $model->myHinban }}</td>
+                                        <td>{{ $model->hinban }}</td>
                                         <td>{{ $model->tanaban }}</td>
                                         <td>
                                             <a href="/storage/{{ $model->id }}"
@@ -163,10 +163,10 @@
                                                 <i class="fa fa-check"></i>
                                             @endif                                        
                                         </td>
-                                        <td>{{ $model->myChikouguhinban }}</td>
+                                        <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
                                         <td>{{ $model->unit_price }}</td>
-                                        <td></td>
+                                        <td>{{ $model->stock_in - $model->stock_out }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

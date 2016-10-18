@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="検索" />
-                                    <a class="btn btn-primary" href="/admin/user/index">リセット</a>
+                                    <a id="reset" class="btn btn-primary" href="/admin/user/index">リセット</a>
 
                                 {!! Form::close() !!}
 

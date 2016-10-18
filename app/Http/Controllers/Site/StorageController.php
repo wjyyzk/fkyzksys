@@ -19,7 +19,7 @@ class StorageController extends MasterSite
         //  画面を表示する
         return view('site/storage/index')
         	->with('models', $models)
-            ->with('totalFee', Storage::totalFee()->total);
+            ->with('totalFee', Storage::totalFee());
     }
 
     //	詳細

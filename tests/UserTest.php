@@ -65,7 +65,9 @@ class UserTest extends TestCase
                 ->type('admin', 'sUsername')
                 ->press('検索')
                 ->seePageIs('/admin/user/index?sUsername=admin')
-                ->see('admin');
+                ->see('admin')
+                ->click("#reset")
+                ->seePageIs('/admin/user/index');
         }
         else
         {

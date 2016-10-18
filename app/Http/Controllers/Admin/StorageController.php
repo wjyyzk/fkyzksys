@@ -54,7 +54,7 @@ class StorageController extends MasterAdmin
         //  画面を表示する
         return view('admin/storage/index')
             ->with('models', $models)
-            ->with('totalFee', Storage::totalFee()->total);
+            ->with('totalFee', Storage::totalFee());
     }
 
     /**

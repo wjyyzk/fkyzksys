@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="検索" />
-                                    <a class="btn btn-primary" href="/storage">リセット</a>
+                                    <a class="btn btn-primary" href="/admin/storage/index">リセット</a>
 
                                 {!! Form::close() !!}
 
@@ -165,7 +165,7 @@
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
                                         <td>{{ $model->unit_price }}</td>
-                                        <td>{{ $model->stock }}</td>
+                                        <td>{{ $model->stockIn - $model->stockOut }}</td>
                                         <td>
                                             <a href="{{ route('admin.storage.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
                                         </td>

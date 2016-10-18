@@ -57,11 +57,61 @@ class Storage extends Model
 	}
 
 	/**
+	 *	入庫数を取得する
+	 */
+	public function stockIn()
+	{
+		return $this->hasOne('App\StorageIn')
+				->selectRaw('storage_id, sum(stock) as stock_in')
+				->groupBy('storage_id');
+	}
+
+	/**
+	 *	入庫数Attributeを作成する
+	 */
+	public function getStockInAttribute()
+	{
+		if (!array_key_exists('stockIn', $this->relations))
+		{
+			$this->load('stockIn');
+		}
+
+		$relation = $this->getRelation('stockIn');
+
+		return ($relation) ? (int)$relation->stock_in : 0;
+	}
+
+	/**
 	 *	出庫テーブルの関連
 	 */
 	public function storage_out()
 	{
 		return $this->hasMany('App\StorageOut');
+	}
+
+	/**
+	 *	出庫数を取得する
+	 */
+	public function stockOut()
+	{
+		return $this->hasOne('App\StorageOut')
+				->selectRaw('storage_id, sum(stock) as stock_out')
+				->groupBy('storage_id');
+	}
+
+	/**
+	 *	出庫数Attributeを作成する
+	 */
+	public function getStockOutAttribute()
+	{
+		if (!array_key_exists('stockOut', $this->relations))
+		{
+			$this->load('stockOut');
+		}
+
+		$relation = $this->getRelation('stockOut');
+
+		return ($relation) ? (int)$relation->stock_out : 0;
 	}
 
 	/**
@@ -71,30 +121,30 @@ class Storage extends Model
 	 */
 	public function scopeFilter()
 	{
-    	$models = Storage::query();
+		$models = Storage::query();
 
-        //  検索
+		//	検索
 		if(Request::has('sHinban'))
 			$models->where('hinban', 'like', '%'.Request::get('sHinban').'%');
-		
-        if(Request::has('sAF'))
-            $models->where('af', '=', 1);
 
-        if(Request::has('sCF'))
-            $models->where('cf', '=', 1);
+		if(Request::has('sAF'))
+			$models->where('af', '=', 1);
 
-        if(Request::has('sOther'))
-            $models->where('other', '=', 1);
+		if(Request::has('sCF'))
+			$models->where('cf', '=', 1);
 
-        if(Request::has('sChikouguhinban'))
-            $models->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
+		if(Request::has('sOther'))
+			$models->where('other', '=', 1);
 
-        if(Request::has('sGyousha'))
-            $models->where('gyousha', 'like', '%'.Request::get('sGyousha').'%');        
+		if(Request::has('sChikouguhinban'))
+			$models->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
 
-        $models = $models->orderBy('id', 'desc')->paginate(10);
+		if(Request::has('sGyousha'))
+			$models->where('gyousha', 'like', '%'.Request::get('sGyousha').'%');
 
-        return $models;
+		$models = $models->orderBy('id', 'desc')->paginate(10);
+
+		return $models;
 	}
 
 	/**
@@ -104,9 +154,18 @@ class Storage extends Model
 	 */
 	public function scopeTotalFee()
 	{
-		return DB::table('storage')
-				->select(DB::raw('SUM(1*unit_price) as total'))
+		$price_total_in = DB::table('storage')
+				->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
+				->select(DB::raw('SUM(unit_price*T_storage_in.stock) as total'))
 				->where('deleted_at', '=', null)
 				->first();
+
+		$price_total_out = DB::table('storage')
+				->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
+				->select(DB::raw('SUM(unit_price*T_storage_out.stock) as total'))
+				->where('deleted_at', '=', null)
+				->first();
+
+		return $price_total_in->total - $price_total_out->total;
 	}
 }

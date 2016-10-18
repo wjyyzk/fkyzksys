@@ -30,5 +30,5 @@ class StorageOut extends Model
 	public function storage()
 	{
 		return $this->belongsTo('App\Storage');
-	}	
+	}
 }

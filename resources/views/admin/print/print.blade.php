@@ -4,12 +4,17 @@
 		<style type="text/css">
 			html
 			{
-				margin: 1px;
+				margin: 0px;
 				padding: 0px;
+			}
+			body
+			{
+				width: 340px;
+				height: 151px;
 			}
 			label
 			{
-				font-size: 26px; 
+				font-size: 24px; 
 			}
 			.page-break
 			{
@@ -19,7 +24,7 @@
 	</head>
 	<body>
 		<center>
-			<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">
+			<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">
 			<br />
 			<label>{{ $model->hinban }}</label>
 			<br />
