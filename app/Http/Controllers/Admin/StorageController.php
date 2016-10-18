@@ -48,13 +48,16 @@ class StorageController extends MasterAdmin
      */
     public function index()
     {
+        //  モデル
+        $storage = new Storage;
+
         //  在庫リストを取得する
-        $models = Storage::Filter();
+        $models = $storage->Filter();
 
         //  画面を表示する
         return view('admin/storage/index')
             ->with('models', $models)
-            ->with('totalFee', Storage::totalFee());
+            ->with('totalFee', $storage->getTotalFee());
     }
 
     /**

@@ -13,13 +13,16 @@ class StorageController extends MasterSite
     //	ホーム
     public function index()
     {
+        //  モデル
+        $storage = new Storage;
+
     	//  在庫リストを取得する
-        $models = Storage::Filter();
+        $models = $storage->Filter();
 
         //  画面を表示する
         return view('site/storage/index')
         	->with('models', $models)
-            ->with('totalFee', Storage::totalFee());
+            ->with('totalFee', $storage->getTotalFee());
     }
 
     //	詳細

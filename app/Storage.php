@@ -152,20 +152,26 @@ class Storage extends Model
 	 *
 	 *	@return int
 	 */
-	public function scopeTotalFee()
+	public function getTotalFee()
 	{
-		$price_total_in = DB::table('storage')
-				->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
-				->select(DB::raw('SUM(unit_price*T_storage_in.stock) as total'))
-				->where('deleted_at', '=', null)
-				->first();
+		$in = DB::table('storage')
+			->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
+			->select(DB::raw('SUM(unit_price*T_storage_in.stock) as total'))
+			->where('deleted_at', '=', null)
+			->first()->total;
 
-		$price_total_out = DB::table('storage')
-				->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
-				->select(DB::raw('SUM(unit_price*T_storage_out.stock) as total'))
-				->where('deleted_at', '=', null)
-				->first();
+		if($in == null)
+			$in = 0;
 
-		return $price_total_in->total - $price_total_out->total;
+		$out = DB::table('storage')
+			->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
+			->select(DB::raw('SUM(unit_price*T_storage_out.stock) as total'))
+			->where('deleted_at', '=', null)
+			->first()->total;
+
+		if($out == null)
+			$out = 0;
+
+		return $in - $out;
 	}
 }
