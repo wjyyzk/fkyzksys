@@ -12,7 +12,7 @@
         		<br />
         		<div class="panel panel-primary">
         			<div class="panel-heading">
-        				<p class="panel-title">金額合計： {{ $totalFee }}円</p>
+        				<p class="panel-title">金額合計： {{ number_format($totalFee) }}円</p>
         			</div>
         		</div>
             </div>
@@ -139,7 +139,7 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        <td>{{ $model->hinban }}</td>
+                                        <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->tanaban }}</td>
                                         <td>
                                             <a href="/storage/{{ $model->id }}"
@@ -165,7 +165,7 @@
                                         </td>
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
-                                        <td>{{ $model->unit_price }}</td>
+                                        <td>{{ number_format($model->unit_price) }}</td>
                                         <td>{{ $model->stock_in - $model->stock_out }}</td>
                                     </tr>
                                     @endforeach

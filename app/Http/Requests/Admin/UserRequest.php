@@ -43,7 +43,7 @@ class UserRequest extends Request
         return [
             'username'      =>  'required|max:255|unique:users,username,'.$id,
             'password'      =>  'required|max:10|same:password_conf',
-            'password_conf' =>  'required|max:10|same:password',            
+            'password_conf' =>  'required|max:10|same:password',
         ];
     }
 }

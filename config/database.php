@@ -55,7 +55,7 @@ return [
         'testing_db' => [
             'driver' => 'mysql',
             'host' => env('TEST_DB_HOST', 'localhost'),
-            'database' => env('TEST_DB_DATABASE', 'TEST_FukayaStorage'),
+            'database' => env('TEST_DB_DATABASE', 'FukayaStorage_dev'),
             'username' => env('TEST_DB_USERNAME', 'dev'),
             'password' => env('TEST_DB_PASSWORD', 'dev'),
             'charset' => 'utf8',

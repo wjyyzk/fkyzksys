@@ -32,3 +32,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 
 //	【API】
+Route::get('/api/import', 'API\ImportController@index');

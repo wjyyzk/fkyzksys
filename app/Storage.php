@@ -142,7 +142,7 @@ class Storage extends Model
 		if(Request::has('sGyousha'))
 			$models->where('gyousha', 'like', '%'.Request::get('sGyousha').'%');
 
-		$models = $models->orderBy('id', 'desc')->paginate(10);
+		$models = $models->orderBy('hinban', 'asc')->paginate(10);
 
 		return $models;
 	}

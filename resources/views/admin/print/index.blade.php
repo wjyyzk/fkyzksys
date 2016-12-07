@@ -95,7 +95,7 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        <td>{{ $model->hinban }}</td>
+                                        <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>
                                         	<a href="/admin/print/{{ $model->id }}" target="_blank">印刷</a>

@@ -18,7 +18,7 @@
                 @endif
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <p class="panel-title">金額合計： {{ $totalFee }}円</p>
+                        <p class="panel-title">金額合計： {{ number_format($totalFee) }}円</p>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        <td>{{ $model->hinban }}</td>
+                                        <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->seppenfugou }}</td>
                                         <td>
                                             @if ($model->af)
@@ -164,7 +164,7 @@
                                         </td>
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
-                                        <td>{{ $model->unit_price }}</td>
+                                        <td>{{ number_format($model->unit_price) }}</td>
                                         <td>{{ $model->stockIn - $model->stockOut }}</td>
                                         <td>
                                             <a href="{{ route('admin.storage.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>

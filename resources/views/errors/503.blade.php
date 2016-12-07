@@ -1,5 +1,5 @@
 <!doctype html>
-<title>問連書　-　メンテナンス</title>
+<title>深谷在庫システム　-　メンテナンス</title>
 <style>
     body {
         text-align: center;
