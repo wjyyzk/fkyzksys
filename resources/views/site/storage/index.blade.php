@@ -10,11 +10,6 @@
         <div class="row">
         	<div class="col-lg-12">
         		<br />
-        		<div class="panel panel-primary">
-        			<div class="panel-heading">
-        				<p class="panel-title">金額合計： {{ number_format($totalFee) }}円</p>
-        			</div>
-        		</div>
             </div>
         </div>
         <!-- /.row -->
@@ -132,7 +127,6 @@
                                         <th class="text-center">その他</th>
                                         <th class="text-center">治工具品番</th>
                                         <th class="text-center">業者</th>
-                                        <th class="text-center">単価</th>
                                         <th class="text-center">在庫数</th>
                                     </tr>
                                 </thead>
@@ -165,7 +159,6 @@
                                         </td>
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
-                                        <td>{{ number_format($model->unit_price) }}</td>
                                         <td>{{ $model->stock_in - $model->stock_out }}</td>
                                     </tr>
                                     @endforeach

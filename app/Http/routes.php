@@ -14,6 +14,10 @@
 //	【サイト】
 Route::get('storage', 'Site\StorageController@index');
 Route::get('storage/{id}', 'Site\StorageController@show');
+Route::get('stock/in', 'Site\StockInController@getIndex');
+Route::post('stock/in', 'Site\StockInController@postIndex');
+Route::get('stock/out', 'Site\StockOutController@getIndex');
+Route::post('stock/out', 'Site\StockOutController@postIndex');
 Route::get('login', 'Site\LoginController@getIndex');
 Route::post('login', 'Site\LoginController@postIndex');
 Route::get('logout', 'Site\LogoutController@getIndex');

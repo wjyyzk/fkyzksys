@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Site;
 //  データベース
 use App\Storage;
 
-/*
+/**
  *	【コントローラ】在庫リスト
  */
 class StorageController extends MasterSite
 {
-    //	ホーム
+    /**
+     *	ホーム
+     *  @return     view
+     */
     public function index()
     {
         //  モデル
@@ -21,11 +24,14 @@ class StorageController extends MasterSite
 
         //  画面を表示する
         return view('site/storage/index')
-        	->with('models', $models)
-            ->with('totalFee', $storage->getTotalFee());
+        	->with('models', $models);
     }
 
-    //	詳細
+    /**
+     *	詳細
+     *  @param      id
+     *  @return     view
+     */
     public function show($id)
     {
         //  モデルを取得する

@@ -56,7 +56,7 @@ class StorageRequest extends Request
     {
         //  作成の時NULL、編集の時IDを取得
         $id = $this->route('storage');
-        //  PrimaryKeyの確認用
+        //  Keyの確認用
         $hinban = Request::get('hinban');
         $chikouguhinban = Request::get('chikouguhinban');
 

@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">品番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('hinban', $model->hinban, 
+                                                {!! Form::text('hinban', $model->hinban, 
                                                 array(
                                                     'required',
                                                     'class' => 'form-control hankaku',
@@ -80,7 +80,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">設変符号</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('seppenfugou', $model->seppenfugou, 
+                                                {!! Form::text('seppenfugou', $model->seppenfugou, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
@@ -92,7 +92,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">品名</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('name', $model->name, 
+                                                {!! Form::text('name', $model->name, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
@@ -104,7 +104,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">棚番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('tanaban', $model->tanaban, 
+                                                {!! Form::text('tanaban', $model->tanaban, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
@@ -146,7 +146,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">治工具品番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('chikouguhinban', $model->chikouguhinban, 
+                                                {!! Form::text('chikouguhinban', $model->chikouguhinban, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '50'
@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">図番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('zuuban', $model->zuuban, 
+                                                {!! Form::text('zuuban', $model->zuuban, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -170,7 +170,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">業者</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('gyousha', $model->gyousha, 
+                                                {!! Form::text('gyousha', $model->gyousha, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -203,7 +203,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">車種</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('shashu', $model->shashu, 
+                                                {!! Form::text('shashu', $model->shashu, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -215,7 +215,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">部位</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('bui', $model->bui, 
+                                                {!! Form::text('bui', $model->bui, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -227,7 +227,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">ロック方向</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('lock', $model->lock, 
+                                                {!! Form::text('lock', $model->lock, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -239,7 +239,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">備考</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('comment', $model->comment, 
+                                                {!! Form::text('comment', $model->comment, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '255'
@@ -251,7 +251,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">担当</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('pic', $model->pic, 
+                                                {!! Form::text('pic', $model->pic, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '50'
@@ -263,7 +263,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">WHQ単価報告</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('whq', $model->whq, 
+                                                {!! Form::text('whq', $model->whq, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'

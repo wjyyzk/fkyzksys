@@ -33,7 +33,9 @@ class LoginController extends MasterSite
      */
     protected $redirectTo = '/login';
 
-	//	GET
+	/**
+     *	GET
+     */
     public function getIndex()
     {
         if(Auth::user())
@@ -42,7 +44,7 @@ class LoginController extends MasterSite
         return view('site/login/index');
     }
 
-    /*
+    /**
      *	POST
 	 *	@param request
 	 *	@return view

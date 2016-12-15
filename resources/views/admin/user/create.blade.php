@@ -51,7 +51,7 @@
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',
-                                                'maxlength' => '255',
+                                                'maxlength' => '20',
                                                 'autocomplete' => 'off'
                                             )) !!}
                                         </div>

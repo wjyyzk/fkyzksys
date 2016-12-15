@@ -29,12 +29,12 @@
                             <fieldset>
 
                                 <div class="form-group">
-                                    {!! Form::tel('username', null, 
+                                    {!! Form::text('username', null, 
                                     array(
                                         'required',
                                         'class' => 'form-control hankaku',
                                         'placeholder' => 'ユーザー',
-                                        'maxlength' => '255',
+                                        'maxlength' => '20',
                                         'autocomplete' => 'off',
                                         'autofocus'
                                     )) !!}

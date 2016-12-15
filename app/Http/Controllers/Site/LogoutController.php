@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use Illuminate\Support\Facades\Auth;
 
-/*
+/**
  *  【コントローラ】ログアウト
  */
 class LogoutController extends MasterSite
