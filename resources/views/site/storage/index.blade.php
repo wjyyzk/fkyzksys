@@ -34,12 +34,32 @@
     	                            <div class="form-group">
     	                                <label class="col-md-2 control-label">品番</label>
     	                                <div class="col-md-10">
-    	                                    {!! Form::tel('sHinban', Request::get('sHinban'), 
+    	                                    {!! Form::text('sHinban', Request::get('sHinban'), 
     	                                    array(
     	                                        'class' => 'form-control hankaku',
     	                                    )) !!}
     	                                </div>
     	                            </div>
+                                    <!-- 棚番 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">棚番</label>
+                                        <div class="col-md-10">
+                                            {!! Form::text('sTanaban', Request::get('sTanaban'), 
+                                            array(
+                                                'class' => 'form-control hankaku',
+                                            )) !!}
+                                        </div>
+                                    </div>
+                                    <!-- 設変符号 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">設変符号</label>
+                                        <div class="col-md-10">
+                                            {!! Form::text('sSeppenfugou', Request::get('sSeppenfugou'), 
+                                            array(
+                                                'class' => 'form-control hankaku',
+                                            )) !!}
+                                        </div>
+                                    </div>
     	                            <!-- A/F -->
     	                            <div class="form-group">
     	                                <label class="col-md-2 control-label">A/F</label>
@@ -71,7 +91,7 @@
     	                            <div class="form-group">
     	                                <label class="col-md-2 control-label">治工具品番</label>
     	                                <div class="col-md-10">
-    	                                    {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
+    	                                    {!! Form::text('sChikouguhinban', Request::get('sChikouguhinban'), 
     	                                    array(
     	                                        'class' => 'form-control hankaku',
     	                                    )) !!}
@@ -81,7 +101,7 @@
     	                            <div class="form-group">
     	                                <label class="col-md-2 control-label">業者</label>
     	                                <div class="col-md-10">
-    	                                    {!! Form::tel('sGyousha', Request::get('sGyousha'), 
+    	                                    {!! Form::text('sGyousha', Request::get('sGyousha'), 
     	                                    array(
     	                                        'class' => 'form-control hankaku',
     	                                    )) !!}
@@ -120,7 +140,6 @@
                                     <tr>
                                         <th class="text-center">品番</th>
                                         <th class="text-center">棚番</th>
-                                        <th class="text-center">詳細</th>
                                         <th class="text-center">設変符号</th>
                                         <th class="text-center">A/F</th>
                                         <th class="text-center">C/F</th>
@@ -135,12 +154,6 @@
                                     <tr>
                                         <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->tanaban }}</td>
-                                        <td>
-                                            <a href="/storage/{{ $model->id }}"
-                                               class="btn btn-primary btn-circle" target="_blank">
-                                                <i class="fa fa-link"></i>
-                                            </a>
-                                        </td>
                                         <td>{{ $model->seppenfugou }}</td>
                                         <td>
                                             @if ($model->af)

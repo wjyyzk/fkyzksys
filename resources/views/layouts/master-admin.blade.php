@@ -9,7 +9,7 @@
     <meta name="description" content="深谷在庫システム">
     <meta name="author" content="矢崎部品大東工場-技術管理">
 
-    <title>【管理画面】HV部品管理台帳 - @yield('title')</title>
+    <title>【管理画面】深谷在庫システム - @yield('title')</title>
 
     @include('shared.admin.css-script')
 

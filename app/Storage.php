@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
+/**
+ *	【モデル】在庫
+ */
 class Storage extends Model
 {
 	//  テーブル名
@@ -123,25 +126,39 @@ class Storage extends Model
 	{
 		$models = Storage::query();
 
-		//	検索
+		//	品番
 		if(Request::has('sHinban'))
 			$models->where('hinban', 'like', '%'.Request::get('sHinban').'%');
 
+		//	棚番
+		if(Request::has('sTanaban'))
+			$models->where('tanaban', 'like', '%'.Request::get('sTanaban').'%');
+
+		//	設変符号
+		if(Request::has('sSeppenfugou'))
+			$models->where('seppenfugou', 'like', '%'.Request::get('sSeppenfugou').'%');
+
+		//	A/F
 		if(Request::has('sAF'))
 			$models->where('af', '=', 1);
 
+		//	C/F
 		if(Request::has('sCF'))
 			$models->where('cf', '=', 1);
 
+		//	その他
 		if(Request::has('sOther'))
 			$models->where('other', '=', 1);
 
+		//	治工具品番
 		if(Request::has('sChikouguhinban'))
 			$models->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
 
+		//	業者
 		if(Request::has('sGyousha'))
 			$models->where('gyousha', 'like', '%'.Request::get('sGyousha').'%');
 
+		//	並び順、ページ
 		$models = $models->orderBy('hinban', 'asc')->paginate(10);
 
 		return $models;
@@ -154,6 +171,7 @@ class Storage extends Model
 	 */
 	public function getTotalFee()
 	{
+		//	入庫のデータをまとめる
 		$in = DB::table('storage')
 			->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
 			->select(DB::raw('SUM(unit_price*T_storage_in.stock) as total'))
@@ -163,6 +181,7 @@ class Storage extends Model
 		if($in == null)
 			$in = 0;
 
+		//	出庫のデータをまとめる
 		$out = DB::table('storage')
 			->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
 			->select(DB::raw('SUM(unit_price*T_storage_out.stock) as total'))

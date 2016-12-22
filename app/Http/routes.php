@@ -14,10 +14,10 @@
 //	【サイト】
 Route::get('storage', 'Site\StorageController@index');
 Route::get('storage/{id}', 'Site\StorageController@show');
-Route::get('stock/in', 'Site\StockInController@getIndex');
-Route::post('stock/in', 'Site\StockInController@postIndex');
-Route::get('stock/out', 'Site\StockOutController@getIndex');
-Route::post('stock/out', 'Site\StockOutController@postIndex');
+Route::resource('stock/in', 'Site\StockInController', ['only' => ['create', 'store']]);
+Route::resource('stock/out', 'Site\StockOutController', ['only' => ['create', 'store']]);
+Route::resource('history', 'Site\HistoryController', ['except' => ['create']]);
+Route::resource('ht/upload', 'Site\HTUploadController', ['only' => ['index', 'store']]);
 Route::get('login', 'Site\LoginController@getIndex');
 Route::post('login', 'Site\LoginController@postIndex');
 Route::get('logout', 'Site\LogoutController@getIndex');
@@ -27,8 +27,6 @@ Route::get('/', function () { return Redirect('/storage'); });
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('storage/index', 'Admin\StorageController@index');
 	Route::resource('storage', 'Admin\StorageController', ['except' => ['index', 'show']]);
-	Route::get('stock/index', 'Admin\StockController@index');
-	Route::post('stock/index', 'Admin\StockController@update');
 	Route::get('print/index', 'Admin\PrintController@index');
 	Route::get('print/{id}', 'Admin\PrintController@runPrint');
 	Route::get('user/index', 'Admin\UserController@index');
@@ -36,4 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 
 //	【API】
-Route::get('/api/import', 'API\ImportController@index');
+//Route::get('api/import', 'API\ImportController@index');
+Route::get('api/stock/{key}/{id}', 'API\StockController@index');
+Route::get('api/stock/in/{key}/{id}/{stock}', 'API\StockInController@index');
+Route::get('api/stock/out/{key}/{id}/{stock}', 'API\StockOutController@index');

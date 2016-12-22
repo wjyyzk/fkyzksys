@@ -7,6 +7,9 @@ use Request;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ *  【モデル】ユーザー
+ */
 class User extends Authenticatable
 {
     //  テーブル名

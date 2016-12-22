@@ -22,12 +22,6 @@
                     <a href="/admin/print/index">
                         <i class="fa fa-print fa-fw"></i> QR発行ラベル
                     </a>
-                </li>                
-                <!-- データ更新 -->
-                <li>
-                    <a href="/admin/stock/index">
-                        <i class="fa fa-table fa-fw"></i> 在庫データ更新
-                    </a>
                 </li>
                 <!-- ログイン -->
                 <li>

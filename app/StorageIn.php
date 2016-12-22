@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *	【モデル】入庫
+ */
 class StorageIn extends Model
 {
 	//  テーブル名
@@ -30,5 +33,18 @@ class StorageIn extends Model
 	public function storage()
 	{
 		return $this->belongsTo('App\Storage');
+	}
+
+	/**
+	 *	モデルを取得する
+	 *	@param 		input
+	 *	@return 	model 
+	 */
+	public function scopeItem($query, $input)
+	{
+		return StorageIn::where('date', '=', $input['date'])
+				->where('time', '=', $input['time'])
+				->where('storage_id', '=', $input['storage_id'])
+				->first();
 	}
 }

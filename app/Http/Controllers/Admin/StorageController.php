@@ -12,7 +12,7 @@ use App\Http\Requests\Admin\StorageRequest;
 //  データベース
 use App\Storage;
 
-/*
+/**
  *  【管理コントローラ】在庫リスト
  */
 class StorageController extends MasterAdmin
@@ -90,7 +90,7 @@ class StorageController extends MasterAdmin
             //  アプロードファイルを確認する
             if($request->hasFile('file1'))
             {
-                $fName = 'file2_'.time().$model->id.'.'.$request->file1->extension();
+                $fName = 'file2_'.$model->id.'.'.$request->file1->extension();
                 $request->file1->move('upload/file1/', $fName);
                 $model->file1 = $fName;
             }
@@ -98,7 +98,7 @@ class StorageController extends MasterAdmin
             //  アプロードファイルを確認する
             if($request->hasFile('file2'))
             {
-                $fName = 'file2_'.time().$model->id.'.'.$request->file2->extension();
+                $fName = 'file2_'.$model->id.'.'.$request->file2->extension();
                 $request->file2->move('upload/file2/', $fName);
                 $model->file2 = $fName;
             }
@@ -114,7 +114,7 @@ class StorageController extends MasterAdmin
             DB::rollback();
 
             //  エラーメッセージ
-            Session::flash('warning', 'データの更新が失敗しました。');
+            Session::flash('warning', 'データ更新が失敗しました。');
 
             return redirect('admin/storage/create');
         }
@@ -166,7 +166,7 @@ class StorageController extends MasterAdmin
             //  アプロードファイルを確認する
             if($request->hasFile('file1'))
             {
-                $fName = 'file1_'.time().$model->id.'.'.$request->file1->extension();
+                $fName = 'file1_'.$model->id.'.'.$request->file1->extension();
                 $request->file1->move('upload/file1/', $fName);
                 $input['file1'] = $fName;
             }
@@ -174,7 +174,7 @@ class StorageController extends MasterAdmin
             //  アプロードファイルを確認する
             if($request->hasFile('file2'))
             {
-                $fName = 'file2_'.time().$model->id.'.'.$request->file2->extension();
+                $fName = 'file2_'.$model->id.'.'.$request->file2->extension();
                 $request->file2->move('upload/file2/', $fName);
                 $input['file2'] = $fName;
             }
