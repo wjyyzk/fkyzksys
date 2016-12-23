@@ -23,6 +23,7 @@
 		</style>
 	</head>
 	<body>
+		<label>{{ $model->id }}</label>
 		<center>
 			<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">
 			<br />

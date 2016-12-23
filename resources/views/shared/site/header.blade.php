@@ -6,6 +6,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a href="#" class="navbar-brand"><b>HC部品管理台帳</b></a>
+        <a class="navbar-brand"><b>深谷在庫システム</b></a>
     </div>
     <!-- /.navbar-header -->

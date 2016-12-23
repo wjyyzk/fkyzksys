@@ -17,11 +17,11 @@ class RouteTest extends TestCase
     {
     	//	ホーム
         $this->visit('/')
-        	->seePageIs('/storage');
+        	->seePageIs('/storage/index');
 
     	//	在庫一覧
-        $this->visit('/storage')
-        	->seePageIs('/storage');
+        $this->visit('/storage/index')
+        	->seePageIs('/storage/index');
 
         //	ログイン
         $this->visit('/login')

@@ -7,6 +7,19 @@ use App\Http\Requests\Request;
 class StockInRequest extends Request
 {
     /**
+     * フィールド名
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'id'        =>  'ID',
+            'stock'     =>  '出庫数'
+        ];
+    }
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -24,7 +37,8 @@ class StockInRequest extends Request
     public function rules()
     {
         return [
-            //
+            'id'        =>  'required|exists:storage',
+            'stock'     =>  'required|numeric'
         ];
     }
 }

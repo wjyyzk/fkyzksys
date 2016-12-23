@@ -14,6 +14,6 @@ class LogoutController extends MasterSite
     {
     	Auth::logout();
 
-    	return redirect('/storage');
+    	return redirect('/storage/index');
     }
 }

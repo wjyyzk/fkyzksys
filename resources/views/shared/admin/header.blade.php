@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/storage"><b>【管理画面】HC部品管理台帳</b></a>
+        <a class="navbar-brand" ><b>管理画面</b></a>
     </div>
     <!-- /.navbar-header -->
  
@@ -14,7 +14,7 @@
     <ul class="nav navbar-top-links navbar-right" style="float: right;">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-gear fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>

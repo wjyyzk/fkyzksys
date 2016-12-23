@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class StockOutController extends MasterAPI
+class StorageInController extends MasterAPI
 {
 	
 }

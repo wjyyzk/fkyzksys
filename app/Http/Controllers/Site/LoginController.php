@@ -9,7 +9,7 @@ use Request;
 use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 
-//  データベース
+//  モデル
 use App\User;
 
 /*

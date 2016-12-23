@@ -5,7 +5,7 @@
                 <!-- 在庫リスト -->
                 <li>
                     <a href="#a">
-                        <i class="fa fa-inbox fa-fw"></i> 在庫リスト<span class="fa arrow"></span>
+                        <i class="fa fa-cubes fa-fw"></i> 在庫リスト<span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -23,7 +23,37 @@
                         <i class="fa fa-print fa-fw"></i> QR発行ラベル
                     </a>
                 </li>
-                <!-- ログイン -->
+                <!-- 業者 -->
+                <li>
+                    <a href="#b">
+                        <i class="fa fa-truck fa-fw"></i> 業者<span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#"> 一覧</a>
+                        </li>
+                        <li>
+                            <a href="#"> 作成</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- 担当者 -->
+                <li>
+                    <a href="#b">
+                        <i class="fa fa-user fa-fw"></i> 担当者<span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#"> 一覧</a>
+                        </li>
+                        <li>
+                            <a href="#"> 作成</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!-- ユーザー -->
                 <li>
                     <a href="#b">
                         <i class="fa fa-users fa-fw"></i> ユーザー<span class="fa arrow"></span>
@@ -37,6 +67,12 @@
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
+                </li>
+                <!-- ユーザー画面リンク -->
+                <li>
+                    <a href="/storage/index">
+                        <i class="fa fa-reply fa-fw"></i> 戻る
+                    </a>
                 </li>
             </ul>
         </div>

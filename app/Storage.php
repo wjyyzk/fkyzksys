@@ -3,7 +3,6 @@
 namespace App;
 
 use Request;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -130,13 +129,9 @@ class Storage extends Model
 		if(Request::has('sHinban'))
 			$models->where('hinban', 'like', '%'.Request::get('sHinban').'%');
 
-		//	棚番
-		if(Request::has('sTanaban'))
-			$models->where('tanaban', 'like', '%'.Request::get('sTanaban').'%');
-
-		//	設変符号
-		if(Request::has('sSeppenfugou'))
-			$models->where('seppenfugou', 'like', '%'.Request::get('sSeppenfugou').'%');
+		//	治工具品番
+		if(Request::has('sChikouguhinban'))
+			$models->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
 
 		//	A/F
 		if(Request::has('sAF'))
@@ -150,13 +145,13 @@ class Storage extends Model
 		if(Request::has('sOther'))
 			$models->where('other', '=', 1);
 
-		//	治工具品番
-		if(Request::has('sChikouguhinban'))
-			$models->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
-
 		//	業者
 		if(Request::has('sGyousha'))
 			$models->where('gyousha', 'like', '%'.Request::get('sGyousha').'%');
+
+		//	車種
+		if(Request::has('sShashu'))
+			$models->where('shashu', 'like', '%'.Request::get('sShashu').'%');
 
 		//	並び順、ページ
 		$models = $models->orderBy('hinban', 'asc')->paginate(10);

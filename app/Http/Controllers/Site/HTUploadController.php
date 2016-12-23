@@ -33,8 +33,6 @@ class HTUploadController extends MasterSite
      */
     public function index()
     {
-
-
         return view('site/ht/index');
     }
 

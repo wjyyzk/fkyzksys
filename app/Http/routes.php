@@ -12,16 +12,16 @@
 */
 
 //	【サイト】
-Route::get('storage', 'Site\StorageController@index');
+Route::get('storage/index', 'Site\StorageController@index');
 Route::get('storage/{id}', 'Site\StorageController@show');
-Route::resource('stock/in', 'Site\StockInController', ['only' => ['create', 'store']]);
-Route::resource('stock/out', 'Site\StockOutController', ['only' => ['create', 'store']]);
-Route::resource('history', 'Site\HistoryController', ['except' => ['create']]);
+Route::resource('storage/in', 'Site\StorageInController', ['except' => ['index', 'show']]);
+Route::resource('storage/out', 'Site\StorageOutController', ['except' => ['index', 'show']]);
+Route::get('history', 'Site\HistoryController@index');
 Route::resource('ht/upload', 'Site\HTUploadController', ['only' => ['index', 'store']]);
 Route::get('login', 'Site\LoginController@getIndex');
 Route::post('login', 'Site\LoginController@postIndex');
 Route::get('logout', 'Site\LogoutController@getIndex');
-Route::get('/', function () { return Redirect('/storage'); });
+Route::get('/', function () { return Redirect('/storage/index'); });
 
 //	【管理】
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 //	【API】
 //Route::get('api/import', 'API\ImportController@index');
-Route::get('api/stock/{key}/{id}', 'API\StockController@index');
-Route::get('api/stock/in/{key}/{id}/{stock}', 'API\StockInController@index');
-Route::get('api/stock/out/{key}/{id}/{stock}', 'API\StockOutController@index');
+Route::get('api/storage', 'API\StorageController@ts');
+Route::get('api/storage/{id}', 'API\StorageController@index');
+//Route::get('api/storage/in/{key}/{id}/{stock}', 'API\StorageInController@index');
+//Route::get('api/storage/out/{key}/{id}/{stock}', 'API\StorageOutController@index');

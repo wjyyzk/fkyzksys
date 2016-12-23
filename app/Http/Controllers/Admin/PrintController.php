@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-//  データベース
+//  モデル
 use App\Storage;
 
 class PrintController extends MasterAdmin

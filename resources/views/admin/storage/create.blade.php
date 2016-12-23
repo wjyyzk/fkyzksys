@@ -76,6 +76,18 @@
                                             </div>
                                         </div>
 
+                                        <!-- 治工具品番 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">治工具品番</label>
+                                            <div class="col-md-10">
+                                                {!! Form::tel('chikouguhinban', null, 
+                                                array(
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '10'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
                                         <!-- 設変符号 -->
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">設変符号</label>
@@ -93,18 +105,6 @@
                                             <label class="col-md-2 control-label">品名</label>
                                             <div class="col-md-10">
                                                 {!! Form::tel('name', null, 
-                                                array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '100'
-                                                )) !!}
-                                            </div>
-                                        </div>
-
-                                        <!-- 棚番 -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">棚番</label>
-                                            <div class="col-md-10">
-                                                {!! Form::tel('tanaban', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
@@ -139,18 +139,6 @@
                                                 <div class="control-label" style="text-align: left;">
                                                    {!! Form::checkbox('other', '1', Request::get('other')) !!}
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- 治工具品番 -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">治工具品番</label>
-                                            <div class="col-md-10">
-                                                {!! Form::tel('chikouguhinban', null, 
-                                                array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
-                                                )) !!}
                                             </div>
                                         </div>
 
@@ -259,9 +247,21 @@
                                             </div>
                                         </div>
 
-                                        <!-- WHO単価報告 -->
+                                        <!-- 棚番 -->
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">WHQ単価報告</label>
+                                            <label class="col-md-2 control-label">棚番</label>
+                                            <div class="col-md-10">
+                                                {!! Form::tel('tanaban', null, 
+                                                array(
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '100'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- 振替単価 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">振替単価</label>
                                             <div class="col-md-10">
                                                 {!! Form::tel('whq', null, 
                                                 array(

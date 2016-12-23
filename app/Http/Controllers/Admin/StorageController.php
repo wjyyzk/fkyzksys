@@ -9,7 +9,7 @@ use Session;
 use App\Http\Requests;
 use App\Http\Requests\Admin\StorageRequest;
 
-//  データベース
+//  モデル
 use App\Storage;
 
 /**

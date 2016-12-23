@@ -37,7 +37,7 @@ class StockOutRequest extends Request
     public function rules()
     {
         return [
-            'id'        =>  'exists:storage',
+            'id'        =>  'required|exists:storage',
             'stock'     =>  'required|numeric'
         ];
     }

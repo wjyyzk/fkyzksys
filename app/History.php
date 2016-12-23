@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -23,12 +24,35 @@ class History extends Model
         //	ページのデータ数
 		$paginate = 10;
 
-		//	入出庫データを取得する
-		$stockIn = StorageIn::query();
-		$stockOut = StorageOut::query();
+		//	【検索】種類によって入庫データを取得する
+		if (!Request::has('sType') || Request::get('sType') == 1)
+			$storageIn = StorageIn::whereHas('storage', function($q) {
+				if(Request::has('sHinban'))
+					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
+				if(Request::has('sChikouguhinban'))
+					$q->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
+			})->with('storage')
+			->select('id', 'storage_id', DB::raw("'1' as type"), 'date', 'time', 'stock');
+		else
+			$storageIn = null;
+		
+		//	【検索】種類によって出庫データを取得する
+		if (!Request::has('sType') || Request::get('sType') == 2)
+			$storageOut = StorageOut::whereHas('storage', function($q) {
+				if(Request::has('sHinban'))
+					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
+				if(Request::has('sChikouguhinban'))
+					$q->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');			
+			})->with('storage')
+			->select('id', 'storage_id', DB::raw("'2' as type"), 'date', 'time', 'stock');
+		else
+			$storageOut = null;
 
 		//	入庫と出庫のデータをマージする
-		$combine = $stockIn->union($stockOut)->get()->toArray();
+		$combine = $storageIn->union($storageOut)
+					->orderBy('date', 'DESC')
+					->orderBy('time', 'DESC')
+					->get()->toArray();
 
 		$slice = array_slice($combine, $paginate * ($page - 1), $paginate);
 		$result = new LengthAwarePaginator($slice, count($combine), $paginate);

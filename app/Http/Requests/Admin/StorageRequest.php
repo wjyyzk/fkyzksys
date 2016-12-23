@@ -69,7 +69,7 @@ class StorageRequest extends Request
             'af'                =>  '',
             'cf'                =>  '',
             'other'             =>  '',
-            'chikouguhinban'    =>  'alpha_num|max:50|unique:storage,chikouguhinban,'.
+            'chikouguhinban'    =>  'alpha_num|min:10|max:10|unique:storage,chikouguhinban,'.
                                     $id.',id,hinban,'.$hinban,
             'zuuban'            =>  'max:20',
             'gyousha'           =>  'max:20',

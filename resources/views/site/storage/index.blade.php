@@ -40,21 +40,11 @@
     	                                    )) !!}
     	                                </div>
     	                            </div>
-                                    <!-- 棚番 -->
+                                    <!-- 治工具品番 -->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">棚番</label>
+                                        <label class="col-md-2 control-label">治工具品番</label>
                                         <div class="col-md-10">
-                                            {!! Form::text('sTanaban', Request::get('sTanaban'), 
-                                            array(
-                                                'class' => 'form-control hankaku',
-                                            )) !!}
-                                        </div>
-                                    </div>
-                                    <!-- 設変符号 -->
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">設変符号</label>
-                                        <div class="col-md-10">
-                                            {!! Form::text('sSeppenfugou', Request::get('sSeppenfugou'), 
+                                            {!! Form::text('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
                                             )) !!}
@@ -85,16 +75,6 @@
                                             <div class="control-label" style="text-align: left;">
                                                {!! Form::checkbox('sOther', 'other', Request::get('sOther')) !!}
                                             </div>
-    	                                </div>
-    	                            </div>
-    	                            <!-- 治工具品番 -->
-    	                            <div class="form-group">
-    	                                <label class="col-md-2 control-label">治工具品番</label>
-    	                                <div class="col-md-10">
-    	                                    {!! Form::text('sChikouguhinban', Request::get('sChikouguhinban'), 
-    	                                    array(
-    	                                        'class' => 'form-control hankaku',
-    	                                    )) !!}
     	                                </div>
     	                            </div>
     	                            <!-- 業者 -->
@@ -139,21 +119,21 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">品番</th>
-                                        <th class="text-center">棚番</th>
+                                        <th class="text-center">治工具品番</th>
                                         <th class="text-center">設変符号</th>
                                         <th class="text-center">A/F</th>
                                         <th class="text-center">C/F</th>
                                         <th class="text-center">その他</th>
-                                        <th class="text-center">治工具品番</th>
                                         <th class="text-center">業者</th>
                                         <th class="text-center">在庫数</th>
+                                        <th class="text-center">棚番</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
                                         <td class="text-left">{{ $model->hinban }}</td>
-                                        <td>{{ $model->tanaban }}</td>
+                                        <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->seppenfugou }}</td>
                                         <td>
                                             @if ($model->af)
@@ -170,9 +150,9 @@
                                                 <i class="fa fa-check"></i>
                                             @endif                                        
                                         </td>
-                                        <td>{{ $model->chikouguhinban }}</td>
                                         <td>{{ $model->gyousha }}</td>
                                         <td>{{ $model->stock_in - $model->stock_out }}</td>
+                                        <td>{{ $model->tanaban }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
