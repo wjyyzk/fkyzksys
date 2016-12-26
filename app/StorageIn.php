@@ -42,9 +42,11 @@ class StorageIn extends Model
 	 */
 	public function scopeItem($query, $input)
 	{
-		return StorageIn::where('date', '=', $input['date'])
+		$model = StorageIn::where('date', '=', $input['date'])
 				->where('time', '=', $input['time'])
 				->where('storage_id', '=', $input['storage_id'])
 				->first();
+
+		return null;
 	}
 }

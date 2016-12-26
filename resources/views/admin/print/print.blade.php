@@ -20,16 +20,34 @@
 			{
 				page-break-after: always;
 			}
+			.alignleft {
+				float: left;
+				width:33.33333%;
+				text-align:left;
+			}
+			.aligncenter {
+				float: left;
+				width:33.33333%;
+				text-align:center;
+			}
+			.alignright {
+				float: left;
+				width:33.33333%;
+				text-align:right;
+			}​
 		</style>
 	</head>
 	<body>
-		<label>{{ $model->id }}</label>
-		<center>
+		<div>
+			<label class="alignleft">&nbsp;&nbsp;&nbsp;{{ $model->id }}</label>
+			
 			<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">
-			<br />
-			<label>{{ $model->hinban }}</label>
-			<br />
-			<label>{{ $model->chikouguhinban }}</label>
+		</div>
+		<center>
+		<br />
+		<label>{{ $model->hinban }}</label>
+		<br />
+		<label>{{ $model->chikouguhinban }}</label>
 		</center>
 		<!--	ページ
 		<div class="page-break"></div>
