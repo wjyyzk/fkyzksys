@@ -43,32 +43,6 @@ class HTUploadController extends MasterSite
      */
 	public function store(Request $request)
     {
-
-            //  アプロードファイルを確認する
-            if($request->hasFile('file_stockin'))
-            {
-                $fName = 'file_stockin.csv';
-                $request->file_stockin->move('upload/', $fName);
-                //  入庫データを処理する
-                $this->updateCSV("stockin");
-
-                //  メッセージ
-                Session::flash('message', 'データを更新しました。');
-            }
-
-            //  アプロードファイルを確認する
-            if($request->hasFile('file_stockout'))
-            {
-                $fName = 'file_stockout.csv';
-                $request->file_stockout->move('upload/', $fName);
-                //  出庫データを処理する
-                $this->updateCSV("stockout");
-
-                //  メッセージ
-                Session::flash('message', 'データを更新しました。');
-            }
-
-    	/*
         try
         {
             DB::beginTransaction();
@@ -108,7 +82,6 @@ class HTUploadController extends MasterSite
         {
             DB::commit();
         }
-		*/
 
         return redirect('ht/upload');
     }
@@ -142,12 +115,7 @@ class HTUploadController extends MasterSite
 				//  CSVデータを取得する
                 $input = $this->setInput($data);
 
-                //$model = StorageIn::item($input);
-
-                $model = StorageIn::where('date', '=', $input['date'])
-						->where('time', '=', $input['time'])
-						->where('storage_id', '=', $input['storage_id'])
-						->first();
+                $model = StorageIn::item($input)->first();
 
                 if($model === null) {
                     //  入庫データを作成する
@@ -167,12 +135,7 @@ class HTUploadController extends MasterSite
                 //  CSVデータを取得する
                 $input = $this->setInput($data);
 
-                //$model = StorageOut::item($input);
-
-                $model = StorageOut::where('date', '=', $input['date'])
-						->where('time', '=', $input['time'])
-						->where('storage_id', '=', $input['storage_id'])
-						->first();
+                $model = StorageOut::item($input)->first();
 
                 if($model === null) {
                     //  入庫データを作成する

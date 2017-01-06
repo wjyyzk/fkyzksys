@@ -11,47 +11,44 @@
 			{
 				width: 340px;
 				height: 151px;
+				margin-top: 5px;
+				margin-left: 5px;
 			}
 			label
 			{
-				font-size: 24px; 
+				font-size: 16px; 
 			}
 			.page-break
 			{
 				page-break-after: always;
 			}
-			.alignleft {
-				float: left;
-				width:33.33333%;
-				text-align:left;
+			.mymargin
+			{
+				margin: 5px;
 			}
-			.aligncenter {
-				float: left;
-				width:33.33333%;
-				text-align:center;
-			}
-			.alignright {
-				float: left;
-				width:33.33333%;
-				text-align:right;
-			}​
 		</style>
 	</head>
 	<body>
-		<div>
-			<label class="alignleft">&nbsp;&nbsp;&nbsp;{{ $model->id }}</label>
-			
-			<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">
-		</div>
-		<center>
+		<label class="mymargin">{{ $model->chikouguhinban }}</label>
 		<br />
-		<label>{{ $model->hinban }}</label>
+		<label class="mymargin" style="font-size: 20px;">{{ $model->hinban }}</label>
 		<br />
-		<label>{{ $model->chikouguhinban }}</label>
-		</center>
-		<!--	ページ
-		<div class="page-break"></div>
-		<h1>2nd page</h1>
+		<table width="100%">
+			<tr>
+				<td width="50%" rowspan="2">
+					<label class="mymargin">{{ $model->id }}</label>
+				</td>
+				<td width="50%"></td>
+			</tr>
+			<tr>
+				<td width="50%" style="text-align: right;">
+					<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">					
+				</td>
+			</tr>
+		</table>
+		<!--	複数ページのため
+			<div class="page-break"></div>
+			<h1>2nd page</h1>
 		-->
 	</body>
 </html>

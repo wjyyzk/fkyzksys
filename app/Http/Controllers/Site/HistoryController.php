@@ -16,6 +16,8 @@ class HistoryController extends MasterSite
      */
     public function index()
     {
+        
+
         //  モデル
         $history = new History;
 

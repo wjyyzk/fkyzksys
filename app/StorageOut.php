@@ -44,7 +44,6 @@ class StorageOut extends Model
 	{
 		return StorageOut::where('date', '=', $input->date)
 				->where('time', '=', $input->time)
-				->where('storage_id', '=', $input->storage_id)
-				->first();
+				->where('storage_id', '=', $input->storage_id);
 	}
 }

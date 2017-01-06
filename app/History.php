@@ -25,7 +25,7 @@ class History extends Model
 		$paginate = 10;
 
 		//	【検索】種類によって入庫データを取得する
-		if (!Request::has('sType') || Request::get('sType') == 1)
+		if (!Request::has('sType') || Request::get('sType') == 0 || Request::get('sType') == 1)
 			$storageIn = StorageIn::whereHas('storage', function($q) {
 				if(Request::has('sHinban'))
 					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
@@ -34,10 +34,13 @@ class History extends Model
 			})->with('storage')
 			->select('id', 'storage_id', DB::raw("'1' as type"), 'date', 'time', 'stock');
 		else
-			$storageIn = null;
+			$storageIn = StorageIn::whereHas('storage', function($q) {
+				$q->where('hinban', '=' , 'nodata');
+			})->with('storage')
+			->select('id', 'storage_id', DB::raw("'1' as type"), 'date', 'time', 'stock');
 		
 		//	【検索】種類によって出庫データを取得する
-		if (!Request::has('sType') || Request::get('sType') == 2)
+		if (!Request::has('sType') || Request::get('sType') == 0 || Request::get('sType') == 2)
 			$storageOut = StorageOut::whereHas('storage', function($q) {
 				if(Request::has('sHinban'))
 					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
@@ -46,7 +49,10 @@ class History extends Model
 			})->with('storage')
 			->select('id', 'storage_id', DB::raw("'2' as type"), 'date', 'time', 'stock');
 		else
-			$storageOut = null;
+			$storageOut = StorageOut::whereHas('storage', function($q) {
+				$q->where('hinban', '=', 'nodata');
+			})->with('storage')
+			->select('id', 'storage_id', DB::raw("'2' as type"), 'date', 'time', 'stock');
 
 		//	入庫と出庫のデータをマージする
 		$combine = $storageIn->union($storageOut)
