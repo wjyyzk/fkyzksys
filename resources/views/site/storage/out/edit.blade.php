@@ -46,7 +46,8 @@
         						{!! Form::open(array(
 									'method' => 'PUT',
                                     'class' => 'form-horizontal',
-									'route' => ['storage.out.update', $model->id])) !!}
+									'route' => ['storage.out.update', $model->id],
+                                    'onreset' => 'resetHandler();')) !!}
 
                                     <!-- ID -->
                                     <div class="form-group">
@@ -58,7 +59,7 @@
                                                 'id' => 'id',
                                                 'class' => 'form-control hankaku',
                                                 'autocomplete' => 'off',
-                                                'onblur' => 'reqStorage()'
+                                                'oninput' => 'reqStorage()'
                                             )) !!}
                                         </div>
                                     </div>
@@ -67,7 +68,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">品番</label>
                                         <div class="col-md-10">
-                                            {!! Form::text('hinban1', null,
+                                            {!! Form::text('hinban1', $model->storage->hinban,
                                             array(
                                                 'required',
                                                 'id' => 'hinban1',
@@ -82,7 +83,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label"></label>
                                         <div class="col-md-10">
-                                            {!! Form::text('hinban2', null,
+                                            {!! Form::text('hinban2', $model->storage->chikouguhinban,
                                             array(
                                                 'required',
                                                 'id' => 'hinban2',
@@ -97,7 +98,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">在庫数</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('stock_curr', null,
+                                            {!! Form::tel('stock_curr', $model->storage->stock_in - $model->storage->stock_out,
                                             array(
                                                 'required',
                                                 'id' => 'stock_curr',
@@ -122,8 +123,9 @@
                                         </div>
                                     </div>
 
-                                    <input type="submit" class="btn btn-primary" value="登録" />
+                                    <input id="submit" type="submit" class="btn btn-primary" value="登録" />
                                     <button type="reset" class="btn btn-primary">リセット</button>
+                                    <button type="button" class="btn btn-primary" onclick="return history.back()">戻る</button>
                                     
                                 {!! Form::close() !!}
                             </div>
@@ -150,7 +152,9 @@
     {!! JsValidator::formRequest('App\Http\Requests\StockOutRequest') !!}
 
     <script type="text/javascript">
-        document.onload = reqStorage();
+        function resetHandler() {
+            document.getElementById('submit').disabled = false;
+        }
 
         function reqStorage() {
             valT = $('#id').val();
@@ -165,12 +169,14 @@
                         document.getElementById('hinban1').value = eval(JSON.stringify(data.hinban));
                         document.getElementById('hinban2').value = eval(JSON.stringify(data.chikouguhinban));
                         document.getElementById('stock_curr').value = JSON.stringify(data.stock);
+                        document.getElementById('submit').disabled = false;
                     }
                     else
                     {
                         document.getElementById('hinban1').value = "";
                         document.getElementById('hinban2').value = "";
                         document.getElementById('stock_curr').value = "";
+                        document.getElementById('submit').disabled = true;
                     }
                 },
                 error: function() {

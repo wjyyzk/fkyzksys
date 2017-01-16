@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class StockInRequest extends Request
+class MerchantRequest extends Request
 {
     /**
      * フィールド名
@@ -14,8 +14,7 @@ class StockInRequest extends Request
     public function attributes()
     {
         return [
-            'id'        =>  'ID',
-            'stock'     =>  '出庫数'
+            'name'          =>  '業者',
         ];
     }
 
@@ -36,9 +35,11 @@ class StockInRequest extends Request
      */
     public function rules()
     {
+        //  作成の時NULL、編集の時IDを取得
+        $id = $this->route('merchant');
+
         return [
-            'id'        =>  'required|exists:storage,id,deleted_at,NULL',
-            'stock'     =>  'required|numeric'
+            'name'          =>  'required|max:50|unique:merchant,name,'.$id
         ];
     }
 }

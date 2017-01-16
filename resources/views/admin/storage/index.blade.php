@@ -141,6 +141,7 @@
                                     <tr>
                                         <th class="text-center">品番</th>
                                         <th class="text-center">治工具品番</th>
+                                        <th class="text-center">詳細</th>
                                         <th class="text-center">設変符号</th>
                                         <th class="text-center">A/F</th>
                                         <th class="text-center">C/F</th>
@@ -157,6 +158,10 @@
                                     <tr>
                                         <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->chikouguhinban }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.storage.show', [$model->id]) }}" class="btn btn-primary btn-circle" target="_blank">
+                                            <i class="fa fa-link"></i></a>
+                                        </td>
                                         <td>{{ $model->seppenfugou }}</td>
                                         <td>
                                             @if ($model->af)

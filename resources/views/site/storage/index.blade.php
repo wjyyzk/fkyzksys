@@ -27,7 +27,7 @@
 
                                 {!! Form::open(array(
                                     'method' => 'GET',
-                                    'url' => '/storage', 
+                                    'url' => '/storage/index', 
                                     'class' => 'form-horizontal')) !!}
 
     	                            <!-- 品番 -->
@@ -88,7 +88,7 @@
     	                                </div>
     	                            </div>
     	                            <input type="submit" class="btn btn-primary" value="検索" />
-    	                            <a class="btn btn-primary" href="/storage">リセット</a>
+    	                            <a class="btn btn-primary" href="/storage/index">リセット</a>
 
     	                        {!! Form::close() !!}
 

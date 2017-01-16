@@ -69,9 +69,9 @@ class StorageOutController extends MasterSite
         Session::put('requestReferrer', app('url')->previous());
 
         //  モデルを取得する
-        $model = StorageOut::findOrFail($id);
+        $model = StorageOut::with('storage')->findOrFail($id);
 
-        return view('site/storage/in/edit')->with('model', $model);
+        return view('site/storage/out/edit')->with('model', $model);
     }
 
     /**

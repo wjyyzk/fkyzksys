@@ -76,6 +76,18 @@
                                             </div>
                                         </div>
 
+                                        <!-- 治工具品番 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">治工具品番</label>
+                                            <div class="col-md-10">
+                                                {!! Form::text('chikouguhinban', $model->chikouguhinban, 
+                                                array(
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '50'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
                                         <!-- 設変符号 -->
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">設変符号</label>
@@ -93,18 +105,6 @@
                                             <label class="col-md-2 control-label">品名</label>
                                             <div class="col-md-10">
                                                 {!! Form::text('name', $model->name, 
-                                                array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '100'
-                                                )) !!}
-                                            </div>
-                                        </div>
-
-                                        <!-- 棚番 -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">棚番</label>
-                                            <div class="col-md-10">
-                                                {!! Form::text('tanaban', $model->tanaban, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
@@ -139,18 +139,6 @@
                                                 <div class="control-label" style="text-align: left;">
                                                    {!! Form::checkbox('other', '1', $model->other) !!}
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- 治工具品番 -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">治工具品番</label>
-                                            <div class="col-md-10">
-                                                {!! Form::text('chikouguhinban', $model->chikouguhinban, 
-                                                array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
-                                                )) !!}
                                             </div>
                                         </div>
 
@@ -255,6 +243,18 @@
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '50'
+                                                )) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- 棚番 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">棚番</label>
+                                            <div class="col-md-10">
+                                                {!! Form::text('tanaban', $model->tanaban, 
+                                                array(
+                                                    'class' => 'form-control hankaku',
+                                                    'maxlength' => '100'
                                                 )) !!}
                                             </div>
                                         </div>

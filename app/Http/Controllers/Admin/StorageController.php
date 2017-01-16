@@ -127,6 +127,21 @@ class StorageController extends MasterAdmin
     }
 
     /**
+     *  詳細
+     *  @param      id
+     *  @return     view
+     */
+    public function show($id)
+    {
+        //  モデルを取得する
+        $model = Storage::findOrFail($id);
+
+        //  画面を表示する
+        return view('admin/storage/show')
+            ->with('model', $model);
+    }
+
+    /**
      * 編集画面
      *
      * @param  int  $id

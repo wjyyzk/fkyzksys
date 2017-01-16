@@ -30,10 +30,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#"> 一覧</a>
+                            <a href="/admin/merchant/index"> 一覧</a>
                         </li>
                         <li>
-                            <a href="#"> 作成</a>
+                            <a href="/admin/merchant/create"> 作成</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -45,10 +45,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#"> 一覧</a>
+                            <a href="/admin/pic/index"> 一覧</a>
                         </li>
                         <li>
-                            <a href="#"> 作成</a>
+                            <a href="/admin/pic/create"> 作成</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -71,7 +71,7 @@
                 <!-- ユーザー画面リンク -->
                 <li>
                     <a href="/storage/index">
-                        <i class="fa fa-reply fa-fw"></i> 戻る
+                        <i class="fa fa-reply fa-fw"></i> 深谷画面
                     </a>
                 </li>
             </ul>

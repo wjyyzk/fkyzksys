@@ -26,9 +26,13 @@ Route::get('/', function () { return Redirect('/storage/index'); });
 //	【管理】
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('storage/index', 'Admin\StorageController@index');
-	Route::resource('storage', 'Admin\StorageController', ['except' => ['index', 'show']]);
+	Route::resource('storage', 'Admin\StorageController', ['except' => ['index']]);
 	Route::get('print/index', 'Admin\PrintController@index');
 	Route::get('print/{id}', 'Admin\PrintController@runPrint');
+	Route::get('merchant/index', 'Admin\MerchantController@index');
+	Route::resource('merchant', 'Admin\MerchantController', ['except' => ['index', 'show']]);
+	Route::get('pic/index', 'Admin\PICController@index');
+	Route::resource('pic', 'Admin\PICController', ['except' => ['index', 'show']]);
 	Route::get('user/index', 'Admin\UserController@index');
 	Route::resource('user', 'Admin\UserController', ['except' => ['index', 'show']]);
 });

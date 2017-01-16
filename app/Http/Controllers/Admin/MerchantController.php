@@ -1,64 +1,75 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use Session;
 
 //  バリデータ
-use App\Http\Requests\StockInRequest;
+use App\Http\Requests;
+use App\Http\Requests\Admin\MerchantRequest;
 
 //  モデル
-use App\StorageIn;
+use App\Merchant;
 
 /**
- *	【コントローラ】入庫
+ *  【管理コントローラ】業者
  */
-class StorageInController extends MasterSite
+class MerchantController extends MasterAdmin
 {
-    /**
-     *  レクエスト
-     *  @param          入力フォーム
-     *  @return         
-     */
+    //  レクエスト
     private function setInput($request)
     {
         return array(
-            'storage_id'    =>  $request->id,
-            'stock'         =>  $request->stock,
-            'date'          =>  date('Y-m-d'),
-            'time'          =>  date('H:i:s')
+            'name'  =>  $request->name,
         );
     }
 
     /**
-     *  出庫入力画面
-     *  @return view
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //  モデルを取得する
+        $models = Merchant::filter();
+
+        return view('admin/merchant/index')->with('models', $models);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('site/storage/in/create');
+        return view('admin/merchant/create');
     }
 
     /**
-     *  出庫入力処理
-	 *	@param request
-	 *	@return view
-	 */
-	public function store(StockInRequest $request)
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(MerchantRequest $request)
     {
+        //  レクエストを取得
         $input = $this->setInput($request);
 
-        //  モデルを登録する
-        StorageIn::create($input);
+        //  ユーザーを作成する
+        Merchant::create($input);
 
         //  メッセージ
-        Session::flash('message', 'データを登録しました。');
+        Session::flash('message', 'データを作成しました。');
 
-        return redirect('/storage/in/create');
+        return redirect('/admin/merchant/index');
     }
 
     /**
-     * 編集画面
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -69,22 +80,22 @@ class StorageInController extends MasterSite
         Session::put('requestReferrer', app('url')->previous());
 
         //  モデルを取得する
-        $model = StorageIn::with('storage')->findOrFail($id);
+        $model = Merchant::findOrFail($id);
 
-        return view('site/storage/in/edit')->with('model', $model);
+        return view('admin/merchant/edit')->with('model', $model);
     }
 
     /**
-     * 更新処理
+     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StockInRequest $request, $id)
+    public function update(MerchantRequest $request, $id)
     {
         //  モデルを取得する
-        $model = StorageIn::findOrFail($id);
+        $model = Merchant::findOrFail($id);
 
         //  レクエストを取得
         $input = $this->setInput($request);
@@ -100,7 +111,7 @@ class StorageInController extends MasterSite
     }
 
     /**
-     * 削除処理
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -111,7 +122,7 @@ class StorageInController extends MasterSite
         Session::put('requestReferrer', app('url')->previous());
 
         //  モデルを取得する
-        $model = StorageIn::findOrFail($id);
+        $model = Merchant::findOrFail($id);
 
         //  データを削除する
         $model->delete();

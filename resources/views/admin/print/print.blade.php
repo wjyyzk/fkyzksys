@@ -16,7 +16,8 @@
 			}
 			label
 			{
-				font-size: 16px; 
+				font-family: "Meiryo UI";
+				font-size: 16px;
 			}
 			.page-break
 			{
@@ -29,21 +30,18 @@
 		</style>
 	</head>
 	<body>
-		<label class="mymargin">{{ $model->chikouguhinban }}</label>
-		<br />
-		<label class="mymargin" style="font-size: 20px;">{{ $model->hinban }}</label>
-		<br />
 		<table width="100%">
 			<tr>
-				<td width="50%" rowspan="2">
-					<label class="mymargin">{{ $model->id }}</label>
-				</td>
-				<td width="50%"></td>
+				<td colspan="2" class="mymargin"><label>{{ $model->chikouguhinban }}</label></td>		
 			</tr>
 			<tr>
-				<td width="50%" style="text-align: right;">
-					<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">					
-				</td>
+				<td valign="top" class="mymargin"><label style="font-size: 20px;">{{ $model->hinban }}</label></td>
+				<td rowspan="2" valign="bottom" style="text-align: right;">
+					<img class="qrcode" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(120)->generate($model->id.'*'.$model->hinban.'*'.$model->chikouguhinban)) !!} ">
+				</td>				
+			</tr>
+			<tr>
+				<td class="mymargin"><label>{{ $model->id }}</label></td>
 			</tr>
 		</table>
 		<!--	複数ページのため

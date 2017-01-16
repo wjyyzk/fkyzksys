@@ -19,9 +19,9 @@ class History extends Model
 	 */
 	public function scopeFilter()
 	{
-		//  ページ番号を取得する
-        $page = Input::get('page', 1);
-        //	ページのデータ数
+		//	ページ番号を取得する
+		$page = Input::get('page', 1);
+		//	ページのデータ数
 		$paginate = 10;
 
 		//	【検索】種類によって入庫データを取得する
@@ -34,6 +34,7 @@ class History extends Model
 			})->with('storage')
 			->select('id', 'storage_id', DB::raw("'1' as type"), 'date', 'time', 'stock');
 		else
+			//	Nullが出来ないため、データが無い条件を付ける
 			$storageIn = StorageIn::whereHas('storage', function($q) {
 				$q->where('hinban', '=' , 'nodata');
 			})->with('storage')
@@ -45,10 +46,11 @@ class History extends Model
 				if(Request::has('sHinban'))
 					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
 				if(Request::has('sChikouguhinban'))
-					$q->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');			
+					$q->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
 			})->with('storage')
 			->select('id', 'storage_id', DB::raw("'2' as type"), 'date', 'time', 'stock');
 		else
+			//	Nullが出来ないため、データが無い条件を付ける
 			$storageOut = StorageOut::whereHas('storage', function($q) {
 				$q->where('hinban', '=', 'nodata');
 			})->with('storage')
@@ -63,7 +65,7 @@ class History extends Model
 		$slice = array_slice($combine, $paginate * ($page - 1), $paginate);
 		$result = new LengthAwarePaginator($slice, count($combine), $paginate);
 
-		//	モデルを作成
+		//	モデルを作成する
 		return $result;
 	}
 }
