@@ -83,7 +83,7 @@
                                                 {!! Form::text('chikouguhinban', $model->chikouguhinban, 
                                                 array(
                                                     'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
+                                                    'maxlength' => '10'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">業者</label>
                                             <div class="col-md-10">
-                                                {!! Form::text('gyousha', $model->gyousha, 
+                                                {!! Form::select('gyousha', $m_merchants, $model->gyousha, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -239,7 +239,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">担当</label>
                                             <div class="col-md-10">
-                                                {!! Form::text('pic', $model->pic, 
+                                                {!! Form::select('pic', $m_pics, $model->pic, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '50'
@@ -290,6 +290,18 @@
                                                 <a href="{{ asset('/upload/file2/'.$model->file2) }}?{{ time() }}" class="form-control" target="_blank">リンク</a>
                                                 @endif
                                                 {!! Form::file('file2', array('class' => 'form-control')) !!}
+                                            </div>
+                                        </div>
+
+                                        <!-- 更新日 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">更新日</label>
+                                            <div class="col-md-10">
+                                                {!! Form::text('updated_at', $model->updated_at->format('Y-m-d'), 
+                                                array(
+                                                    'class' => 'form-control',
+                                                    'readonly'
+                                                )) !!}
                                             </div>
                                         </div>
 

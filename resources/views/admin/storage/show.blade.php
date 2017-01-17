@@ -144,7 +144,12 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">業者</label>
                                                 <div class="col-md-10">
-                                                    <label class="form-control">{{ $model->gyousha }}</label>
+                                                    <label class="form-control">
+                                                    @if ($model->gyousha > 0)
+                                                        {{ $model->merchant->name }}
+                                                    @else
+                                                    @endif
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -210,7 +215,12 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">担当</label>
                                                 <div class="col-md-10">
-                                                    <label class="form-control">{{ $model->pic }}</label>
+                                                    <label class="form-control">
+                                                    @if ($model->pic > 0)
+                                                        {{ $model->picharge->name }}
+                                                    @else
+                                                    @endif
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -226,9 +236,11 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">部品図面</label>
                                                 <div class="col-md-10">
+                                                    <label class="form-control">
                                                     @if ($model->file1)
-                                                    <a href="{{ asset('/upload/file1/'.$model->file1) }}?{{ time() }}" class="form-control" target="_blank">リンク</a>
+                                                    <a href="{{ asset('/upload/file1/'.$model->file1) }}?{{ time() }}" target="_blank">リンク</a>
                                                     @endif
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -236,9 +248,19 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">予備</label>
                                                 <div class="col-md-10">
+                                                    <label class="form-control">
                                                     @if ($model->file2)
-                                                    <a href="{{ asset('/upload/file2/'.$model->file2) }}?{{ time() }}" class="form-control" target="_blank">リンク</a>
+                                                    <a href="{{ asset('/upload/file2/'.$model->file2) }}?{{ time() }}" target="_blank">リンク</a>
                                                     @endif
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- 更新日 -->
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">更新日</label>
+                                                <div class="col-md-10">
+                                                    <label class="form-control">{{ $model->updated_at->format('Y-m-d') }}</label>
                                                 </div>
                                             </div>
 

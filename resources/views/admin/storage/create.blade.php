@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">業者</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('gyousha', null, 
+                                                {!! Form::select('gyousha', $m_merchants, null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -239,7 +239,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">担当</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('pic', null, 
+                                                {!! Form::select('pic', $m_pics, null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '50'

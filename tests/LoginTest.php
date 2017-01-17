@@ -12,7 +12,7 @@ class LoginTest extends TestCase
      * @return void
      */
     public function testValidLogin()
-    {
+    {        
     	$this->visit('/login')
     		->type('admin', 'username')
     		->type('admin', 'password')

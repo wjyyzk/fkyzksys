@@ -15,6 +15,10 @@ class UserTest extends TestCase
         $this->user = User::where('username', 'admin')->first();
     }
 
+    public function getUserTest() {
+        return User::where('username', 'UnitTest')->first();   
+    }
+
     /**
      * ユーザーの登録テスト
      *
@@ -27,7 +31,7 @@ class UserTest extends TestCase
         //  ユーザーを確認する
         if($this->user)
         {
-            //  新しいユーザーを登録する
+            //  ログイン
             $this->be($this->user);
 
             $this->visit('/admin/user/create')
@@ -58,7 +62,7 @@ class UserTest extends TestCase
         //  ユーザーを確認する
         if($this->user)
         {
-            //  新しいユーザーを登録する
+            //  ログイン
             $this->be($this->user);
 
             $this->visit('/admin/user/index')
@@ -87,19 +91,21 @@ class UserTest extends TestCase
         //  ユーザーを確認する
         if($this->user)
         {
-            //  新しいユーザーを登録する
+            //  ログイン
             $this->be($this->user);
 
-            $this->visit('/admin/user/1/edit')
-                ->type('admin', 'username')
-                ->type('test', 'password')
-                ->type('test', 'password_conf')
+            $userTest = $this->getUserTest();
+
+            $this->visit('/admin/user/'.$userTest->id.'/edit')
+                ->type('UnitTest', 'username')
+                ->type('test2', 'password')
+                ->type('test2', 'password_conf')
                 ->press('登録');
 
             $this->visit('/logout')
                 ->visit('/login')
-                ->type('admin', 'username')
-                ->type('test', 'password')
+                ->type('UnitTest', 'username')
+                ->type('test2', 'password')
                 ->press('ログイン')
                 ->seePageIs('/admin/storage/index');
         }

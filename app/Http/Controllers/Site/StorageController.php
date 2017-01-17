@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Site;
 
 //  データベース
 use App\Storage;
+use App\Merchant;
+use App\PIC;
 
 /**
  *	【コントローラ】在庫リスト
@@ -16,6 +18,9 @@ class StorageController extends MasterSite
      */
     public function index()
     {
+        //  業者データを取得する
+        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+
         //  モデル
         $storage = new Storage;
 
@@ -24,6 +29,7 @@ class StorageController extends MasterSite
 
         //  画面を表示する
         return view('site/storage/index')
+            ->with('m_merchants', $m_merchants)
         	->with('models', $models);
     }
 

@@ -56,11 +56,8 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">種類</label>
                                         <div class="col-md-10">
-                                            {!! Form::select('sType', array(
-                                                '0' => '全',
-                                                '1' => '入庫',
-                                                '2' => '出庫',
-                                            ), Request::get('sType'), array(
+                                            {!! Form::select('sType', $types, Request::get('sType'), 
+                                            array(
                                                 'class' => 'form-control'
                                             )) !!}
                                         </div>

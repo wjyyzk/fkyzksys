@@ -11,6 +11,8 @@ use App\Http\Requests\Admin\StorageRequest;
 
 //  モデル
 use App\Storage;
+use App\Merchant;
+use App\PIC;
 
 /**
  *  【管理コントローラ】在庫リスト
@@ -48,6 +50,9 @@ class StorageController extends MasterAdmin
      */
     public function index()
     {
+        //  業者データを取得する
+        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+
         //  モデル
         $storage = new Storage;
 
@@ -56,6 +61,7 @@ class StorageController extends MasterAdmin
 
         //  画面を表示する
         return view('admin/storage/index')
+            ->with('m_merchants', $m_merchants)
             ->with('models', $models)
             ->with('totalFee', $storage->getTotalFee());
     }
@@ -67,7 +73,15 @@ class StorageController extends MasterAdmin
      */
     public function create()
     {
-        return view('admin/storage/create');
+        //  業者データを取得する
+        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+
+        //  業者データを取得する
+        $m_pics = (new PIC)->pluck('name', 'id')->prepend('', 0);
+
+        return view('admin/storage/create')
+            ->with('m_merchants', $m_merchants)
+            ->with('m_pics', $m_pics);
     }
 
     /**
@@ -149,15 +163,23 @@ class StorageController extends MasterAdmin
      */
     public function edit($id)
     {
-        //  前回URLを保存する
-        Session::put('requestReferrer', app('url')->previous());
-
         //  モデルを取得する
         $model = Storage::findOrFail($id);
 
+        //  前回URLを保存する
+        Session::put('requestReferrer', app('url')->previous());
+
+        //  業者データを取得する
+        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+
+        //  業者データを取得する
+        $m_pics = (new PIC)->pluck('name', 'id')->prepend('', 0);
+
         //  画面を表示する
         return view('admin/storage/edit')
-                ->with('model', $model);
+            ->with('model', $model)
+            ->with('m_merchants', $m_merchants)
+            ->with('m_pics', $m_pics);
     }
 
     /**

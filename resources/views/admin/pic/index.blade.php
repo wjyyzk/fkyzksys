@@ -38,7 +38,7 @@
 
                                     <!-- ユーザー名 -->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">名前</label>
+                                        <label class="col-md-2 control-label">担当者</label>
                                         <div class="col-md-10">
                                             {!! Form::tel('sName', Request::get('sName'), 
                                             array(

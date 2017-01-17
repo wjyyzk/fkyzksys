@@ -23,13 +23,13 @@ class CreateStorageTable extends Migration
             $table->boolean('other')->default(0);
             $table->string('chikouguhinban')->nullable();
             $table->string('zuuban', 20)->nullable();
-            $table->string('gyousha', 20)->nullable();
+            $table->integer('gyousha');
             $table->integer('unit_price');
             $table->string('shashu', 20)->nullable();
             $table->string('bui', 20)->nullable();
             $table->string('lock', 20)->nullable();
             $table->string('comment')->nullable();
-            $table->string('pic', 50)->nullable();
+            $table->integer('pic');
             $table->string('whq', 10)->nullable();
             $table->string('file1', 100)->nullable();
             $table->string('file2', 100)->nullable();

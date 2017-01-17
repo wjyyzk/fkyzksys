@@ -51,6 +51,22 @@ class Storage extends Model
 	protected $dates = ['deleted_at'];
 
 	/**
+	 *	業者テーブルの関連
+	 */
+	public function merchant()
+	{
+		return $this->belongsTo('App\Merchant', 'gyousha');
+	}	
+
+	/**
+	 *	担当者テーブルの関連
+	 */
+	public function picharge()
+	{
+		return $this->belongsTo('App\PIC', 'pic');
+	}
+
+	/**
 	 *	入庫テーブルの関連
 	 */
 	public function storage_in()
@@ -146,8 +162,8 @@ class Storage extends Model
 			$models->where('other', '=', 1);
 
 		//	業者
-		if(Request::has('sGyousha'))
-			$models->where('gyousha', 'like', '%'.Request::get('sGyousha').'%');
+		if(Request::has('sGyousha') && Request::get('sGyousha') > 0)
+			$models->where('gyousha', '=', Request::get('sGyousha'));
 
 		//	車種
 		if(Request::has('sShashu'))

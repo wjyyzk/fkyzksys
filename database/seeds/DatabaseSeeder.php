@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
         //  ユーザーデータ
         $this->call(UsersTableSeeder::class);
 
+        //  業者
+        $this->call(MerchantsTableSeeder::class);
+
         //  在庫データ
+        /*  テスト用
         factory(App\Storage::class, 10)->create()
             ->each(function ($u)
             {
@@ -24,5 +28,6 @@ class DatabaseSeeder extends Seeder
             {
                 $u->storage_out()->save(factory(App\StorageOut::class)->make());
             });
+        */
     }
 }

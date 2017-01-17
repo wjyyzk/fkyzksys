@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 //  データベース
 use App\History;
+use App\M_Type;
 
 /**
  *  【コントローラ】履歴
@@ -16,7 +17,8 @@ class HistoryController extends MasterSite
      */
     public function index()
     {
-        
+        //  検索タイプ
+        $types = (new M_Type)->attributes();
 
         //  モデル
         $history = new History;
@@ -29,6 +31,7 @@ class HistoryController extends MasterSite
         $models->setPath('history');
 
     	return view('site/history/index')
-            ->with('models', $models);
+            ->with('models', $models)
+            ->with('types', $types);
     }
 }

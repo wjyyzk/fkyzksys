@@ -92,9 +92,9 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">業者</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('sGyousha', Request::get('sGyousha'), 
+                                            {!! Form::select('sGyousha', $m_merchants, Request::get('sGyousha'), 
                                             array(
-                                                'class' => 'form-control hankaku',
+                                                'class' => 'form-control',
                                             )) !!}
                                         </div>
                                     </div>
@@ -176,9 +176,14 @@
                                         <td>
                                             @if ($model->other)
                                                 <i class="fa fa-check"></i>
-                                            @endif                                        
+                                            @endif
                                         </td>
-                                        <td>{{ $model->gyousha }}</td>
+                                        <td>
+                                            @if ($model->gyousha > 0)
+                                                {{ $model->merchant->name }}
+                                            @else
+                                            @endif
+                                        </td>
                                         <td>{{ number_format($model->unit_price) }}</td>
                                         <td>{{ $model->stockIn - $model->stockOut }}</td>
                                         <td>

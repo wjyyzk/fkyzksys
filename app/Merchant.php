@@ -37,6 +37,14 @@ class Merchant extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     *  在庫テーブルの関連
+     */
+    public function storage()
+    {
+        return $this->hasMany('App\Storage', 'gyousha');
+    }
+
+    /**
      *  検索
      *
      *  @return 業者 リスト
