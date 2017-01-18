@@ -27,6 +27,7 @@ Route::get('/', function () { return Redirect('/storage/index'); });
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('storage/index', 'Admin\StorageController@index');
 	Route::resource('storage', 'Admin\StorageController', ['except' => ['index']]);
+	Route::resource('storage.history', 'Admin\HistorySeppenController', ['except' => ['show']]);
 	Route::get('print/index', 'Admin\PrintController@index');
 	Route::get('print/{id}', 'Admin\PrintController@runPrint');
 	Route::get('merchant/index', 'Admin\MerchantController@index');

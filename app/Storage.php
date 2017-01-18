@@ -67,6 +67,14 @@ class Storage extends Model
 	}
 
 	/**
+	 *	設変履歴テーブルの関連
+	 */
+	public function hisotry_seppen()
+	{
+		return $this->hasMany('App\HistorySeppen');
+	}
+
+	/**
 	 *	入庫テーブルの関連
 	 */
 	public function storage_in()

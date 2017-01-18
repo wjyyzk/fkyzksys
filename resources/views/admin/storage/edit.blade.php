@@ -100,6 +100,14 @@
                                             </div>
                                         </div>
 
+                                        <!-- 設変履歴 -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">設変履歴</label>
+                                            <div class="col-md-10">
+                                                <a href="/admin/storage/{{ $model->id }}/history" class="btn btn-success" target="_blank">一覧</a>
+                                            </div>
+                                        </div>
+
                                         <!-- 品名 -->
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">品名</label>
@@ -172,7 +180,9 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('unit_price', $model->unit_price, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'id'        => 'unit_price',
+                                                    'class'     => 'form-control hankaku',
+                                                    'onkeyup'   => 'sync(this)'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -259,14 +269,15 @@
                                             </div>
                                         </div>
 
-                                        <!-- WHO単価報告 -->
+                                        <!-- 振替単価 -->
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">WHQ単価報告</label>
+                                            <label class="col-md-2 control-label">振替単価</label>
                                             <div class="col-md-10">
                                                 {!! Form::text('whq', $model->whq, 
                                                 array(
+                                                    'id'    => 'whq',
                                                     'class' => 'form-control hankaku',
-                                                    'maxlength' => '10'
+                                                    'readonly'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -341,5 +352,11 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
     {!! JsValidator::formRequest('App\Http\Requests\Admin\StorageRequest') !!}
+
+    <script type="text/javascript">
+        function sync(textbox) {
+            document.getElementById('whq').value = textbox.value * 1.2;
+        }
+    </script>
 
 @endpush

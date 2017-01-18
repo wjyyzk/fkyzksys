@@ -172,7 +172,9 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('unit_price', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'id'        => 'unit_price',
+                                                    'class'     => 'form-control hankaku',
+                                                    'onkeyup'   => 'sync(this)'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -265,8 +267,9 @@
                                             <div class="col-md-10">
                                                 {!! Form::tel('whq', null, 
                                                 array(
+                                                    'id'    => 'whq',
                                                     'class' => 'form-control hankaku',
-                                                    'maxlength' => '10'
+                                                    'readonly'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -328,5 +331,11 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
     {!! JsValidator::formRequest('App\Http\Requests\Admin\StorageRequest') !!}
+
+    <script type="text/javascript">
+        function sync(textbox) {
+            document.getElementById('whq').value = textbox.value * 1.2;
+        }
+    </script>
 
 @endpush
