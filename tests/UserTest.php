@@ -6,17 +6,33 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\User;
 
+/**
+ *  【テスト】ユーザー
+ */
 class UserTest extends TestCase
 {
-    protected $user = null;
- 
+    //  管理者用
+    private $user = null;
+
+    //  入力用
+    private $strInput = "testUnit";
+
+    /**
+     *  管理者データを取得する
+     *  @return void
+     */
     public function getUser() {
         //  管理者を取得
-        $this->user = User::where('username', 'admin')->first();
+        $this->user = User::where('username', '=', 'admin')->first();
     }
 
-    public function getUserTest() {
-        return User::where('username', 'UnitTest')->first();   
+    /**
+     *  テストデータを取得する
+     *  @return user
+     */
+    public function getUserTest($input) {
+
+        return User::where('username', '=', $input)->first();   
     }
 
     /**
@@ -35,14 +51,14 @@ class UserTest extends TestCase
             $this->be($this->user);
 
             $this->visit('/admin/user/create')
-                ->type('UnitTest', 'username')
+                ->type($this->strInput, 'username')
                 ->type('test', 'password')
                 ->type('test', 'password_conf')
                 ->press('登録')
                 ->seePageIs('/admin/user/index')
                 ->see('データを作成しました。');
 
-            $this->seeInDatabase('users', ['username' => 'UnitTest']);
+            $this->seeInDatabase('users', ['username' => $this->strInput]);
         }
         else
         {
@@ -94,17 +110,17 @@ class UserTest extends TestCase
             //  ログイン
             $this->be($this->user);
 
-            $userTest = $this->getUserTest();
+            $userTest = $this->getUserTest($this->strInput);
 
             $this->visit('/admin/user/'.$userTest->id.'/edit')
-                ->type('UnitTest', 'username')
+                ->type($this->strInput, 'username')
                 ->type('test2', 'password')
                 ->type('test2', 'password_conf')
                 ->press('登録');
 
             $this->visit('/logout')
                 ->visit('/login')
-                ->type('UnitTest', 'username')
+                ->type($this->strInput, 'username')
                 ->type('test2', 'password')
                 ->press('ログイン')
                 ->seePageIs('/admin/storage/index');
@@ -128,15 +144,17 @@ class UserTest extends TestCase
         //  ユーザーを確認する
         if($this->user)
         {
-            //  新しいユーザーを登録する
+            //  ログイン
             $this->be($this->user);
 
-            //$this->visit('/admin/user/index')
+            
         }
         else
         {
             $this->markTestSkipped('【ユーザー削除】ﾃｽﾄ出来ない。');
         }
         */
+        
+        $this->assertTrue(true);
     }
 }

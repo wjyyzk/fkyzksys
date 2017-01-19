@@ -4,6 +4,9 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
+/**
+ *  【リクエスト】担当者
+ */
 class PICRequest extends Request
 {
     /**

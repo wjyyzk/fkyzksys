@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+/**
+ *  【リクエスト】ログイン
+ */
 class LoginRequest extends Request
 {
     /**

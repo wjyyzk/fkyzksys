@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+/**
+ *  【リクエスト】入庫
+ */
 class StockInRequest extends Request
 {
     /**

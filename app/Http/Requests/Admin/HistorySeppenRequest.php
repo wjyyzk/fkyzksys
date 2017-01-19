@@ -4,6 +4,9 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
+/**
+ *  【リクエスト】設変履歴
+ */
 class HistorySeppenRequest extends Request
 {
     /**

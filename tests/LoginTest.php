@@ -4,10 +4,13 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+/**
+ *  【テスト】ログイン
+ */
 class LoginTest extends TestCase
 {
     /**
-     * ログインのテスト
+     * ログインが成功する
      *
      * @return void
      */
@@ -21,7 +24,7 @@ class LoginTest extends TestCase
     }
 
     /**
-     * ログイン失敗のテスト
+     * ログインが失敗する
      *
      * @return void
      */

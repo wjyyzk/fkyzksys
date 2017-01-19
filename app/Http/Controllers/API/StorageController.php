@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Storage;
 
 /**
- *  【API】
+ *  【API】在庫リスト
  */
 class StorageController extends MasterAPI
 {

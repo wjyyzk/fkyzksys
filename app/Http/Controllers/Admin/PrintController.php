@@ -9,6 +9,9 @@ use App\Http\Requests;
 //  モデル
 use App\Storage;
 
+/**
+ *  【管理コントローラ】印刷
+ */
 class PrintController extends MasterAdmin
 {
 	//	【画面】表示　

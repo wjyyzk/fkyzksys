@@ -6,6 +6,9 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\User;
 
+/**
+ *  【テスト】ルート
+ */
 class RouteTest extends TestCase
 {
     /**
@@ -59,12 +62,32 @@ class RouteTest extends TestCase
         {
             $this->be($user);
 
+            //  在庫リスト
             $this->visit('/admin/storage/index')
                 ->seePageIs('/admin/storage/index');
 
+            $this->visit('/admin/storage/create')
+                ->seePageIs('/admin/storage/create');
+
+            //  印刷
             $this->visit('/admin/print/index')
                 ->seePageIs('/admin/print/index');
 
+            //  業者
+            $this->visit('/admin/merchant/index')
+                ->seePageIs('/admin/merchant/index');
+
+            $this->visit('/admin/merchant/create')
+                ->seePageIs('/admin/merchant/create');
+
+            //  担当者
+            $this->visit('/admin/pic/index')
+                ->seePageIs('/admin/pic/index');
+
+            $this->visit('/admin/pic/create')
+                ->seePageIs('/admin/pic/create');
+
+            //  ユーザー
             $this->visit('/admin/user/index')
                 ->seePageIs('/admin/user/index');
         }

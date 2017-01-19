@@ -12,6 +12,9 @@ use App\Http\Requests\Admin\HistorySeppenRequest;
 //  データベース
 use App\HistorySeppen;
 
+/*
+ *  【管理コントローラ】設変履歴
+ */
 class HistorySeppenController extends MasterAdmin
 {
     //  レクエスト

@@ -10,6 +10,9 @@ use App\Http\Requests;
 use App\StorageIn;
 use App\StorageOut;
 
+/**
+ *  【コントローラ】アップロード
+ */
 class HTUploadController extends MasterSite
 {
     /**
@@ -123,6 +126,7 @@ class HTUploadController extends MasterSite
                 }
                 else
                 {
+                    //  既存データを更新する
                     $model->fill($input)->save();
                 }
             }
@@ -143,11 +147,13 @@ class HTUploadController extends MasterSite
                 }
                 else
                 {
+                    //  既存データを更新する
                     $model->fill($input)->save();
                 }
             }
         }
 
+        //  メモリを開放する
         fclose($handle);
     }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
+/**
+ *  【リクエスト】業者
+ */
 class MerchantRequest extends Request
 {
     /**
