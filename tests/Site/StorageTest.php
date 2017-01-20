@@ -5,19 +5,19 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
- *  【テスト】ルート
+ *  【テスト】在庫リスト
  */
-class RouteTest extends TestCase
+class StorageTest extends TestCase
 {
     /**
     * ルートテスト
     *
     * @return void
     */
-    public function testRoute()
-    {
-        //	ホーム
-        $this->visit('/')
-        ->seePageIs('/storage/index');
-    }
+	public function testRoute()
+	{
+        //  在庫一覧
+        $this->visit('/storage/index')
+            ->seePageIs('/storage/index');
+	}
 }

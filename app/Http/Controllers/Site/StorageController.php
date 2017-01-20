@@ -19,7 +19,10 @@ class StorageController extends MasterSite
     public function index()
     {
         //  業者データを取得する
-        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+        $m_merchants = (new Merchant)
+            ->orderBy('name', 'asc')
+            ->pluck('name', 'id')
+            ->prepend('', 0);
 
         //  モデル
         $storage = new Storage;

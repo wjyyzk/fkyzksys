@@ -25,6 +25,7 @@
                     </a>
                 </li>
                 @endif
+                @if ( Auth::user()->role == '管理者')
                 <!-- 業者 -->
                 <li>
                     <a href="#b">
@@ -40,6 +41,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                @endif
+                @if ( Auth::user()->role == '管理者')
                 <!-- 担当者 -->
                 <li>
                     <a href="#b">
@@ -55,6 +58,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                @endif
                 @if ( Auth::user()->role == '管理者')
                 <!-- ユーザー -->
                 <li>

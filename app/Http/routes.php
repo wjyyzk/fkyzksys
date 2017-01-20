@@ -29,10 +29,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::resource('storage', 'Admin\StorageController', ['except' => ['index', 'edit', 'destroy']]);
 	Route::resource('storage.history', 'Admin\HistorySeppenController', ['except' => ['show']]);
 	Route::get('storage/{id}/history/list', 'Admin\HistorySeppenController@showlist');
-	Route::get('merchant/index', 'Admin\MerchantController@index');
-	Route::resource('merchant', 'Admin\MerchantController', ['except' => ['index', 'show']]);
-	Route::get('pic/index', 'Admin\PICController@index');
-	Route::resource('pic', 'Admin\PICController', ['except' => ['index', 'show']]);
 
 	//	【管理者レベル】
 	Route::group(['middleware' => 'role:管理者'], function() {
@@ -41,6 +37,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 		Route::resource('user', 'Admin\UserController', ['except' => ['index', 'show']]);
 		Route::get('print/index', 'Admin\PrintController@index');
 		Route::get('print/{id}', 'Admin\PrintController@runPrint');
+		Route::get('merchant/index', 'Admin\MerchantController@index');
+		Route::resource('merchant', 'Admin\MerchantController', ['except' => ['index', 'show']]);
+		Route::get('pic/index', 'Admin\PICController@index');
+		Route::resource('pic', 'Admin\PICController', ['except' => ['index', 'show']]);
 	});
 });
 

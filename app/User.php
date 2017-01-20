@@ -54,6 +54,9 @@ class User extends Authenticatable
         if(Request::has('sUsername'))
             $models->where('username', 'like', '%'.Request::get('sUsername').'%');
         
+        if(Request::has('sRole'))
+            $models->where('role', '=', Request::get('sRole'));
+
         $models = $models->orderBy('id', 'desc')->paginate(10);
 
         return $models;

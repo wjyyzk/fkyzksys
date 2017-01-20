@@ -139,6 +139,9 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
+                                        @if (Auth::user()->role == '管理者')
+                                            <th class="text-center">ID</th>
+                                        @endif
                                         <th class="text-center">品番</th>
                                         <th class="text-center">治工具品番</th>
                                         <th class="text-center">詳細</th>
@@ -158,6 +161,9 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
+                                        @if (Auth::user()->role == '管理者')
+                                            <td class="text-left">{{ $model->id }}</td>
+                                        @endif
                                         <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>

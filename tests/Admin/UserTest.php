@@ -36,6 +36,38 @@ class UserTest extends TestCase
     }
 
     /**
+    * ルートテスト
+    *
+    * @return void
+    */
+    public function testRoute()
+    {
+        //  【管理画面】ユーザー
+        $this->visit('/admin/user/index')
+            ->seePageIs('/login');
+
+        //  管理者を取得
+        $user = User::where('username', 'admin')->first();
+
+        //  ユーザーを確認する
+        if($user)
+        {
+            $this->be($user);
+
+            //  ユーザー
+            $this->visit('/admin/user/index')
+                ->seePageIs('/admin/user/index');
+
+            $this->visit('/admin/user/create')
+                ->seePageIs('/admin/user/create');
+        }
+        else
+        {
+            $this->markTestSkipped('【管理画面ルート】ﾃｽﾄ出来ない。');
+        }        
+    }
+
+    /**
      * ユーザーの登録テスト
      *
      * @return void

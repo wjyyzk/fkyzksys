@@ -50,7 +50,6 @@
                         </div>
                         <!-- /.table-responsive -->
 
-                        <a href="/admin/storage/{{ $storage_id }}/history/create" class="btn btn-primary">作成</a>
                         <button type="button" class="btn btn-primary" onclick="javascript:window.close()">閉じる</button>
 
                     </div>

@@ -10,6 +10,18 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class LoginTest extends TestCase
 {
     /**
+    * ルートテスト
+    *
+    * @return void
+    */   
+    public function testRoute()
+    {
+        //  ログイン
+        $this->visit('/login')
+            ->seePageIs('/login');
+    }
+
+    /**
      * ログインが成功する
      *
      * @return void
@@ -41,6 +53,7 @@ class LoginTest extends TestCase
         //  削除したユーザーの場合
         $user = factory(App\User::class, 1)->create();
         $user->delete();
+
         $this->visit('/login')
             ->type($user->username, 'username')
             ->type('test', 'password')

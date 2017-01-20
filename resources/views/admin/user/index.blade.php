@@ -47,6 +47,18 @@
                                             )) !!}
                                         </div>
                                     </div>
+
+                                    <!-- 管理レベル -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">管理レベル</label>
+                                        <div class="col-md-10">
+                                            {!! Form::select('sRole', $m_roles, Request::get('sRole'), 
+                                            array(
+                                                'class' => 'form-control hankaku'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
                                     <input type="submit" class="btn btn-primary" value="検索" />
                                     <a id="reset" class="btn btn-primary" href="/admin/user/index">リセット</a>
 
