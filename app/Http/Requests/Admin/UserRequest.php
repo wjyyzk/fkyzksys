@@ -18,6 +18,7 @@ class UserRequest extends Request
     {
         return [
             'username'          =>  'ユーザー',
+            'role'              =>  '管理レベル',
             'password'          =>  'パスワード',
             'password_conf'     =>  'パスワード確認',
         ];
@@ -45,6 +46,7 @@ class UserRequest extends Request
 
         return [
             'username'      =>  'required|max:20|unique:users,username,'.$id,
+            'role'          =>  'required',            
             'password'      =>  'required|max:10|same:password_conf',
             'password_conf' =>  'required|max:10|same:password',
         ];

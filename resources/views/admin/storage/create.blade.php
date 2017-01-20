@@ -160,8 +160,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('gyousha', $m_merchants, null, 
                                                 array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '20'
+                                                    'class' => 'form-control hankaku'
                                                 )) !!}
                                             </div>
                                         </div>

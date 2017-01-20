@@ -47,9 +47,10 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">コメント</label>
                                         <div class="col-md-10">
-                                            {!! Form::text('comment', $model->comment, 
+                                            {!! Form::textarea('comment', $model->comment, 
                                             array(
                                                 'required',
+                                                'rows' => 2,
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255',
                                                 'autocomplete' => 'off'

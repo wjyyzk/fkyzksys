@@ -31,6 +31,21 @@ class HistorySeppenController extends MasterAdmin
      *
      * @return \Illuminate\Http\Response
      */
+    public function showlist($storage_id)
+    {
+        //  設変履歴
+        $models = HistorySeppen::filter($storage_id);
+
+        return view('admin/historyseppen/list')
+            ->with('storage_id', $storage_id)
+            ->with('models', $models);
+    }
+
+    /**
+     * 一覧
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index($storage_id)
     {
         //  設変履歴

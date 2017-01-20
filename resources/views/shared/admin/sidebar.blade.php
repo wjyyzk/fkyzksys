@@ -17,12 +17,14 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                @if ( Auth::user()->role == '管理者')
                 <!-- QR発行ラベル -->
                 <li>
                     <a href="/admin/print/index">
                         <i class="fa fa-print fa-fw"></i> QR発行ラベル
                     </a>
                 </li>
+                @endif
                 <!-- 業者 -->
                 <li>
                     <a href="#b">
@@ -53,6 +55,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                @if ( Auth::user()->role == '管理者')
                 <!-- ユーザー -->
                 <li>
                     <a href="#b">
@@ -68,7 +71,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <!-- ユーザー画面リンク -->
+                @endif
+                <!-- 深谷画面 -->
                 <li>
                     <a href="/storage/index">
                         <i class="fa fa-reply fa-fw"></i> 深谷画面

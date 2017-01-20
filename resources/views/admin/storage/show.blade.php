@@ -52,6 +52,14 @@
                                         </div>
                                     </div>
 
+                                    <!-- 設変履歴 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">設変履歴</label>
+                                        <div class="col-md-10">
+                                            <a href="/admin/storage/{{ $model->id }}/history/list" class="btn btn-success" target="_blank">一覧</a>
+                                        </div>
+                                    </div>
+
                                     <!-- 品名 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">品名</label>
@@ -198,9 +206,9 @@
                                         </div>
                                     </div>
 
-                                    <!-- WHQ単価報告 -->
+                                    <!-- 振替単価 -->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">WHQ単価報告</label>
+                                        <label class="col-md-2 control-label">振替単価</label>
                                         <div class="col-md-10">
                                             <label class="form-control">{{ $model->whq }}</label>
                                         </div>

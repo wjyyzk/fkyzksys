@@ -57,6 +57,17 @@
                                         </div>
                                     </div>
 
+                                    <!-- 管理レベル -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">管理レベル</label>
+                                        <div class="col-md-10">
+                                            {!! Form::select('role', $m_roles, null, 
+                                            array(
+                                                'class' => 'form-control hankaku'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
                                     <!-- パスワード -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">パスワード</label>

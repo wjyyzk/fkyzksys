@@ -74,10 +74,16 @@ class StorageController extends MasterAdmin
     public function create()
     {
         //  業者データを取得する
-        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+        $m_merchants = (new Merchant)
+                        ->orderBy('name', 'asc')
+                        ->pluck('name', 'id')
+                        ->prepend('', 0);
 
         //  業者データを取得する
-        $m_pics = (new PIC)->pluck('name', 'id')->prepend('', 0);
+        $m_pics = (new PIC)
+                    ->orderBy('name', 'asc')
+                    ->pluck('name', 'id')
+                    ->prepend('', 0);
 
         return view('admin/storage/create')
             ->with('m_merchants', $m_merchants)
@@ -170,10 +176,16 @@ class StorageController extends MasterAdmin
         Session::put('requestReferrer', app('url')->previous());
 
         //  業者データを取得する
-        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+        $m_merchants = (new Merchant)
+                        ->orderBy('name', 'asc')
+                        ->pluck('name', 'id')
+                        ->prepend('', 0);
 
         //  業者データを取得する
-        $m_pics = (new PIC)->pluck('name', 'id')->prepend('', 0);
+        $m_pics = (new PIC)
+                    ->orderBy('name', 'asc')
+                    ->pluck('name', 'id')
+                    ->prepend('', 0);
 
         //  画面を表示する
         return view('admin/storage/edit')

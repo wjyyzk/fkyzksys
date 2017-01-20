@@ -79,7 +79,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">ユーザー</th>
-                                        <th class="text-center">パスワード</th>
+                                        <th class="text-center">管理レベル</th>
                                         <th class="text-center">編集</th>
                                         <th class="text-center">削除</th>
                                     </tr>
@@ -88,7 +88,7 @@
                                 	@foreach($users as $user)
                                 	<tr>
                                 		<td>{{ $user->username }}</td>
-                                		<td>******</td>
+                                		<td>{{ $user->role }}</td>
                                 		<td>
                                 			<a href="{{ route('admin.user.edit', [$user->id]) }}" class="btn btn-outline btn-warning">編集</a>
                                 		</td>

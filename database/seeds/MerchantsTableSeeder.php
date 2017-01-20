@@ -56,7 +56,7 @@ class MerchantsTableSeeder extends Seeder
         ]);
 
         DB::table('merchant')->insert([
-            'name'         =>  'イヌテク',
+            'name'         =>  'エヌテック',
         ]);
 
         DB::table('merchant')->insert([

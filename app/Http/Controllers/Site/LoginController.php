@@ -12,7 +12,7 @@ use App\Http\Requests\LoginRequest;
 //  モデル
 use App\User;
 
-/*
+/**
  *  【コントローラ】ログイン
  */
 class LoginController extends MasterSite

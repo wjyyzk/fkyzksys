@@ -57,7 +57,7 @@ class Merchant extends Model
         if(Request::has('sName'))
             $models->where('name', 'like', '%'.Request::get('sName').'%');
         
-        $models = $models->orderBy('id', 'desc')->paginate(10);
+        $models = $models->orderBy('name', 'asc')->paginate(10);
 
         return $models;
     }

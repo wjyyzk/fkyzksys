@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\UserRequest;
 
 //  データベース
 use App\User;
+use App\M_Role;
 
 /*
  *  【管理コントローラ】ユーザー
@@ -22,6 +23,7 @@ class UserController extends MasterAdmin
     {
         return array(
             'username'  =>  $request->username,
+            'role'      =>  $request->role,
             'password'  =>  bcrypt($request->password)
         );
     }
@@ -46,7 +48,11 @@ class UserController extends MasterAdmin
      */
     public function create()
     {
-        return view('admin/user/create');
+        //  管理レベルを取得する
+        $m_roles = (new M_Role)->attributes();
+
+        return view('admin/user/create')
+            ->with('m_roles', $m_roles);
     }
 
     /**
@@ -77,13 +83,18 @@ class UserController extends MasterAdmin
      */
     public function edit($id)
     {
-        //  前回URLを保存する
-        Session::put('requestReferrer', app('url')->previous());
-
         //  モデルを取得する
         $model = User::findOrFail($id);
 
-        return view('admin/user/edit')->with('model', $model);
+        //  前回URLを保存する
+        Session::put('requestReferrer', app('url')->previous());
+
+        //  管理レベルを取得する
+        $m_roles = (new M_Role)->attributes();
+
+        return view('admin/user/edit')
+            ->with('m_roles', $m_roles)
+            ->with('model', $model);
     }
 
     /**

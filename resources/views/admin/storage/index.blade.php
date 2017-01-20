@@ -149,8 +149,10 @@
                                         <th class="text-center">業者</th>
                                         <th class="text-center">単価</th>
                                         <th class="text-center">在庫数</th>
-                                        <th class="text-center">編集</th>
-                                        <th class="text-center">削除</th>
+                                        @if (Auth::user()->role == '管理者')
+                                            <th class="text-center">編集</th>
+                                            <th class="text-center">削除</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -186,16 +188,18 @@
                                         </td>
                                         <td>{{ number_format($model->unit_price) }}</td>
                                         <td>{{ $model->stockIn - $model->stockOut }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.storage.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
-                                        </td>
-                                        <td>
-                                            {{ Form::open(['route' => ['admin.storage.destroy', $model->id], 'method' => 'delete']) }}
-                                            <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
-                                                削除
-                                            </button>
-                                            {{ Form::close() }}
-                                        </td>
+                                        @if (Auth::user()->role == '管理者')
+                                            <td>
+                                                <a href="{{ route('admin.storage.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
+                                            </td>
+                                            <td>
+                                                {{ Form::open(['route' => ['admin.storage.destroy', $model->id], 'method' => 'delete']) }}
+                                                <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
+                                                    削除
+                                                </button>
+                                                {{ Form::close() }}
+                                            </td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
