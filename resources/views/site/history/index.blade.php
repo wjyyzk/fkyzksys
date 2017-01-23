@@ -2,6 +2,12 @@
 
 @section('title', '在庫履歴一覧')
 
+@push('css-script')
+
+    <link href="{{ asset('/assets/content/jquery-ui-1.10.4.css') }}" rel="stylesheet">
+
+@endpush
+
 @section('content')
 
     <div id="page-wrapper">
@@ -50,6 +56,19 @@
                                             array(
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '10'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
+                                    <!-- 日付 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">日付</label>
+                                        <div class="col-md-10">
+                                            {!! Form::tel('sDate', Request::get('sDate'), 
+                                            array(
+                                                'id' => 'sDate',
+                                                'class' => 'form-control hankaku',
+                                                'autocomplete' => 'off'
                                             )) !!}
                                         </div>
                                     </div>
@@ -162,3 +181,13 @@
     <!-- /#page-wrapper --> 
 
 @endsection
+
+@push('js-script')
+
+    <script src="{{ asset('/assets/scripts/jquery.ui.datepicker-ja.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $("#sDate").datepicker();
+    </script>
+
+@endpush

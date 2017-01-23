@@ -31,6 +31,8 @@ class History extends Model
 					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
 				if(Request::has('sChikouguhinban'))
 					$q->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
+				if(Request::has('sDate'))
+					$q->where('date', '=', Request::get('sDate'));
 			})->with('storage')
 			->select('id', 'storage_id', DB::raw("'1' as type"), 'date', 'time', 'stock');
 		else
@@ -47,6 +49,8 @@ class History extends Model
 					$q->where('hinban', 'like', '%'.Request::get('sHinban').'%');
 				if(Request::has('sChikouguhinban'))
 					$q->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
+				if(Request::has('sDate'))
+					$q->where('date', '=', Request::get('sDate'));
 			})->with('storage')
 			->select('id', 'storage_id', DB::raw("'2' as type"), 'date', 'time', 'stock');
 		else
