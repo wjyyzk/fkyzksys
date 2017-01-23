@@ -43,6 +43,7 @@
                                             {!! Form::tel('sHinban', Request::get('sHinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '255'
                                             )) !!}
                                         </div>
                                     </div>
@@ -53,6 +54,7 @@
                                             {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '10'
                                             )) !!}
                                         </div>
                                     </div>

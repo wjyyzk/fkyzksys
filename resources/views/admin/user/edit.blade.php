@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">ユーザー</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('username', $model->username, 
+                                            {!! Form::text('username', $model->username, 
                                             array(
                                                 'required',
                                                 'class' => 'form-control hankaku',

@@ -26,7 +26,8 @@ class Merchant extends Model
 	 *	@var array
 	 */
 	protected $fillable = [
-		'name'
+		'name',
+        'furigana'
 	];
 
     /**
@@ -57,7 +58,9 @@ class Merchant extends Model
         if(Request::has('sName'))
             $models->where('name', 'like', '%'.Request::get('sName').'%');
         
-        $models = $models->orderBy('name', 'asc')->paginate(10);
+        $models = $models->orderBy('furigana', 'asc')
+                    ->orderBy('name', 'asc')
+                    ->paginate(10);
 
         return $models;
     }

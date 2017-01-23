@@ -51,7 +51,10 @@ class StorageController extends MasterAdmin
     public function index()
     {
         //  業者データを取得する
-        $m_merchants = (new Merchant)->pluck('name', 'id')->prepend('', 0);
+        $m_merchants = (new Merchant)
+                        ->orderBy('furigana', 'asc')
+                        ->pluck('name', 'id')
+                        ->prepend('', 0);
 
         //  モデル
         $storage = new Storage;
@@ -75,13 +78,13 @@ class StorageController extends MasterAdmin
     {
         //  業者データを取得する
         $m_merchants = (new Merchant)
-                        ->orderBy('name', 'asc')
+                        ->orderBy('furigana', 'asc')
                         ->pluck('name', 'id')
                         ->prepend('', 0);
 
         //  業者データを取得する
         $m_pics = (new PIC)
-                    ->orderBy('name', 'asc')
+                    ->orderBy('furigana', 'asc')
                     ->pluck('name', 'id')
                     ->prepend('', 0);
 
@@ -177,13 +180,13 @@ class StorageController extends MasterAdmin
 
         //  業者データを取得する
         $m_merchants = (new Merchant)
-                        ->orderBy('name', 'asc')
+                        ->orderBy('furigana', 'asc')
                         ->pluck('name', 'id')
                         ->prepend('', 0);
 
         //  業者データを取得する
         $m_pics = (new PIC)
-                    ->orderBy('name', 'asc')
+                    ->orderBy('furigana', 'asc')
                     ->pluck('name', 'id')
                     ->prepend('', 0);
 

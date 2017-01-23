@@ -21,7 +21,8 @@ class PICController extends MasterAdmin
     private function setInput($request)
     {
         return array(
-            'name'  =>  $request->name,
+            'name'          =>  $request->name,
+            'furigana'      =>  $request->furigana
         );
     }
 
@@ -35,7 +36,8 @@ class PICController extends MasterAdmin
         //  モデルを取得する
         $models = PIC::filter();
 
-        return view('admin/pic/index')->with('models', $models);
+        return view('admin/pic/index')
+            ->with('models', $models);
     }
 
     /**

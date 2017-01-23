@@ -21,7 +21,8 @@ class MerchantController extends MasterAdmin
     private function setInput($request)
     {
         return array(
-            'name'  =>  $request->name,
+            'name'          =>  $request->name,
+            'furigana'      =>  $request->furigana
         );
     }
 

@@ -71,7 +71,7 @@
                                                 array(
                                                     'required',
                                                     'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
+                                                    'maxlength' => '255'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -168,8 +168,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('gyousha', $m_merchants, $model->gyousha, 
                                                 array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '20'
+                                                    'class' => 'form-control'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -251,8 +250,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('pic', $m_pics, $model->pic, 
                                                 array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
+                                                    'class' => 'form-control hankaku'
                                                 )) !!}
                                             </div>
                                         </div>

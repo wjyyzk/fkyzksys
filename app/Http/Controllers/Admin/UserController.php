@@ -36,7 +36,10 @@ class UserController extends MasterAdmin
     public function index()
     {
         //  管理レベルを取得する
-        $m_roles = (new M_Role)->attributes();
+        $m_roles = (new M_Role)
+        			->attributes();
+
+        $m_roles = array_prepend($m_roles, '全');
 
         //  ユーザーリストを取得する
         $users = User::filter();

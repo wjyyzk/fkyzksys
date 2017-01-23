@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         //  業者
         $this->call(MerchantsTableSeeder::class);
 
+        //  担当者
+        $this->call(PICTableSeeder::class);
+
         //  在庫データ
         /*  テスト用
         factory(App\Storage::class, 10)->create()

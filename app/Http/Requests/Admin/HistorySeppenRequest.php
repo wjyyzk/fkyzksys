@@ -42,7 +42,7 @@ class HistorySeppenRequest extends Request
         $id = $this->route('storage');
 
         return [
-            'comment'       =>  'required'
+            'comment'       =>  'required|max:255'
         ];
     }
 }

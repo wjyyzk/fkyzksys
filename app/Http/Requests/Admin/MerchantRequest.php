@@ -18,6 +18,7 @@ class MerchantRequest extends Request
     {
         return [
             'name'          =>  '業者',
+            'furigana'      =>  'フリガナ'
         ];
     }
 
@@ -42,7 +43,8 @@ class MerchantRequest extends Request
         $id = $this->route('merchant');
 
         return [
-            'name'          =>  'required|max:50|unique:merchant,name,'.$id
+            'name'          =>  'required|max:255|unique:merchant,name,'.$id,
+            'furigana'      =>  'required|max:255'
         ];
     }
 }

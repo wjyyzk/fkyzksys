@@ -40,10 +40,10 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">ユーザー</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('sUsername', Request::get('sUsername'), 
+                                            {!! Form::text('sUsername', Request::get('sUsername'), 
                                             array(
                                                 'class' => 'form-control hankaku',
-                                                'maxlength' => '255'
+                                                'maxlength' => '20'
                                             )) !!}
                                         </div>
                                     </div>

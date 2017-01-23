@@ -45,9 +45,10 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">品番</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('sHinban', Request::get('sHinban'), 
+                                            {!! Form::text('sHinban', Request::get('sHinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '255'
                                             )) !!}
                                         </div>
                                     </div>
@@ -55,9 +56,10 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">治工具品番</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
+                                            {!! Form::text('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '10'
                                             )) !!}
                                         </div>
                                     </div>
@@ -94,7 +96,7 @@
                                         <div class="col-md-10">
                                             {!! Form::select('sGyousha', $m_merchants, Request::get('sGyousha'), 
                                             array(
-                                                'class' => 'form-control',
+                                                'class' => 'form-control'
                                             )) !!}
                                         </div>
                                     </div>
@@ -102,9 +104,10 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">車種</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('sShashu', Request::get('sShashu'), 
+                                            {!! Form::text('sShashu', Request::get('sShashu'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '20'
                                             )) !!}
                                         </div>
                                     </div>
@@ -139,9 +142,7 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
-                                        @if (Auth::user()->role == '管理者')
-                                            <th class="text-center">ID</th>
-                                        @endif
+                                        <th class="text-center">ID</th>
                                         <th class="text-center">品番</th>
                                         <th class="text-center">治工具品番</th>
                                         <th class="text-center">詳細</th>
@@ -161,9 +162,7 @@
                                 <tbody>
                                     @foreach($models as $model)
                                     <tr>
-                                        @if (Auth::user()->role == '管理者')
-                                            <td class="text-left">{{ $model->id }}</td>
-                                        @endif
+                                        <td class="text-left">{{ $model->id }}</td>
                                         <td class="text-left">{{ $model->hinban }}</td>
                                         <td>{{ $model->chikouguhinban }}</td>
                                         <td>

@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">担当者</label>
                                         <div class="col-md-10">
-                                            {!! Form::tel('sName', Request::get('sName'), 
+                                            {!! Form::text('sName', Request::get('sName'), 
                                             array(
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255'

@@ -37,6 +37,7 @@
                                             {!! Form::tel('sHinban', Request::get('sHinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '255'
                                             )) !!}
                                         </div>
                                     </div>
@@ -48,6 +49,7 @@
                                             {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
                                                 'class' => 'form-control hankaku',
+                                                'maxlength' => '10'
                                             )) !!}
                                         </div>
                                     </div>
@@ -121,7 +123,7 @@
                                         @if($model['type'] == 1)
                                             <a href="{{ route('storage.in.edit', [$model['id']]) }}" class="btn btn-outline btn-warning">編集</a>
                                         @else
-                                            <a href="{{ route('storage.out.edit', [$model['id']]) }}" class="btn btn-outline btn-warning">編集</a>                                        
+                                            <a href="{{ route('storage.out.edit', [$model['id']]) }}" class="btn btn-outline btn-warning">編集</a>
                                         @endif
                                         </td>
                                         <td>

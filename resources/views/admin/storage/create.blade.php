@@ -67,11 +67,11 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">品番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('hinban', null, 
+                                                {!! Form::text('hinban', null, 
                                                 array(
                                                     'required',
                                                     'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
+                                                    'maxlength' => '255'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">治工具品番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('chikouguhinban', null, 
+                                                {!! Form::text('chikouguhinban', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
@@ -92,7 +92,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">設変符号</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('seppenfugou', null, 
+                                                {!! Form::text('seppenfugou', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
@@ -104,9 +104,9 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">品名</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('name', null, 
+                                                {!! Form::text('name', null, 
                                                 array(
-                                                    'class' => 'form-control hankaku',
+                                                    'class' => 'form-control',
                                                     'maxlength' => '100'
                                                 )) !!}
                                             </div>
@@ -146,7 +146,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">図番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('zuuban', null, 
+                                                {!! Form::text('zuuban', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -160,7 +160,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('gyousha', $m_merchants, null, 
                                                 array(
-                                                    'class' => 'form-control hankaku'
+                                                    'class' => 'form-control'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">車種</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('shashu', null, 
+                                                {!! Form::text('shashu', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -204,7 +204,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">部位</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('bui', null, 
+                                                {!! Form::text('bui', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -216,7 +216,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">ロック方向</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('lock', null, 
+                                                {!! Form::text('lock', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
@@ -228,9 +228,10 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">備考</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('comment', null, 
+                                                {!! Form::textarea('comment', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
+                                                    'rows' => 2,
                                                     'maxlength' => '255'
                                                 )) !!}
                                             </div>
@@ -242,8 +243,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('pic', $m_pics, null, 
                                                 array(
-                                                    'class' => 'form-control hankaku',
-                                                    'maxlength' => '50'
+                                                    'class' => 'form-control'
                                                 )) !!}
                                             </div>
                                         </div>
@@ -252,7 +252,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">棚番</label>
                                             <div class="col-md-10">
-                                                {!! Form::tel('tanaban', null, 
+                                                {!! Form::text('tanaban', null, 
                                                 array(
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'

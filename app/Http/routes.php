@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 	//	【管理者レベル】
 	Route::group(['middleware' => 'role:管理者'], function() {
-		Route::resource('storage', 'Admin\StorageController', ['only' => ['edit', 'destroy']]);
+		Route::resource('storage', 'Admin\StorageController', ['only' => ['create', 'edit', 'destroy']]);
 		Route::get('user/index', 'Admin\UserController@index');
 		Route::resource('user', 'Admin\UserController', ['except' => ['index', 'show']]);
 		Route::get('print/index', 'Admin\PrintController@index');

@@ -64,7 +64,7 @@ class StorageRequest extends Request
         $chikouguhinban = Request::get('chikouguhinban');
 
         return [
-            'hinban'            =>  'required|max:50|unique:storage,hinban,'.$id.
+            'hinban'            =>  'required|max:255|unique:storage,hinban,'.$id.
                                     ',id,chikouguhinban,'.$chikouguhinban,
             'seppenfugou'       =>  'max:10',
             'name'              =>  'max:100',
@@ -75,14 +75,14 @@ class StorageRequest extends Request
             'chikouguhinban'    =>  'alpha_num|min:10|max:10|unique:storage,chikouguhinban,'.
                                     $id.',id,hinban,'.$hinban,
             'zuuban'            =>  'max:20',
-            'gyousha'           =>  'max:20',
+            'gyousha'           =>  '',
             'unit_price'        =>  'numeric',
             'shashu'            =>  'max:20',
             'bui'               =>  'max:20',
             'lock'              =>  'max:20',
             'comment'           =>  'max:255',
-            'pic'               =>  'max:50',
-            'whq'               =>  'max:10',
+            'pic'               =>  '',
+            'whq'               =>  'numeric',
             'file1'             =>  'max:4000',
             'file2'             =>  'max:4000'
         ];

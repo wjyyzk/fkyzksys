@@ -11,9 +11,11 @@
                         <li>
                             <a href="/admin/storage/index"> 一覧</a>
                         </li>
-                        <li>
-                            <a href="/admin/storage/create"> 作成</a>
-                        </li>
+                        @if ( Auth::user()->role == '管理者')
+                            <li>
+                                <a href="/admin/storage/create"> 作成</a>
+                            </li>
+                        @endif
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

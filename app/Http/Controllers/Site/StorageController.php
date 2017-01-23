@@ -20,7 +20,7 @@ class StorageController extends MasterSite
     {
         //  業者データを取得する
         $m_merchants = (new Merchant)
-            ->orderBy('name', 'asc')
+            ->orderBy('furigana', 'asc')
             ->pluck('name', 'id')
             ->prepend('', 0);
 

@@ -49,9 +49,25 @@
                                         <div class="col-md-10">
                                             {!! Form::text('name', null, 
                                             array(
+                                                'id' => 'name',
                                                 'required',
                                                 'class' => 'form-control hankaku',
-                                                'maxlength' => '20',
+                                                'maxlength' => '255',
+                                                'autocomplete' => 'off'
+                                            )) !!}
+                                        </div>
+                                    </div>
+
+                                    <!-- フリガナ -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">フリガナ</label>
+                                        <div class="col-md-10">
+                                            {!! Form::text('furigana', null, 
+                                            array(
+                                                'id' => 'furigana',
+                                                'required',
+                                                'class' => 'form-control hankaku',
+                                                'maxlength' => '255',
                                                 'autocomplete' => 'off'
                                             )) !!}
                                         </div>
@@ -81,7 +97,18 @@
 
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    <!-- 自動フリガナ -->
+    <script type="text/javascript" src="{{ asset('assets/scripts/jquery.autoKana.js')}}"></script>
 
     {!! JsValidator::formRequest('App\Http\Requests\Admin\PICRequest') !!}
+
+    <script type="text/javascript">
+        $(document).ready(
+            function() {
+                $.fn.autoKana('#name', '#furigana', {
+                    katakana : true  //true：カタカナ、false：ひらがな（デフォルト）
+            });
+        });
+    </script>
 
 @endpush

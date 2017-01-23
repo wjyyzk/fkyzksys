@@ -18,6 +18,7 @@ class PICRequest extends Request
     {
         return [
             'name'          =>  '担当者',
+            'furigana'      =>  'フリガナ'
         ];
     }
 
@@ -42,7 +43,8 @@ class PICRequest extends Request
         $id = $this->route('pic');
 
         return [
-            'name'          =>  'required|max:50|unique:pic,name,'.$id
+            'name'          =>  'required|max:255|unique:pic,name,'.$id,
+            'furigana'      =>  'required|max:255'
         ];
     }
 }
