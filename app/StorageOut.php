@@ -42,8 +42,8 @@ class StorageOut extends Model
 	 */
 	public function scopeItem($query, $input)
 	{
-		return StorageOut::where('date', '=', $input->date)
-				->where('time', '=', $input->time)
-				->where('storage_id', '=', $input->storage_id);
+		return StorageOut::where('date', '=', $input['date'])
+				->where('time', '=', $input['time'])
+				->where('storage_id', '=', $input['storage_id']);
 	}
 }
