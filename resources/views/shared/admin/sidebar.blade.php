@@ -81,7 +81,7 @@
                 <!-- 深谷画面 -->
                 <li>
                     <a href="/storage/index">
-                        <i class="fa fa-reply fa-fw"></i> 深谷画面
+                        <i class="fa fa-reply fa-fw"></i> 入出庫画面
                     </a>
                 </li>
             </ul>

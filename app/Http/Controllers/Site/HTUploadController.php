@@ -53,25 +53,43 @@ class HTUploadController extends MasterSite
             //  アプロードファイルを確認する
             if($request->hasFile('file_stockin'))
             {
-                $fName = 'file_stockin.csv';
-                $request->file_stockin->move('upload/', $fName);
-                //  入庫データを処理する
-                $this->updateCSV("stockin");
+                $inName = $request->file('file_stockin')->getClientOriginalName();
+                if(ends_with($inName, "入庫.csv"))
+                {
+                    $fName = 'file_stockin.csv';
+                    $request->file_stockin->move('upload/', $fName);
+                    //  入庫データを処理する
+                    $this->updateCSV("stockin");
 
-                //  メッセージ
-                Session::flash('message', 'データを更新しました。');
+                    //  メッセージ
+                    Session::flash('message_in', '入庫データに'.$inName.'を更新しました。');
+                }
+                else
+                {
+                    //  メッセージ
+                    Session::flash('warning_in', '入庫ファイルが正しくありません。'.$inName.'をもう一度確認して下さい。');
+                }
             }
 
             //  アプロードファイルを確認する
             if($request->hasFile('file_stockout'))
             {
-                $fName = 'file_stockout.csv';
-                $request->file_stockout->move('upload/', $fName);
-                //  出庫データを処理する
-                $this->updateCSV("stockout");
+                $outName = $request->file('file_stockout')->getClientOriginalName();
+                if(ends_with($outName, "出庫.csv"))
+                {
+                    $fName = 'file_stockout.csv';
+                    $request->file_stockout->move('upload/', $fName);
+                    //  出庫データを処理する
+                    $this->updateCSV("stockout");
 
-                //  メッセージ
-                Session::flash('message', 'データを更新しました。');
+                    //  メッセージ
+                    Session::flash('message_out', '出庫データに'.$outName.'を更新しました。');
+                }
+                else
+                {
+                    //  メッセージ
+                    Session::flash('warning_out', '出庫ファイルが正しくありません。'.$outName.'をもう一度確認して下さい。');
+                }
             }
         }
         catch(\Exception $e)

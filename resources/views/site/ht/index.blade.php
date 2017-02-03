@@ -10,16 +10,28 @@
         <div class="row">
             <div class="col-lg-12">
                 <br />
-                @if(Session::has('message'))
+                @if(Session::has('message_in'))
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <label class="control-label">{{ Session::get('message') }}</label>
+                        <label class="control-label">{{ Session::get('message_in') }}</label>
                     </div>
                 @endif
-                @if(Session::has('warning'))
+                @if(Session::has('message_out'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <label class="control-label">{{ Session::get('message_out') }}</label>
+                    </div>
+                @endif                
+                @if(Session::has('warning_in'))
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <label class="control-label">{{ Session::get('warning') }}</label>
+                        <label class="control-label">{{ Session::get('warning_in') }}</label>
+                    </div>
+                @endif
+                @if(Session::has('warning_out'))
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <label class="control-label">{{ Session::get('warning_out') }}</label>
                     </div>
                 @endif
                 @if(count($errors) > 0)

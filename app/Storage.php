@@ -157,6 +157,10 @@ class Storage extends Model
 		if(Request::has('sChikouguhinban'))
 			$models->where('chikouguhinban', 'like', '%'.Request::get('sChikouguhinban').'%');
 
+		//	品名
+		if(Request::has('sName'))
+			$models->where('name', 'like', '%'.Request::get('sName').'%');
+
 		//	A/F
 		if(Request::has('sAF'))
 			$models->where('af', '=', 1);

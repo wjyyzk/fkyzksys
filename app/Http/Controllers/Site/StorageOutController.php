@@ -26,7 +26,8 @@ class StorageOutController extends MasterSite
             'storage_id'    =>  $request->id,
             'stock'         =>  $request->stock,
             'date'          =>  date('Y-m-d'),
-            'time'          =>  date('H:i:s')
+            'time'          =>  date('H:i:s'),
+            'ip'            =>  $request->ip()
         );
     }
 
