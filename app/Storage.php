@@ -188,6 +188,36 @@ class Storage extends Model
 	}
 
 	/**
+	 *	在庫数の総合計
+	 *
+	 *	@return int
+	 */
+	public function getTotalCount()
+	{
+		//	入庫のデータをまとめる
+		$in = DB::table('storage')
+			->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
+			->select(DB::raw('SUM(T_storage_in.stock) as total'))
+			->where('deleted_at', '=', null)
+			->first()->total;
+
+		if($in == null)
+			$in = 0;
+
+		//	出庫のデータをまとめる
+		$out = DB::table('storage')
+			->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
+			->select(DB::raw('SUM(T_storage_out.stock) as total'))
+			->where('deleted_at', '=', null)
+			->first()->total;
+
+		if($out == null)
+			$out = 0;
+
+		return $in - $out;
+	}
+
+	/**
 	 *	合計金額
 	 *
 	 *	@return int

@@ -66,7 +66,8 @@ class StorageController extends MasterAdmin
         return view('admin/storage/index')
             ->with('m_merchants', $m_merchants)
             ->with('models', $models)
-            ->with('totalFee', $storage->getTotalFee());
+            ->with('totalFee', $storage->getTotalFee())
+            ->with('totalCount', $storage->getTotalCount());
     }
 
     /**

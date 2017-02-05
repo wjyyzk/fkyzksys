@@ -19,6 +19,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <p class="panel-title">金額合計： {{ number_format($totalFee) }}円</p>
+                        <p class="panel-title">在庫数の総合計： {{ number_format($totalCount) }}</p>
                     </div>
                 </div>
             </div>
