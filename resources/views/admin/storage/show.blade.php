@@ -139,7 +139,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">単価</label>
                                         <div class="col-md-10">
-                                            <label class="form-control">{{ number_format($model->unit_price) }}</label>
+                                            <label class="form-control">{{ number_format($model->unit_price, 0, "", ".") }}</label>
                                         </div>
                                     </div>
 
@@ -210,7 +210,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">振替単価</label>
                                         <div class="col-md-10">
-                                            <label class="form-control">{{ $model->whq }}</label>
+                                            <label class="form-control">{{ number_format($model->whq, 0, "", ".") }}</label>
                                         </div>
                                     </div>
 

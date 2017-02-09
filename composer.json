@@ -11,7 +11,8 @@
         "laravelcollective/html": "~5.0",
         "proengsoft/laravel-jsvalidation": "~1.1",
         "simplesoftwareio/simple-qrcode": "~1",
-        "barryvdh/laravel-dompdf": "^0.7.0"
+        "barryvdh/laravel-dompdf": "^0.7.0",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

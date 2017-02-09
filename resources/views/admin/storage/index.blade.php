@@ -18,8 +18,8 @@
                 @endif
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <p class="panel-title">金額合計： {{ number_format($totalFee) }}円</p>
-                        <p class="panel-title">在庫数の総合計： {{ number_format($totalCount) }}</p>
+                        <p class="panel-title">金額合計： {{ number_format($totalFee, 0, "", ".") }}円</p>
+                        <p class="panel-title">在庫数の総合計： {{ number_format($totalCount, 0, "", ".") }}</p>
                     </div>
                 </div>
             </div>
@@ -188,7 +188,7 @@
                                                 @else
                                                 @endif
                                             </td>
-                                            <td>{{ number_format($model->unit_price) }}</td>
+                                            <td>{{ number_format($model->unit_price, 0, "", ".") }}</td>
                                             <td>{{ $model->stockIn - $model->stockOut }}</td>
                                             @if (Auth::user()->role == '管理者')
                                                 <td>
