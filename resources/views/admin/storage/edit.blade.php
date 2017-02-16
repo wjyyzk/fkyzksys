@@ -353,7 +353,7 @@
 
     <script type="text/javascript">
         function sync(textbox) {
-            document.getElementById('whq').value = textbox.value * 1.2;
+            document.getElementById('whq').value = Math.round(textbox.value * 1.2);
         }
     </script>
 
