@@ -35,8 +35,8 @@ class StorageRequest extends Request
             'comment'           =>  '備考',
             'pic'               =>  '担当',
             'whq'               =>  'WHQ単価報告',
-            'file1'             =>  'ファイル1',
-            'file2'             =>  'ファイル2'
+            'file1'             =>  '部品図面',
+            'file2'             =>  '予備'
         ];
     }
 
@@ -86,5 +86,16 @@ class StorageRequest extends Request
             'file1'             =>  'max:2000',
             'file2'             =>  'max:2000'
         ];
+    }
+
+    /**
+     *	エラーメッセージ
+     */
+    public function messages()
+    {
+    	return [
+    		'file1.max' => '部品図面は2MB以下にしてください。',
+    		'file2.max' => '予備は2MB以下にしてください。'
+    	];
     }
 }
