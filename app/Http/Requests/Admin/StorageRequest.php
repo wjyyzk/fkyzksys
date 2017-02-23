@@ -83,8 +83,8 @@ class StorageRequest extends Request
             'comment'           =>  'max:255',
             'pic'               =>  '',
             'whq'               =>  'numeric',
-            'file1'             =>  'max:4000',
-            'file2'             =>  'max:4000'
+            'file1'             =>  'max:2000',
+            'file2'             =>  'max:2000'
         ];
     }
 }
