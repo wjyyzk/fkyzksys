@@ -59,21 +59,16 @@ class StorageRequest extends Request
     {
         //  作成の時NULL、編集の時IDを取得
         $id = $this->route('storage');
-        //  Keyの確認用
-        $hinban = Request::get('hinban');
-        $chikouguhinban = Request::get('chikouguhinban');
 
         return [
-            'hinban'            =>  'required|max:255|unique:storage,hinban,'.$id.
-                                    ',id,chikouguhinban,'.$chikouguhinban,
+            'hinban'            =>  'required|max:255|unique_with:storage,hinban,chikouguhinban,'.$id,
             'seppenfugou'       =>  'max:10',
             'name'              =>  'max:100',
             'tanaban'           =>  'max:100',
             'af'                =>  '',
             'cf'                =>  '',
             'other'             =>  '',
-            'chikouguhinban'    =>  'alpha_num|min:10|max:10|unique:storage,chikouguhinban,'.
-                                    $id.',id,hinban,'.$hinban,
+            'chikouguhinban'    =>  'alpha_num|min:10|max:10|unique_with:storage,hinban,chikouguhinban,'.$id,
             'zuuban'            =>  'max:20',
             'gyousha'           =>  '',
             'unit_price'        =>  'numeric',
@@ -94,6 +89,8 @@ class StorageRequest extends Request
     public function messages()
     {
     	return [
+    		'hinban.unique_with' => '指定の品番と治工具品番は既に使用されています。',
+    		'chikouguhinban.unique_with' => '指定の品番と治工具品番は既に使用されています。',
     		'file1.max' => '部品図面は2MB以下にしてください。',
     		'file2.max' => '予備は2MB以下にしてください。'
     	];

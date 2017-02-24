@@ -171,6 +171,7 @@ return [
          */
         'Collective\Html\HtmlServiceProvider',
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
     ],
 
     /*
