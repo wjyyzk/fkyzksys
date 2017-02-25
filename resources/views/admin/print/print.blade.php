@@ -11,7 +11,7 @@
 			}
 			body 
 			{
-				font-family: DejaVu Sans;
+				font-family: sans-serif;
 			}
 			label
 			{
