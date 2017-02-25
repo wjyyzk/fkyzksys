@@ -47,7 +47,7 @@
 		<div class="clearfix">
 			<div class="column content">
 				<div><label>{{ $model->chikouguhinban }}</label></div>
-				<div><label style="font-size: 24px;">{{ $model->hinban }}</label></div>
+				<div><label style="font-size: 32px;">{{ $model->hinban }}</label></div>
 				<div class="lbluniqueid"><label>{{ $model->id }}</label></div>
 			</div>
 			<div class="column barcode">
