@@ -1,17 +1,20 @@
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<style type="text/css">
 			html
 			{
 				width: 340px;
 				height: 151px;
-				margin: 10px;		
+				margin: 10px;
 				padding: 0px;
+			}
+			body 
+			{
+				font-family: DejaVu Sans;
 			}
 			label
 			{
-				font-family: "Meiryo UI";
 				font-size: 20px;
 				font-weight: bold;
 			}
