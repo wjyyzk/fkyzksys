@@ -70,6 +70,7 @@
                                                 {!! Form::text('hinban', null, 
                                                 array(
                                                     'required',
+                                                    'id' => 'hinban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '255'
                                                 )) !!}
@@ -82,6 +83,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('chikouguhinban', null, 
                                                 array(
+                                                    'id' => 'chikouguhinban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
                                                 )) !!}
@@ -94,6 +96,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('seppenfugou', null, 
                                                 array(
+                                                    'id' => 'seppenfugou',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
                                                 )) !!}
@@ -106,6 +109,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('name', null, 
                                                 array(
+                                                    'id' => 'name',
                                                     'class' => 'form-control',
                                                     'maxlength' => '100'
                                                 )) !!}
@@ -117,7 +121,10 @@
                                             <label class="col-md-2 control-label">A/F</label>
                                             <div class="col-md-10">
                                                 <div class="control-label" style="text-align: left;">
-                                                    {!! Form::checkbox('af', '1', Request::get('af')) !!}
+                                                    {!! Form::checkbox('af', '1', Request::get('af'),
+                                                    array(
+                                                        'id' => 'af'
+                                                    )) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +134,10 @@
                                             <label class="col-md-2 control-label">C/F</label>
                                             <div class="col-md-10">
                                                 <div class="control-label" style="text-align: left;">
-                                                   {!! Form::checkbox('cf', '1', Request::get('cf')) !!}
+                                                    {!! Form::checkbox('cf', '1', Request::get('cf'),
+                                                    array(
+                                                        'id' => 'cf'
+                                                    )) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +147,10 @@
                                             <label class="col-md-2 control-label">その他</label>
                                             <div class="col-md-10">
                                                 <div class="control-label" style="text-align: left;">
-                                                   {!! Form::checkbox('other', '1', Request::get('other')) !!}
+                                                    {!! Form::checkbox('other', '1', Request::get('other'),
+                                                    array(
+                                                        'id' => 'other'
+                                                    )) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -148,6 +161,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('zuuban', null, 
                                                 array(
+                                                    'id' => 'zuuban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -160,6 +174,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('gyousha', $m_merchants, null, 
                                                 array(
+                                                    'id' => 'gyousha',
                                                     'class' => 'form-control'
                                                 )) !!}
                                             </div>
@@ -194,6 +209,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('shashu', null, 
                                                 array(
+                                                    'id' => 'shashu',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -206,6 +222,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('bui', null, 
                                                 array(
+                                                    'id' => 'bui',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -218,6 +235,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('lock', null, 
                                                 array(
+                                                    'id' => 'lock',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -230,6 +248,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::textarea('comment', null, 
                                                 array(
+                                                    'id' => 'comment',
                                                     'class' => 'form-control hankaku',
                                                     'rows' => 2,
                                                     'maxlength' => '255'
@@ -243,6 +262,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('pic', $m_pics, null, 
                                                 array(
+                                                    'id' => 'pic',
                                                     'class' => 'form-control'
                                                 )) !!}
                                             </div>
@@ -254,6 +274,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('tanaban', null, 
                                                 array(
+                                                    'id' => 'tanaban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
                                                 )) !!}
@@ -307,6 +328,7 @@
 
                     <button type="submit" class="btn btn-primary">登録</button>
                     <button type="reset" class="btn btn-primary">リセット</button>
+                    <button type="button" class="btn btn-primary" onclick="reqCopy()">コピー</button>
 
                 {!! Form::close() !!}
 
@@ -334,6 +356,65 @@
     <script type="text/javascript">
         function sync(textbox) {
             document.getElementById('whq').value = Math.round(textbox.value * 1.2);
+        }
+
+        function reqCopy() {
+            $.ajax({
+                type: "GET",
+                url: "/api/storage/data/last",
+                data: "",
+                dataType: "json",
+                success: function(data) {
+                    if(JSON.stringify(data.status) == "true")
+                    {
+                        document.getElementById('hinban').value = eval(JSON.stringify(data.hinban));
+                        document.getElementById('chikouguhinban').value = eval(JSON.stringify(data.chikouguhinban));
+                        document.getElementById('seppenfugou').value = eval(JSON.stringify(data.seppenfugou));
+                        document.getElementById('name').value = eval(JSON.stringify(data.name));
+                        document.getElementById('af').checked = eval(JSON.stringify(data.af));
+                        document.getElementById('cf').checked = eval(JSON.stringify(data.cf));
+                        document.getElementById('other').checked = eval(JSON.stringify(data.other));
+                        document.getElementById('zuuban').value = eval(JSON.stringify(data.zuuban));
+                        document.getElementById('gyousha').value = JSON.stringify(data.gyousha);
+                        document.getElementById('unit_price').value = JSON.stringify(data.unit_price);
+                        document.getElementById('shashu').value = eval(JSON.stringify(data.shashu));
+                        document.getElementById('bui').value = eval(JSON.stringify(data.bui));
+                        document.getElementById('lock').value = eval(JSON.stringify(data.lock));
+                        document.getElementById('comment').value = eval(JSON.stringify(data.comment));
+                        document.getElementById('pic').value = JSON.stringify(data.pic);
+                        document.getElementById('tanaban').value = eval(JSON.stringify(data.tanaban));
+                        document.getElementById('whq').value = JSON.stringify(data.whq);
+                    }
+                    else
+                    {
+                        clearInput();
+                    }
+                },
+                error: function() {
+                    clearInput();
+                }
+            })
+        }
+
+        function clearInput()
+        {
+            document.getElementById('hinban').value = "";
+            document.getElementById('chikouguhinban').value = "";
+            document.getElementById('seppenfugou').value = "";
+            document.getElementById('name').value = "";
+            document.getElementById('af').value = "";
+            document.getElementById('cf').value = "";
+            document.getElementById('other').value = "";
+            document.getElementById('zuuban').value = "";
+            document.getElementById('gyousha').value = "";
+            document.getElementById('unit_price').value = "";
+            document.getElementById('shashu').value = "";
+            document.getElementById('bui').value = "";
+            document.getElementById('lock').value = "";
+            document.getElementById('comment').value = "";
+            document.getElementById('pic').value = "";
+            document.getElementById('tanaban').value = "";
+            document.getElementById('whq').value = "";
         }
     </script>
 

@@ -46,7 +46,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 //	【API】
 //Route::get('api/import', 'API\ImportController@index');
-Route::get('api/storage', 'API\StorageController@ts');
+//Route::get('api/storage', 'API\StorageController@ts');
 Route::get('api/storage/{id}', 'API\StorageController@index');
-//Route::get('api/storage/in/{key}/{id}/{stock}', 'API\StorageInController@index');
-//Route::get('api/storage/out/{key}/{id}/{stock}', 'API\StorageOutController@index');
+Route::get('api/storage/data/last', 'API\StorageController@last');
