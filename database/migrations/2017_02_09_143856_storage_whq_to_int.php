@@ -25,7 +25,7 @@ class StorageWhqToInt extends Migration
     public function down()
     {
         Schema::table('storage', function (Blueprint $table) {
-            $table->string('whq', 10)->nullable();
+            $table->string('whq', 10)->nullable()->change();
         });
     }
 }
