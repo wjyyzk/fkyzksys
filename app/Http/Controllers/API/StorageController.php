@@ -10,13 +10,6 @@ use App\Storage;
  */
 class StorageController extends MasterAPI
 {
-    public function ts()
-    {
-        return response()->json([
-            'status'            => false
-        ]);        
-    }
-
     /**
      *  モデル【storage】を取得する
      *  @return json
