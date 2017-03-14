@@ -11,28 +11,13 @@ use App\User;
  */
 class UserTest extends TestCase
 {
-    //  管理者用
-    private $user = null;
-
-    //  入力用
-    private $strInput = "testUnit";
-
-    /**
-     *  管理者データを取得する
-     *  @return void
-     */
-    public function getUser() {
-        //  管理者を取得
-        $this->user = User::where('username', '=', 'admin')->first();
-    }
-
     /**
      *  テストデータを取得する
      *  @return user
      */
-    public function getUserTest($input) {
-
-        return User::where('username', '=', $input)->first();   
+    public function getUserTest($input) 
+    {
+        return User::where('username', '=', $input)->first();
     }
 
     /**
@@ -46,25 +31,15 @@ class UserTest extends TestCase
         $this->visit('/admin/user/index')
             ->seePageIs('/login');
 
-        //  管理者を取得
-        $user = User::where('username', 'admin')->first();
+        //  ログイン
+        $this->getUser();
+        
+        //  ユーザー
+        $this->visit('/admin/user/index')
+            ->seePageIs('/admin/user/index');
 
-        //  ユーザーを確認する
-        if($user)
-        {
-            $this->be($user);
-
-            //  ユーザー
-            $this->visit('/admin/user/index')
-                ->seePageIs('/admin/user/index');
-
-            $this->visit('/admin/user/create')
-                ->seePageIs('/admin/user/create');
-        }
-        else
-        {
-            $this->markTestSkipped('【管理画面ルート】ﾃｽﾄ出来ない。');
-        }        
+        $this->visit('/admin/user/create')
+            ->seePageIs('/admin/user/create');
     }
 
     /**
@@ -74,28 +49,20 @@ class UserTest extends TestCase
      */
     public function testNewUser()
     {
+        //  ログイン
         $this->getUser();
 
-        //  ユーザーを確認する
-        if($this->user)
-        {
-            //  ログイン
-            $this->be($this->user);
+        $username = str_random(10);
 
-            $this->visit('/admin/user/create')
-                ->type($this->strInput, 'username')
-                ->type('test', 'password')
-                ->type('test', 'password_conf')
-                ->press('登録')
-                ->seePageIs('/admin/user/index')
-                ->see('データを作成しました。');
+        $this->visit('/admin/user/create')
+            ->type($username, 'username')
+            ->type('test', 'password')
+            ->type('test', 'password_conf')
+            ->press('登録')
+            ->seePageIs('/admin/user/index')
+            ->see('データを作成しました。');
 
-            $this->seeInDatabase('users', ['username' => $this->strInput]);
-        }
-        else
-        {
-            $this->markTestSkipped('【ユーザー登録】ﾃｽﾄ出来ない。');
-        }
+        $this->seeInDatabase('users', ['username' => $username]);
     }
 
     /**
@@ -105,26 +72,16 @@ class UserTest extends TestCase
      */
     public function testSearchUser()
     {
-        $this->getUser();        
+        //  ログイン
+        $this->getUser();
 
-        //  ユーザーを確認する
-        if($this->user)
-        {
-            //  ログイン
-            $this->be($this->user);
-
-            $this->visit('/admin/user/index')
-                ->type('admin', 'sUsername')
-                ->press('検索')
-                ->seePageIs('/admin/user/index?sUsername=admin')
-                ->see('admin')
-                ->click("#reset")
-                ->seePageIs('/admin/user/index');
-        }
-        else
-        {
-            $this->markTestSkipped('【ユーザー検索】ﾃｽﾄ出来ない。');
-        }
+        $this->visit('/admin/user/index')
+            ->type('admin', 'sUsername')
+            ->press('検索')
+            ->seePageIs('/admin/user/index?sRole=0&sUsername=admin')
+            ->see('admin')
+            ->click("#reset")
+            ->seePageIs('/admin/user/index');
     }
 
     /**
@@ -134,33 +91,24 @@ class UserTest extends TestCase
      */
     public function testUpdateUser()
     {
+        //  ログイン
         $this->getUser();
 
-        //  ユーザーを確認する
-        if($this->user)
-        {
-            //  ログイン
-            $this->be($this->user);
+        $userTest = $this->getUserTest('admin');
 
-            $userTest = $this->getUserTest($this->strInput);
+        //  データを更新する
+        $this->visit('/admin/user/'.$userTest->id.'/edit')
+            ->type('admin', 'password')
+            ->type('admin', 'password_conf')
+            ->press('登録');
 
-            $this->visit('/admin/user/'.$userTest->id.'/edit')
-                ->type($this->strInput, 'username')
-                ->type('test2', 'password')
-                ->type('test2', 'password_conf')
-                ->press('登録');
-
-            $this->visit('/logout')
-                ->visit('/login')
-                ->type($this->strInput, 'username')
-                ->type('test2', 'password')
-                ->press('ログイン')
-                ->seePageIs('/admin/storage/index');
-        }
-        else
-        {
-            $this->markTestSkipped('【ユーザー編集】ﾃｽﾄ出来ない。');
-        }
+        //  更新したデータでログインする
+        $this->visit('/logout')
+            ->visit('/login')
+            ->type('admin', 'username')
+            ->type('admin', 'password')
+            ->press('ログイン')
+            ->seePageIs('/admin/storage/index');
     }
 
     /**
@@ -170,23 +118,13 @@ class UserTest extends TestCase
      */
     public function testDeleteUser()
     {
-        /*
+        //  ログイン
         $this->getUser();
 
-        //  ユーザーを確認する
-        if($this->user)
-        {
-            //  ログイン
-            $this->be($this->user);
-
-            
-        }
-        else
-        {
-            $this->markTestSkipped('【ユーザー削除】ﾃｽﾄ出来ない。');
-        }
-        */
-        
-        $this->assertTrue(true);
+        //  一番上の削除ボタンを押す
+        $this->visit('/admin/user/index')
+            ->press('削除')
+            ->seePageIs('/admin/user/index')
+            ->see('データを削除しました。');
     }
 }

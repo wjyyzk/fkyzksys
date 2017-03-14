@@ -281,7 +281,7 @@ class StorageController extends MasterAdmin
         $model->delete();
 
         //  メッセージ
-        Session::flash('message', 'データを更新しました。');
+        Session::flash('message', 'データを削除しました。');
 
         //  保存したURLに移動する
         return redirect(Session::get('requestReferrer'));

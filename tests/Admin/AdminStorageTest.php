@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\User;
+use App\Storage;
 
 /**
  *  【テスト】在庫リスト
@@ -22,35 +22,15 @@ class AdminStorageTest extends TestCase
         $this->visit('/admin/storage/index')
             ->seePageIs('/login');
 
-        //  管理者を取得
-        $user = User::where('username', 'admin')->first();
+        //	ログイン
+        $this->getUser();
 
-        //  ユーザーを確認する
-        if($user)
-        {
-            $this->be($user);
+        //  在庫リスト
+        $this->visit('/admin/storage/index')
+            ->seePageIs('/admin/storage/index');
 
-            //  在庫リスト
-            $this->visit('/admin/storage/index')
-                ->seePageIs('/admin/storage/index');
-
-            $this->visit('/admin/storage/create')
-                ->seePageIs('/admin/storage/create');
-        }
-        else
-        {
-            $this->markTestSkipped('【管理画面ルート】ﾃｽﾄ出来ない。');
-        }
-    }
-
-    /**
-     * 在庫リストの検索テスト
-     *
-     * @return void
-     */
-    public function testSearchStorage()
-    {
-        $this->assertTrue(true);
+        $this->visit('/admin/storage/create')
+            ->seePageIs('/admin/storage/create');
     }
 
     /**
@@ -60,7 +40,43 @@ class AdminStorageTest extends TestCase
      */
     public function testNewStorage()
     {
-        $this->assertTrue(true);
+        //  ログイン
+        $this->getUser();
+
+        $mockdata = array(
+            'hinban'            =>  str_random(10),
+            'chikouguhinban'    =>  str_random(10)
+        );
+
+        $this->visit('/admin/storage/create')
+            ->type($mockdata['hinban'], 'hinban')
+            ->type($mockdata['chikouguhinban'], 'chikouguhinban')
+            ->press('登録')
+            ->seePageIs('/admin/storage/index')
+            ->see('データを作成しました。');
+
+        $this->seeInDatabase('storage', ['hinban' => $mockdata['hinban']]);
+    }
+
+    /**
+     * 在庫リストの検索テスト
+     *
+     * @return void
+     */
+    public function testSearchStorage()
+    {
+        //  ログイン
+        $this->getUser();
+
+        $model = Storage::orderBy('id', 'desc')->first();
+
+        $this->visit('/admin/storage/index')
+            ->type($model->hinban, 'sHinban')
+            ->press('検索')
+            ->seePageIs('/admin/storage/index?sChikouguhinban=&sGyousha=0&sHinban='.$model->hinban.'&sName=&sOrder=hinban&sShashu=')
+            ->see($model->hinban)
+            ->click("#reset")
+            ->seePageIs('/admin/storage/index');
     }
 
     /**
@@ -70,7 +86,19 @@ class AdminStorageTest extends TestCase
      */
     public function testUpdateStorage()
     {
-        $this->assertTrue(true);
+        //  ログイン
+        $this->getUser();
+
+        $model = Storage::orderBy('id', 'desc')->first();
+
+        $mockdata = str_random(10);
+
+        //  データを更新する
+        $this->visit('/admin/storage/'.$model->id.'/edit')
+            ->type($mockdata, 'chikouguhinban')
+            ->press('登録');
+
+        $this->seeInDatabase('storage', ['chikouguhinban' => $mockdata]);
     }
 
     /**
@@ -80,6 +108,13 @@ class AdminStorageTest extends TestCase
      */
     public function testDeleteStorage()
     {
-        $this->assertTrue(true);
-    }            
+        //  ログイン
+        $this->getUser();
+
+        //  一番上の削除ボタンを押す
+        $this->visit('/admin/storage/index')
+            ->press('削除')
+            ->seePageIs('/admin/storage/index')
+            ->see('データを削除しました。');
+    }
 }

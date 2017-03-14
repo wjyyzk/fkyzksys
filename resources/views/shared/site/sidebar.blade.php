@@ -22,10 +22,19 @@
                 <li {{ Helper::set_active('upload') }}>
                     <a href="/ht/upload"><i class="fa fa-cloud-upload fa-fw"></i> アップロード</a>
                 </li>
+                @if (Auth::check())
+                <!-- 管理画面 -->
+                <li>
+                    <a href="/admin/storage/index">
+                        <i class="fa fa-wrench fa-fw"></i> 管理メニュー
+                    </a>
+                </li>
+                @else
                 <!-- ログイン -->
                 <li {{ Helper::set_active('login') }}>
                     <a href="/login"><i class="fa fa-shield fa-fw"></i> ログイン</a>
                 </li>
+                @endif
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
