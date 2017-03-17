@@ -12,15 +12,6 @@ use App\Merchant;
 class MerchantTest extends TestCase
 {
     /**
-     *  テストデータを取得する
-     *  @return pic
-     */
-    public function getModelTest($input) 
-    {
-        return Merchant::where('name', '=', $input)->first();
-    }
-
-    /**
     * ルートテスト
     *
     * @return void
@@ -74,11 +65,12 @@ class MerchantTest extends TestCase
         //  ログイン
         $this->getUser();
 
+        $model = Merchant::first();
+
         $this->visit('/admin/merchant/index')
-            ->type('矢崎化工', 'sName')
+            ->type($model->name, 'sName')
             ->press('検索')
-            ->seePageIs('/admin/merchant/index?sName=%E7%9F%A2%E5%B4%8E%E5%8C%96%E5%B7%A5')
-            ->see('矢崎化工')
+            ->see($model->name)
             ->click("#reset")
             ->seePageIs('/admin/merchant/index');
     }
@@ -93,14 +85,16 @@ class MerchantTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $model = $this->getModelTest('矢崎化工');
+        $model = Merchant::orderBy('id', 'desc')->first();
+
+        $mockdata = str_random(10);
 
         //  データを更新する
         $this->visit('/admin/merchant/'.$model->id.'/edit')
-            ->type('矢崎化工', 'name')
+            ->type($mockdata, 'name')
             ->press('登録');
 
-        $this->seeInDatabase('merchant', ['name' => '矢崎化工']);
+        $this->seeInDatabase('merchant', ['name' => $mockdata]);
     }
 
     /**
