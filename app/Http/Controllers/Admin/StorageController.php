@@ -6,13 +6,14 @@ use Illuminate\Support\Facades\DB;
 use Session;
 
 //  バリデータ
-use App\Http\Requests;
+use Request;
 use App\Http\Requests\Admin\StorageRequest;
 
 //  モデル
 use App\Storage;
 use App\Merchant;
 use App\PIC;
+use App\M_Order;
 
 /**
  *  【管理コントローラ】在庫リスト
@@ -56,6 +57,13 @@ class StorageController extends MasterAdmin
                         ->pluck('name', 'id')
                         ->prepend('', 0);
 
+        //  並び順マスターデータを取得する
+        $m_orders = (new M_Order)->attributes();
+
+        //  並び順の初期化
+        if(!(Request::has('sOrder') && Request::get('sOrder')))
+            Request::replace(array('sOrder' => 'hinban'));
+
         //  モデル
         $storage = new Storage;
 
@@ -65,6 +73,7 @@ class StorageController extends MasterAdmin
         //  画面を表示する
         return view('admin/storage/index')
             ->with('m_merchants', $m_merchants)
+            ->with('m_orders', $m_orders)
             ->with('models', $models)
             ->with('totalFee', $storage->getTotalFee())
             ->with('totalCount', $storage->getTotalCount());

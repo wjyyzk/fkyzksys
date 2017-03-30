@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Site;
 
+use Request;
+
 //  データベース
 use App\Storage;
 use App\Merchant;
 use App\PIC;
+use App\M_Order;
 
 /**
  *	【コントローラ】在庫リスト
@@ -16,13 +19,20 @@ class StorageController extends MasterSite
      *	ホーム
      *  @return     view
      */
-    public function index()
+    public function index(Request $request)
     {
         //  業者データを取得する
         $m_merchants = (new Merchant)
             ->orderBy('furigana', 'asc')
             ->pluck('name', 'id')
             ->prepend('', 0);
+
+        //  並び順マスターデータを取得する
+        $m_orders = (new M_Order)->attributes();
+
+        //  並び順の初期化
+        if(!(Request::has('sOrder') && Request::get('sOrder')))
+            Request::replace(array('sOrder' => 'hinban'));
 
         //  モデル
         $storage = new Storage;
@@ -33,6 +43,7 @@ class StorageController extends MasterSite
         //  画面を表示する
         return view('site/storage/index')
             ->with('m_merchants', $m_merchants)
+            ->with('m_orders', $m_orders)
         	->with('models', $models);
     }
 

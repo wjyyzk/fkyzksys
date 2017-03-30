@@ -123,6 +123,16 @@
                                             )) !!}
                                         </div>
                                     </div>
+                                    <!-- 並び順 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">並び順</label>
+                                        <div class="col-md-10">
+                                            {!! Form::select('sOrder', $m_orders, Request::get('sOrder'), 
+                                            array(
+                                                'class' => 'form-control'
+                                            )) !!}
+                                        </div>
+                                    </div>
                                     <input type="submit" class="btn btn-primary" value="検索" />
                                     <a class="btn btn-primary" href="/admin/storage/index">リセット</a>
 
