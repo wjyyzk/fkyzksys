@@ -182,7 +182,10 @@ class Storage extends Model
 			$models->where('shashu', 'like', '%'.Request::get('sShashu').'%');
 
 		//	並び順、ページ
-		$models = $models->orderBy(Request::get('sOrder'), 'asc')->paginate(10);
+		if(Request::has('sOrder'))
+			$models = $models->orderBy(Request::get('sOrder'), 'asc')->paginate(10);
+		else
+			$models = $models->orderBy('hinban', 'asc')->paginate(10);
 
 		return $models;
 	}
