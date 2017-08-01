@@ -256,7 +256,7 @@
                 </div>
                 <!-- /.panel -->
 
-                <button type="button" class="btn btn-primary" onclick="javascript:window.close()">閉じる</button>
+                <button type="button" class="btn btn-primary" onclick="javascript:window.open('', '_self', ''); window.close();">閉じる</button>
 
             </div>
             <!-- /.col-lg-12 -->
