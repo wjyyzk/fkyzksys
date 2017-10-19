@@ -172,6 +172,11 @@ return [
         'Collective\Html\HtmlServiceProvider',
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
+
+        /*
+         *  エクセル
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -223,6 +228,7 @@ return [
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

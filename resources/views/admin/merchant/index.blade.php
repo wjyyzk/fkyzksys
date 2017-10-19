@@ -47,8 +47,9 @@
                                             )) !!}
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-primary" value="検索" />
+                                    <button type="submit" name="search" class="btn btn-primary" value="search">検索</button>
                                     <a id="reset" class="btn btn-primary" href="/admin/merchant/index">リセット</a>
+                                    <button type="submit" name="excel" class="btn btn-primary" value="excel">エクセル</button>
 
                                 {!! Form::close() !!}
 

@@ -69,7 +69,7 @@ class Storage extends Model
 	/**
 	 *	設変履歴テーブルの関連
 	 */
-	public function hisotry_seppen()
+	public function history_seppen()
 	{
 		return $this->hasMany('App\HistorySeppen');
 	}
@@ -142,10 +142,12 @@ class Storage extends Model
 
 	/**
 	 *	検索
+	 *	@param 	query 	【Laravel】デフォールト
+	 *	@param 	page　	ページ
 	 *
 	 *	@return Storage List
 	 */
-	public function scopeFilter()
+	public function scopeFilter($query, $page = TRUE)
 	{
 		$models = Storage::query();
 
@@ -183,9 +185,14 @@ class Storage extends Model
 
 		//	並び順、ページ
 		if(Request::has('sOrder'))
-			$models = $models->orderBy(Request::get('sOrder'), 'asc')->paginate(10);
+			$models = $models->orderBy(Request::get('sOrder'), 'asc');
 		else
-			$models = $models->orderBy('hinban', 'asc')->paginate(10);
+			$models = $models->orderBy('hinban', 'asc');
+
+		if ($page)
+			$models = $models->paginate(10);
+		else
+			$models = $models->get();
 
 		return $models;
 	}

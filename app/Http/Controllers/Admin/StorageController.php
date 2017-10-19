@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\DB;
 use Session;
+use Illuminate\Support\Facades\Input;
+use App\Library\ExportExcelLib;
 
 //  バリデータ
 use Request;
@@ -63,6 +65,15 @@ class StorageController extends MasterAdmin
         //  並び順の初期化
         if(!(Request::has('sOrder') && Request::get('sOrder')))
             Request::replace(array('sOrder' => 'hinban'));
+
+        //  エクセルを出力する
+        if (Input::get('excel'))
+        {
+            $models = Storage::filter(FALSE);
+            
+            $export = new ExportExcelLib($models);
+            $export->exportZaikoList();
+        }
 
         //  モデル
         $storage = new Storage;

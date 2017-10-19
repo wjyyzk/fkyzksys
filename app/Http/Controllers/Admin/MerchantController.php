@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\Input;
+use App\Library\ExportExcelLib;
 
 //  バリデータ
 use App\Http\Requests;
@@ -33,6 +35,15 @@ class MerchantController extends MasterAdmin
      */
     public function index()
     {
+        //  エクセルを出力する
+        if (Input::get('excel'))
+        {
+            $models = Merchant::filter(FALSE);
+            
+            $export = new ExportExcelLib($models);
+            $export->exportGyousha();
+        }
+
         //  モデルを取得する
         $models = Merchant::filter();
 
