@@ -40,7 +40,7 @@ class StorageTest extends TestCase
             $this->visit('/admin/storage/index')
                 ->type($model->hinban, 'sHinban')
                 ->press('検索')
-                ->seePageIs('/admin/storage/index?sChikouguhinban=&sGyousha=0&sHinban='.$model->hinban.'&sName=&sOrder=hinban&sShashu=')
+                ->seePageIs('/admin/storage/index?sChikouguhinban=&sGyousha=0&sHinban='.$model->hinban.'&sName=&sOrder=hinban&sShashu=&search=search')
                 ->see($model->hinban)
                 ->click("#reset")
                 ->seePageIs('/admin/storage/index');            
