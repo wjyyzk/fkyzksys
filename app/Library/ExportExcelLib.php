@@ -92,8 +92,8 @@ class ExportExcelLib
 				$model->comment,
 				$model->pic,
 				$model->whq,
-				$model->file1,
-				$model->file2,
+				"http://157.7.137.246/upload/file1/".$model->file1,
+				"http://157.7.137.246/upload/file2/".$model->file2,
 				$model->updated_at
 			));
 		}
