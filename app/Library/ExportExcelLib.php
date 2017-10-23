@@ -92,8 +92,8 @@ class ExportExcelLib
 				$model->comment,
 				$model->pic,
 				$model->whq,
-				$model->file1 ?	"=HYPERLINK(http://157.7.137.246/upload/file1/".$model->file1.")" : null,
-				$model->file2 ? "=HYPERLINK(http://157.7.137.246/upload/file2/".$model->file2.")" : null,
+				$model->file1 ?	"http://157.7.137.246/upload/file1/".$model->file1 : null,
+				$model->file2 ? "http://157.7.137.246/upload/file2/".$model->file2 : null,
 				$model->updated_at
 			));
 		}
