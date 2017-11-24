@@ -9,12 +9,22 @@ use App\Http\Requests\StockInRequest;
 
 //  モデル
 use App\StorageIn;
+use App\M_Hinban_Type;
 
 /**
  *	【コントローラ】入庫
  */
 class StorageInController extends MasterSite
 {
+    private $list_hinban_types;
+
+    //  コンストラクタ
+    public function __construct() {
+        //  マスタを取得する
+        //  品種
+        $this->list_hinban_types = (new M_Hinban_Type)->attributes();
+    }
+
     /**
      *  レクエスト
      *  @param          入力フォーム
@@ -24,6 +34,7 @@ class StorageInController extends MasterSite
     {
         return array(
             'storage_id'    =>  $request->id,
+            'hinban_type'   =>  $request->hinban_type,
             'stock'         =>  $request->stock,
             'date'          =>  date('Y-m-d'),
             'time'          =>  date('H:i:s')
@@ -36,7 +47,8 @@ class StorageInController extends MasterSite
      */
     public function create()
     {
-        return view('site/storage/in/create');
+        return view('site/storage/in/create')
+                ->with('list_hinban_types', $this->list_hinban_types);
     }
 
     /**
@@ -71,7 +83,9 @@ class StorageInController extends MasterSite
         //  モデルを取得する
         $model = StorageIn::with('storage')->findOrFail($id);
 
-        return view('site/storage/in/edit')->with('model', $model);
+        return view('site/storage/in/edit')
+            ->with('list_hinban_types', $this->list_hinban_types)
+            ->with('model', $model);
     }
 
     /**

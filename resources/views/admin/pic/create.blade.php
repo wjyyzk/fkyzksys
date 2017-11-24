@@ -16,7 +16,7 @@
                         <label class="control-label">{{ Session::get('message') }}</label>
                     </div>
                 @endif
-                @if(count($errors) > 0)                
+                @if(count($errors) > 0)
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @foreach($errors->all() as $error)
@@ -38,10 +38,12 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-        						{!! Form::open(array(
-									'method' => 'POST',
+                                {!! Form::open(array(
+                                    'method' => 'POST',
                                     'class' => 'form-horizontal',
-									'route' => 'admin.pic.store')) !!}
+                                    'route' => 'admin.pic.store')) !!}
+
+                                    {{ csrf_field() }}
 
                                     <!-- ユーザー名 -->
                                     <div class="form-group">
@@ -49,8 +51,8 @@
                                         <div class="col-md-10">
                                             {!! Form::text('name', null, 
                                             array(
-                                                'id' => 'name',
                                                 'required',
+                                                'id' => 'name',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255',
                                                 'autocomplete' => 'off'
@@ -64,8 +66,8 @@
                                         <div class="col-md-10">
                                             {!! Form::text('furigana', null, 
                                             array(
-                                                'id' => 'furigana',
                                                 'required',
+                                                'id' => 'furigana',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255',
                                                 'autocomplete' => 'off'

@@ -4,38 +4,38 @@
 
 @section('content')
 
-	<div id="page-wrapper">
-		<!-- メッセージ -->
-		<div class="row">
-			<div class="col-lg-12">
-				<br />
-				@if(Session::has('message'))
-				    <div class="alert alert-success alert-dismissable">
-				        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				        <label class="control-label">{{ Session::get('message') }}</label>
-				    </div>
-				@endif
-				@if(Session::has('warning'))
-				    <div class="alert alert-danger alert-dismissable">
-				        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				        <label class="control-label">{{ Session::get('warning') }}</label>
-				    </div>
-				@endif
-				@if(count($errors) > 0)
-				    <div class="alert alert-danger alert-dismissable">
-				        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				        @foreach($errors->all() as $error)
-				        <label class="control-label">{{ $error }}</label>
-				        @endforeach
-				    </div>
-				@endif
-			</div>
-		</div>
-		<!-- /.row -->
+    <div id="page-wrapper">
+        <!-- メッセージ -->
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                @if(Session::has('message'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <label class="control-label">{{ Session::get('message') }}</label>
+                    </div>
+                @endif
+                @if(Session::has('warning'))
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <label class="control-label">{{ Session::get('warning') }}</label>
+                    </div>
+                @endif
+                @if(count($errors) > 0)
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @foreach($errors->all() as $error)
+                        <label class="control-label">{{ $error }}</label>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
+        <!-- /.row -->
 
-		<!-- フォーム -->
-		<div class="row">
-			<div class="col-lg-12">
+        <!-- フォーム -->
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <p class="panel-title">入庫入力フォーム</p>
@@ -43,10 +43,12 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-        						{!! Form::open(array(
-									'method' => 'POST',
+                                {!! Form::open(array(
+                                    'method' => 'POST',
                                     'class' => 'form-horizontal',
-									'route' => 'storage.in.store')) !!}
+                                    'route' => 'storage.in.store')) !!}
+
+                                    {{ csrf_field() }}
 
                                     <!-- ID -->
                                     <div class="form-group">
@@ -109,6 +111,25 @@
                                         </div>
                                     </div>
 
+                                    <!-- 状態 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">状態</label>
+                                        <div class="col-md-10">
+                                            <div style="padding-top: 7px;">
+                                            @foreach($list_hinban_types as $key => $value)
+                                                @if($key)
+                                                    @if($key == 1)
+                                                    {!! Form::radio('hinban_type', $key, TRUE) !!}
+                                                    @else
+                                                    {!! Form::radio('hinban_type', $key, NULL) !!}
+                                                    @endif
+                                                    <label class="radio-inline" style="padding-top: 0px; padding-left: 5px; padding-right: 5px; padding-bottom: 5px;">{{ $value }}</label>
+                                                @endif
+                                            @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- 入庫数 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">入庫数</label>
@@ -116,6 +137,7 @@
                                             {!! Form::tel('stock', null,
                                             array(
                                                 'required',
+                                                'id' => 'stock',
                                                 'class' => 'form-control hankaku',
                                                 'autocomplete' => 'off'
                                             )) !!}
@@ -132,13 +154,13 @@
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
 
-	</div>
-	<!-- /#page-wrapper -->	
+    </div>
+    <!-- /#page-wrapper --> 
 
 @endsection
 

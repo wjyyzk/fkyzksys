@@ -17,8 +17,9 @@ class StockOutRequest extends Request
     public function attributes()
     {
         return [
-            'id'        =>  'ID',
-            'stock'     =>  '出庫数'
+            'id'            =>  'ID',
+            'buhin_type'    =>  '品種',
+            'stock'         =>  '出庫数'
         ];
     }
 

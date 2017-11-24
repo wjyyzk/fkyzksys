@@ -49,7 +49,7 @@
                                         </td>
                                         <td>
                                             {{ Form::open(['route' => ['admin.storage.history.destroy', $storage_id, $model->id], 'method' => 'delete']) }}
-                                            <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
+                                            <button type="submit" id="delete" name="delete" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
                                                 削除
                                             </button>
                                             {{ Form::close() }}

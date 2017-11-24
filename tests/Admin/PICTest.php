@@ -77,7 +77,6 @@ class PICTest extends TestCase
         $this->visit('/admin/pic/index')
             ->type('髙岡', 'sName')
             ->press('検索')
-            ->seePageIs('/admin/pic/index?sName=%E9%AB%99%E5%B2%A1')
             ->see('髙岡')
             ->click("#reset")
             ->seePageIs('/admin/pic/index');

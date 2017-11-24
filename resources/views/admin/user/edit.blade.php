@@ -8,15 +8,15 @@
 
         <!-- メッセージ -->
         <div class="row">
-        	<div class="col-lg-12">
-        		<br />
-		        @if(Session::has('message'))
-		            <div class="alert alert-success alert-dismissable">
+            <div class="col-lg-12">
+                <br />
+                @if(Session::has('message'))
+                    <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		                <label class="control-label">{{ Session::get('message') }}</label>
-		            </div>
-		        @endif
-                @if(count($errors) > 0)                
+                        <label class="control-label">{{ Session::get('message') }}</label>
+                    </div>
+                @endif
+                @if(count($errors) > 0)
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @foreach($errors->all() as $error)
@@ -24,7 +24,7 @@
                         @endforeach
                     </div>
                 @endif
-	       	</div>
+            </div>
         </div>
         <!-- /.row -->
 
@@ -38,10 +38,12 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-        						{!! Form::open(array(
-									'method' => 'PUT',
+                                {!! Form::open(array(
+                                    'method' => 'PUT',
                                     'class' => 'form-horizontal',
-									'route' => ['admin.user.update', $model->id])) !!}
+                                    'route' => ['admin.user.update', $model->id])) !!}
+
+                                    {{ csrf_field() }}
 
                                     <!-- ユーザー名 -->
                                     <div class="form-group">
@@ -50,6 +52,7 @@
                                             {!! Form::text('username', $model->username, 
                                             array(
                                                 'required',
+                                                'id' => 'username',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '20',
                                                 'autocomplete' => 'off'
@@ -63,6 +66,7 @@
                                         <div class="col-md-10">
                                             {!! Form::select('role', $m_roles, $model->role, 
                                             array(
+                                                'id' => 'role',
                                                 'class' => 'form-control hankaku'
                                             )) !!}
                                         </div>
@@ -75,6 +79,7 @@
                                             {!! Form::password('password', 
                                             array(
                                                 'required',
+                                                'id' => 'password',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '10',
                                                 'autocomplete' => 'off'
@@ -89,6 +94,7 @@
                                             {!! Form::password('password_conf', 
                                             array(
                                                 'required',
+                                                'id' => 'password_conf',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '10',
                                                 'autocomplete' => 'off'

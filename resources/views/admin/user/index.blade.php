@@ -36,12 +36,15 @@
                                     'url' => '/admin/user/index', 
                                     'class' => 'form-horizontal')) !!}
 
+                                    {{ csrf_field() }}
+
                                     <!-- ユーザー名 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">ユーザー</label>
                                         <div class="col-md-10">
                                             {!! Form::text('sUsername', Request::get('sUsername'), 
                                             array(
+                                                'id' => 'sUsername',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '20'
                                             )) !!}
@@ -54,6 +57,7 @@
                                         <div class="col-md-10">
                                             {!! Form::select('sRole', $m_roles, Request::get('sRole'), 
                                             array(
+                                                'id' => 'sRole',
                                                 'class' => 'form-control hankaku'
                                             )) !!}
                                         </div>
@@ -98,22 +102,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	@foreach($users as $user)
-                                    	<tr>
-                                    		<td>{{ $user->username }}</td>
-                                    		<td>{{ $user->role }}</td>
-                                    		<td>
-                                    			<a href="{{ route('admin.user.edit', [$user->id]) }}" class="btn btn-outline btn-warning">編集</a>
-                                    		</td>
-                                    		<td>
-                                    			{{ Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) }}
-        										<button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
-        											削除
-        										</button>
-        										{{ Form::close() }}
-                                    		</td>
-                                    	</tr>
-                                    	@endforeach
+                                        @foreach($users as $user)
+                                        <tr>
+                                            <td>{{ $user->username }}</td>
+                                            <td>{{ $user->role }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.user.edit', [$user->id]) }}" class="btn btn-outline btn-warning">編集</a>
+                                            </td>
+                                            <td>
+                                                {{ Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) }}
+                                                <button type="submit" id="delete" name="delete" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
+                                                    削除
+                                                </button>
+                                                {{ Form::close() }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 {{ $users->appends(request()->input())->fragment('table')->links() }}
@@ -133,6 +137,6 @@
         <!-- /.row -->
 
     </div>
-    <!-- /#page-wrapper -->	
+    <!-- /#page-wrapper --> 
 
 @endsection

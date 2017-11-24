@@ -44,6 +44,8 @@
                     'route' => 'admin.storage.store',
                     'files' => 'true')) !!}
 
+                    {{ csrf_field() }}
+
                     <div class="panel panel-default">
 
                         <!-- Nav tabs -->
@@ -300,6 +302,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::file('file1',  
                                                 array(
+                                                    'id' => 'file1',
                                                     'class' => 'form-control'
                                                 )) !!}
                                             </div>
@@ -311,6 +314,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::file('file2', 
                                                 array(
+                                                    'id' => 'file2',
                                                     'class' => 'form-control'
                                                 )) !!}
                                             </div>

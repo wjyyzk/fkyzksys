@@ -8,14 +8,14 @@
 
         <!-- メッセージ -->
         <div class="row">
-        	<div class="col-lg-12">
-        		<br />
-		        @if(Session::has('message'))
-		            <div class="alert alert-success alert-dismissable">
+            <div class="col-lg-12">
+                <br />
+                @if(Session::has('message'))
+                    <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		                <label class="control-label">{{ Session::get('message') }}</label>
-		            </div>
-		        @endif
+                        <label class="control-label">{{ Session::get('message') }}</label>
+                    </div>
+                @endif
                 @if(Session::has('warning'))
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -30,7 +30,7 @@
                         @endforeach
                     </div>
                 @endif
-	       	</div>
+            </div>
         </div>
         <!-- /.row -->
 
@@ -43,6 +43,8 @@
                     'class' => 'form-horizontal',
                     'route' => ['admin.storage.update', $model->id],
                     'files' => 'true')) !!}
+
+                    {{ csrf_field() }}
 
                     <div class="panel panel-default">
                         
@@ -70,6 +72,7 @@
                                                 {!! Form::text('hinban', $model->hinban, 
                                                 array(
                                                     'required',
+                                                    'id' => 'hinban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '255'
                                                 )) !!}
@@ -82,6 +85,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('chikouguhinban', $model->chikouguhinban, 
                                                 array(
+                                                    'id' => 'chikouguhinban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
                                                 )) !!}
@@ -94,6 +98,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('seppenfugou', $model->seppenfugou, 
                                                 array(
+                                                    'id' => 'seppenfugou',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '10'
                                                 )) !!}
@@ -114,6 +119,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('name', $model->name, 
                                                 array(
+                                                    'id' => 'name',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
                                                 )) !!}
@@ -156,6 +162,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('zuuban', $model->zuuban, 
                                                 array(
+                                                    'id' => 'zuuban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -168,6 +175,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('gyousha', $m_merchants, $model->gyousha, 
                                                 array(
+                                                    'id' => 'gyousha',
                                                     'class' => 'form-control'
                                                 )) !!}
                                             </div>
@@ -202,6 +210,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('shashu', $model->shashu, 
                                                 array(
+                                                    'id' => 'shashu',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -214,6 +223,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('bui', $model->bui, 
                                                 array(
+                                                    'id' => 'bui',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -226,6 +236,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('lock', $model->lock, 
                                                 array(
+                                                    'id' => 'lock',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '20'
                                                 )) !!}
@@ -238,6 +249,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('comment', $model->comment, 
                                                 array(
+                                                    'id' => 'comment',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '255'
                                                 )) !!}
@@ -250,6 +262,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::select('pic', $m_pics, $model->pic, 
                                                 array(
+                                                    'id' => 'pic',
                                                     'class' => 'form-control hankaku'
                                                 )) !!}
                                             </div>
@@ -261,6 +274,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('tanaban', $model->tanaban, 
                                                 array(
+                                                    'id' => 'tanaban',
                                                     'class' => 'form-control hankaku',
                                                     'maxlength' => '100'
                                                 )) !!}
@@ -308,6 +322,7 @@
                                             <div class="col-md-10">
                                                 {!! Form::text('updated_at', $model->updated_at->format('Y-m-d'), 
                                                 array(
+                                                    'id'    => 'updated_at',
                                                     'class' => 'form-control',
                                                     'readonly'
                                                 )) !!}
@@ -340,7 +355,7 @@
         <!-- /.row -->
 
     </div>
-    <!-- /#page-wrapper -->	
+    <!-- /#page-wrapper --> 
 
 @endsection
 

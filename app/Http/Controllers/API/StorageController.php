@@ -27,7 +27,9 @@ class StorageController extends MasterAPI
                 'id'                => $id,
                 'hinban'            => $model->hinban,
                 'chikouguhinban'    => $model->chikouguhinban,
-                'stock'             => $model->stock_in - $model->stock_out
+                'hinban_type'       => $model->hinban_type,
+                'stock'             => $model->stock_in - $model->stock_out,
+                'old_stock'         => $model->old_stock_in - $model->old_stock_out
             ]);
         }
         else

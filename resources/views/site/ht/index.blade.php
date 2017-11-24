@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div id="page-wrapper">
+    <div id="page-wrapper">
 
         <!-- メッセージ -->
         <div class="row">
@@ -57,11 +57,13 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-        						{!! Form::open(array(
-									'method' => 'POST',
+                                {!! Form::open(array(
+                                    'method' => 'POST',
                                     'class' => 'form-horizontal',
-									'route' => 'ht.upload.store',
-									'files' => 'true')) !!}
+                                    'route' => 'ht.upload.store',
+                                    'files' => 'true')) !!}
+
+                                    {{ csrf_field() }}
 
                                     <!-- 入庫 -->
                                     <div class="form-group">
@@ -69,6 +71,7 @@
                                         <div class="col-md-10">
                                             {!! Form::file('file_stockin',  
                                             array(
+                                                'id' => 'file_stockin',
                                                 'class' => 'form-control'
                                             )) !!}
                                         </div>
@@ -80,6 +83,7 @@
                                         <div class="col-md-10">
                                             {!! Form::file('file_stockout',  
                                             array(
+                                                'id' => 'file_stockout',
                                                 'class' => 'form-control'
                                             )) !!}
                                         </div>
@@ -101,6 +105,6 @@
         </div>
         <!-- /.row -->
 
-	</div>
+    </div>
 
 @endsection

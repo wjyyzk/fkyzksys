@@ -129,7 +129,6 @@
                                             <label class="form-control">
                                             @if ($model->gyousha > 0)
                                                 {{ $model->merchant->name }}
-                                            @else
                                             @endif
                                             </label>
                                         </div>
@@ -148,6 +147,14 @@
                                         <label class="col-md-2 control-label">在庫数</label>
                                         <div class="col-md-10">
                                             <label class="form-control">{{ $model->stock_in - $model->stock_out }}</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- 中古 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">中古</label>
+                                        <div class="col-md-10">
+                                            <label class="form-control">{{ $model->oldStockIn - $model->oldStockOut }}</label>
                                         </div>
                                     </div>
 
@@ -200,7 +207,6 @@
                                             <label class="form-control">
                                             @if ($model->pic > 0)
                                                 {{ $model->picharge->name }}
-                                            @else
                                             @endif
                                             </label>
                                         </div>

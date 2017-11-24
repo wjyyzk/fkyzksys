@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 //  データベース
 use App\History;
 use App\M_Type;
+use App\M_Hinban_Type;
 
 /**
  *  【コントローラ】履歴
@@ -19,6 +20,7 @@ class HistoryController extends MasterSite
     {
         //  検索タイプ
         $types = (new M_Type)->attributes();
+        $hinban_types = (new M_Hinban_Type)->attributes();
 
         //  モデル
         $history = new History;
@@ -32,6 +34,7 @@ class HistoryController extends MasterSite
 
     	return view('site/history/index')
             ->with('models', $models)
-            ->with('types', $types);
+            ->with('types', $types)
+            ->with('hinban_types', $hinban_types);
     }
 }

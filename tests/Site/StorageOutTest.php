@@ -17,12 +17,12 @@ class StorageOutTest extends TestCase
     *
     * @return void
     */
-	public function testRoute()
-	{
+    public function testRoute()
+    {
         //  出庫入力フォーム
         $this->visit('/storage/out/create')
-        	->seePageIs('/storage/out/create');
-	}
+            ->seePageIs('/storage/out/create');
+    }
 
     /**
     * 出庫テスト
@@ -31,15 +31,12 @@ class StorageOutTest extends TestCase
     */
     public function testAdd()
     {
-        //  ログイン
-        $this->getUser();
-
         //  テストデータを作成する
         $model = Storage::create([
             'hinban'            =>  str_random(10),
             'chikouguhinban'    =>  str_random(10)
         ]);
-  
+
         $this->visit('/storage/out/create')
             ->type($model->id, 'id')
             ->type(10, 'stock')

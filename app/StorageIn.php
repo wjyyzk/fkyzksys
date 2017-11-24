@@ -24,6 +24,7 @@ class StorageIn extends Model
 		'storage_id',
 		'date',
 		'time',
+		'hinban_type',
 		'stock'
 	];
 

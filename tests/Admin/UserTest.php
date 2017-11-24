@@ -78,7 +78,6 @@ class UserTest extends TestCase
         $this->visit('/admin/user/index')
             ->type('admin', 'sUsername')
             ->press('検索')
-            ->seePageIs('/admin/user/index?sRole=0&sUsername=admin')
             ->see('admin')
             ->click("#reset")
             ->seePageIs('/admin/user/index');

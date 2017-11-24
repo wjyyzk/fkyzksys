@@ -36,12 +36,15 @@
                                     'url' => '/admin/merchant/index', 
                                     'class' => 'form-horizontal')) !!}
 
+                                    {{ csrf_field() }}
+
                                     <!-- 業者 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">業者</label>
                                         <div class="col-md-10">
                                             {!! Form::tel('sName', Request::get('sName'), 
                                             array(
+                                                'id' => 'sName',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255'
                                             )) !!}
@@ -86,21 +89,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	@foreach($models as $model)
-                                    	<tr>
-                                    		<td>{{ $model->name }}</td>
-                                    		<td>
-                                    			<a href="{{ route('admin.merchant.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
-                                    		</td>
-                                    		<td>
-                                    			{{ Form::open(['route' => ['admin.merchant.destroy', $model->id], 'method' => 'delete']) }}
-        										<button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
-        											削除
-        										</button>
-        										{{ Form::close() }}
-                                    		</td>
-                                    	</tr>
-                                    	@endforeach
+                                        @foreach($models as $model)
+                                        <tr>
+                                            <td>{{ $model->name }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.merchant.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
+                                            </td>
+                                            <td>
+                                                {{ Form::open(['route' => ['admin.merchant.destroy', $model->id], 'method' => 'delete']) }}
+                                                <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
+                                                    削除
+                                                </button>
+                                                {{ Form::close() }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 {{ $models->appends(request()->input())->fragment('table')->links() }}
@@ -120,6 +123,6 @@
         <!-- /.row -->
 
     </div>
-    <!-- /#page-wrapper -->	
+    <!-- /#page-wrapper --> 
 
 @endsection

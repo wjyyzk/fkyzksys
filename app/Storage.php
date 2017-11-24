@@ -89,6 +89,7 @@ class Storage extends Model
 	{
 		return $this->hasOne('App\StorageIn')
 				->selectRaw('storage_id, sum(stock) as stock_in')
+				->where('hinban_type', '=', 1)
 				->groupBy('storage_id');
 	}
 
@@ -108,6 +109,32 @@ class Storage extends Model
 	}
 
 	/**
+	 *	【中古】入庫数を取得する
+	 */
+	public function oldStockIn()
+	{
+		return $this->hasOne('App\StorageIn')
+				->selectRaw('storage_id, sum(stock) as old_stock_in')
+				->where('hinban_type', '=', 2)
+				->groupBy('storage_id');
+	}
+
+	/**
+	 *	【中古】入庫数Attributeを作成する
+	 */
+	public function getOldStockInAttribute()
+	{
+		if (!array_key_exists('oldStockIn', $this->relations))
+		{
+			$this->load('oldStockIn');
+		}
+
+		$relation = $this->getRelation('oldStockIn');
+
+		return ($relation) ? (int)$relation->old_stock_in : 0;
+	}
+
+	/**
 	 *	出庫テーブルの関連
 	 */
 	public function storage_out()
@@ -122,6 +149,7 @@ class Storage extends Model
 	{
 		return $this->hasOne('App\StorageOut')
 				->selectRaw('storage_id, sum(stock) as stock_out')
+				->where('hinban_type', '=', 1)
 				->groupBy('storage_id');
 	}
 
@@ -138,6 +166,32 @@ class Storage extends Model
 		$relation = $this->getRelation('stockOut');
 
 		return ($relation) ? (int)$relation->stock_out : 0;
+	}
+
+	/**
+	 *	【中古】出庫数を取得する
+	 */
+	public function oldStockOut()
+	{
+		return $this->hasOne('App\StorageOut')
+				->selectRaw('storage_id, sum(stock) as old_stock_out')
+				->where('hinban_type', '=', 2)
+				->groupBy('storage_id');
+	}
+
+	/**
+	 *	【中古】出庫数Attributeを作成する
+	 */
+	public function getOldStockOutAttribute()
+	{
+		if (!array_key_exists('oldStockOut', $this->relations))
+		{
+			$this->load('oldStockOut');
+		}
+
+		$relation = $this->getRelation('oldStockOut');
+
+		return ($relation) ? (int)$relation->old_stock_out : 0;
 	}
 
 	/**
@@ -209,6 +263,7 @@ class Storage extends Model
 			->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
 			->select(DB::raw('SUM(T_storage_in.stock) as total'))
 			->where('deleted_at', '=', null)
+			->where('hinban_type', '=', 1)
 			->first()->total;
 
 		if($in == null)
@@ -219,6 +274,7 @@ class Storage extends Model
 			->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
 			->select(DB::raw('SUM(T_storage_out.stock) as total'))
 			->where('deleted_at', '=', null)
+			->where('hinban_type', '=', 1)
 			->first()->total;
 
 		if($out == null)
@@ -239,6 +295,7 @@ class Storage extends Model
 			->join('T_storage_in', 'storage.id', '=', 'T_storage_in.storage_id')
 			->select(DB::raw('SUM(unit_price*T_storage_in.stock) as total'))
 			->where('deleted_at', '=', null)
+			->where('hinban_type', '=', 1)
 			->first()->total;
 
 		if($in == null)
@@ -249,6 +306,7 @@ class Storage extends Model
 			->join('T_storage_out', 'storage.id', '=', 'T_storage_out.storage_id')
 			->select(DB::raw('SUM(unit_price*T_storage_out.stock) as total'))
 			->where('deleted_at', '=', null)
+			->where('hinban_type', '=', 1)
 			->first()->total;
 
 		if($out == null)

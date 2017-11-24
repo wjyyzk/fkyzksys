@@ -49,6 +49,8 @@
                                     'class' => 'form-horizontal',
                                     'route' => ['admin.storage.history.store', $storage_id])) !!}
 
+                                    {{ csrf_field() }}
+
                                     <!-- コメント -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">コメント</label>
@@ -56,6 +58,7 @@
                                             {!! Form::textarea('comment', null, 
                                             array(
                                                 'required',
+                                                'id' => 'comment',
                                                 'rows' => 2,
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255',

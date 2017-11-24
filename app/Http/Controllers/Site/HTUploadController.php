@@ -26,7 +26,8 @@ class HTUploadController extends MasterSite
             'date'          =>  $request[0],
             'time'          =>  $request[1],
             'storage_id'    =>  $request[2],
-            'stock'         =>  $request[5]
+            'hinban_type'   =>  $request[5],
+            'stock'         =>  $request[6]
         );
     }
 

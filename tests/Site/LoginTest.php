@@ -28,11 +28,11 @@ class LoginTest extends TestCase
      */
     public function testValidLogin()
     {        
-    	$this->visit('/login')
-    		->type('admin', 'username')
-    		->type('admin', 'password')
-    		->press('ログイン')
-    		->seePageIs('/admin/storage/index');
+        $this->visit('/login')
+            ->type('admin', 'username')
+            ->type('admin', 'password')
+            ->press('ログイン')
+            ->seePageIs('/admin/storage/index');
     }
 
     /**

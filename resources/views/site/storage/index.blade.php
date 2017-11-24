@@ -8,8 +8,8 @@
         
         <!-- メッセージ -->
         <div class="row">
-        	<div class="col-lg-12">
-        		<br />
+            <div class="col-lg-12">
+                <br />
             </div>
         </div>
         <!-- /.row -->
@@ -27,82 +27,88 @@
 
                                 {!! Form::open(array(
                                     'method' => 'GET',
-                                    'url' => '/storage/index', 
+                                    'url' => '/storage/index',
                                     'class' => 'form-horizontal')) !!}
 
-    	                            <!-- 品番 -->
-    	                            <div class="form-group">
-    	                                <label class="col-md-2 control-label">品番</label>
-    	                                <div class="col-md-10">
-    	                                    {!! Form::text('sHinban', Request::get('sHinban'), 
-    	                                    array(
-    	                                        'class' => 'form-control hankaku',
+                                    {{ csrf_field() }}
+
+                                    <!-- 品番 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">品番</label>
+                                        <div class="col-md-10">
+                                            {!! Form::text('sHinban', Request::get('sHinban'),
+                                            array(
+                                                'id' => 'sHinban',
+                                                'class' => 'form-control hankaku',
                                                 'maxlength' => '255'
-    	                                    )) !!}
-    	                                </div>
-    	                            </div>
+                                            )) !!}
+                                        </div>
+                                    </div>
                                     <!-- 治工具品番 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">治工具品番</label>
                                         <div class="col-md-10">
-                                            {!! Form::text('sChikouguhinban', Request::get('sChikouguhinban'), 
+                                            {!! Form::text('sChikouguhinban', Request::get('sChikouguhinban'),
                                             array(
+                                                'id' => 'sChikouguhinban',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '10'
                                             )) !!}
                                         </div>
                                     </div>
-    	                            <!-- A/F -->
-    	                            <div class="form-group">
-    	                                <label class="col-md-2 control-label">A/F</label>
-    	                                <div class="col-md-10">
+                                    <!-- A/F -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">A/F</label>
+                                        <div class="col-md-10">
                                             <div class="control-label" style="text-align: left;">
                                                 {!! Form::checkbox('sAF', 'af', Request::get('sAF')) !!}
                                             </div>
-    	                                </div>
-    	                            </div>
-    	                            <!-- C/F -->
-    	                            <div class="form-group">
-    	                                <label class="col-md-2 control-label">C/F</label>
-    	                                <div class="col-md-10">
+                                        </div>
+                                    </div>
+                                    <!-- C/F -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">C/F</label>
+                                        <div class="col-md-10">
                                             <div class="control-label" style="text-align: left;">
-    	                                       {!! Form::checkbox('sCF', 'cf', Request::get('sCF')) !!}
+                                               {!! Form::checkbox('sCF', 'cf', Request::get('sCF')) !!}
                                             </div>
-    	                                </div>
-    	                            </div>
-    	                            <!-- その他 -->
-    	                            <div class="form-group">
-    	                                <label class="col-md-2 control-label">その他</label>
-    	                                <div class="col-md-10">
+                                        </div>
+                                    </div>
+                                    <!-- その他 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">その他</label>
+                                        <div class="col-md-10">
                                             <div class="control-label" style="text-align: left;">
                                                {!! Form::checkbox('sOther', 'other', Request::get('sOther')) !!}
                                             </div>
-    	                                </div>
-    	                            </div>
-    	                            <!-- 業者 -->
-    	                            <div class="form-group">
-    	                                <label class="col-md-2 control-label">業者</label>
-    	                                <div class="col-md-10">
-    	                                    {!! Form::select('sGyousha', $m_merchants, Request::get('sGyousha'), 
-    	                                    array(
-    	                                        'class' => 'form-control',
-    	                                    )) !!}
-    	                                </div>
-    	                            </div>
-                                    <!-- 並び順 -->
+                                        </div>
+                                    </div>
+                                    <!-- 業者 -->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">並び順</label>
+                                        <label class="col-md-2 control-label">業者</label>
                                         <div class="col-md-10">
-                                            {!! Form::select('sOrder', $m_orders, Request::get('sOrder'), 
+                                            {!! Form::select('sGyousha', $m_merchants, Request::get('sGyousha'),
                                             array(
+                                                'id' => 'sGyousha',
                                                 'class' => 'form-control',
                                             )) !!}
                                         </div>
                                     </div>
-    	                            <input type="submit" class="btn btn-primary" value="検索" />
-    	                            <a class="btn btn-primary" href="/storage/index">リセット</a>
+                                    <!-- 並び順 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">並び順</label>
+                                        <div class="col-md-10">
+                                            {!! Form::select('sOrder', $m_orders, Request::get('sOrder'),
+                                            array(
+                                                'id' => 'sOrder',
+                                                'class' => 'form-control',
+                                            )) !!}
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn btn-primary" value="検索" />
+                                    <a id="reset" class="btn btn-primary" href="/storage/index">リセット</a>
 
-    	                        {!! Form::close() !!}
+                                {!! Form::close() !!}
 
                             </div>
                         </div>
@@ -131,7 +137,7 @@
                                 <table class="table table-hover text-center">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">ID</th>                                    
+                                            <th class="text-center">ID</th>
                                             <th class="text-center">品番</th>
                                             <th class="text-center">治工具品番</th>
                                             <th class="text-center">設変符号</th>
@@ -140,6 +146,7 @@
                                             <th class="text-center">その他</th>
                                             <th class="text-center">業者</th>
                                             <th class="text-center">在庫数</th>
+                                            <th class="text-center">中古</th>
                                             <th class="text-center">棚番</th>
                                         </tr>
                                     </thead>
@@ -163,7 +170,7 @@
                                             <td>
                                                 @if ($model->other)
                                                     <i class="fa fa-check"></i>
-                                                @endif                                        
+                                                @endif
                                             </td>
                                             <td>
                                                 @if ($model->gyousha > 0)
@@ -172,6 +179,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $model->stock_in - $model->stock_out }}</td>
+                                            <td>{{ $model->old_stock_in - $model->old_stock_out }}</td>
                                             <td>{{ $model->tanaban }}</td>
                                         </tr>
                                         @endforeach
@@ -194,6 +202,6 @@
         <!-- /.row -->
         
     </div>
-    <!-- /#page-wrapper -->	
+    <!-- /#page-wrapper --> 
 
 @endsection

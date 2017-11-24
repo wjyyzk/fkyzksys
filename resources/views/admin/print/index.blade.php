@@ -36,12 +36,15 @@
                                     'url' => '/admin/print/index', 
                                     'class' => 'form-horizontal')) !!}
 
+                                    {{ csrf_field() }}
+
                                     <!-- 品番 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">品番</label>
                                         <div class="col-md-10">
                                             {!! Form::tel('sHinban', Request::get('sHinban'), 
                                             array(
+                                                'id' => 'sHinban',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255'
                                             )) !!}
@@ -53,6 +56,7 @@
                                         <div class="col-md-10">
                                             {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
+                                                'id' => 'sChikouguhinban',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '10'
                                             )) !!}

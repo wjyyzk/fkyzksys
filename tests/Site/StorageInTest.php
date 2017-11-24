@@ -17,12 +17,12 @@ class StorageInTest extends TestCase
     *
     * @return void
     */
-	public function testRoute()
-	{
+    public function testRoute()
+    {
         //  入庫入力フォーム
         $this->visit('/storage/in/create')
-        	->seePageIs('/storage/in/create');
-	}
+            ->seePageIs('/storage/in/create');
+    }
 
     /**
     * 入庫テスト
@@ -31,9 +31,6 @@ class StorageInTest extends TestCase
     */
     public function testAdd()
     {
-        //  ログイン
-        $this->getUser();
-
         //  テストデータを作成する
         $model = Storage::create([
             'hinban'            =>  str_random(10),

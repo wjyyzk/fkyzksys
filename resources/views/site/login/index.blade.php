@@ -32,6 +32,7 @@
                                     {!! Form::text('username', null, 
                                     array(
                                         'required',
+                                        'id' => 'username',
                                         'class' => 'form-control hankaku',
                                         'placeholder' => 'ユーザー',
                                         'maxlength' => '20',
@@ -43,6 +44,7 @@
                                     {!! Form::password('password', 
                                     array(
                                         'required',
+                                        'id' => 'password',
                                         'class' => 'form-control hankaku',
                                         'placeholder' => 'パスワード',
                                         'maxlength' => '10',

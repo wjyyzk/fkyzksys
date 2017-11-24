@@ -36,12 +36,15 @@
                                     'url' => '/history', 
                                     'class' => 'form-horizontal')) !!}
 
+                                    {{ csrf_field() }}
+
                                     <!-- 品番 -->
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">品番</label>
                                         <div class="col-md-10">
                                             {!! Form::tel('sHinban', Request::get('sHinban'), 
                                             array(
+                                                'id' => 'sHinban',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '255'
                                             )) !!}
@@ -54,6 +57,7 @@
                                         <div class="col-md-10">
                                             {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
+                                                'id' => 'sChikouguhinban',
                                                 'class' => 'form-control hankaku',
                                                 'maxlength' => '10'
                                             )) !!}
@@ -73,16 +77,29 @@
                                         </div>
                                     </div>
 
-                                    <!-- 種類 -->
+                                    <!-- 状態 -->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">種類</label>
+                                        <label class="col-md-2 control-label">状態</label>
                                         <div class="col-md-10">
-                                            {!! Form::select('sType', $types, Request::get('sType'), 
+                                            {!! Form::select('sHinbanType', $hinban_types, Request::get('sHinbanType'), 
                                             array(
+                                                'id' => 'sHinbanType',
                                                 'class' => 'form-control'
                                             )) !!}
                                         </div>
-                                    </div>                                    
+                                    </div>
+
+                                    <!-- 入出庫 -->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">入出庫</label>
+                                        <div class="col-md-10">
+                                            {!! Form::select('sType', $types, Request::get('sType'), 
+                                            array(
+                                                'id' => 'sType',
+                                                'class' => 'form-control'
+                                            )) !!}
+                                        </div>
+                                    </div>
 
                                     <input type="submit" class="btn btn-primary" value="検索" />
                                     <a class="btn btn-primary" href="/history">リセット</a>
@@ -118,6 +135,7 @@
                                         <tr>
                                             <th class="text-center">品番</th>
                                             <th class="text-center">治工具品番</th>
+                                            <th class="text-center">品種</th>
                                             <th class="text-center">数量</th>
                                             <th class="text-center">日付</th>
                                             <th class="text-center">時刻</th>
@@ -130,6 +148,7 @@
                                         <tr>
                                             <td class="text-left">{{ $model['storage']['hinban'] }}</td>
                                             <td>{{ $model['storage']['chikouguhinban'] }}</td>
+                                            <td>{{ $hinban_types[$model['hinban_type']] }}</td>
                                             <td>
                                             @if($model['type'] == 1)
                                                 {{ $model['stock'] }}
@@ -158,7 +177,7 @@
                                                 <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
                                                     削除
                                                 </button>
-                                                {{ Form::close() }}                                        
+                                                {{ Form::close() }}
                                             @endif
                                             </td>
                                         </tr>
