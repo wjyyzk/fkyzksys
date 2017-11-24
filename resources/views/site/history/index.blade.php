@@ -135,7 +135,7 @@
                                         <tr>
                                             <th class="text-center">品番</th>
                                             <th class="text-center">治工具品番</th>
-                                            <th class="text-center">品種</th>
+                                            <th class="text-center">状態</th>
                                             <th class="text-center">数量</th>
                                             <th class="text-center">日付</th>
                                             <th class="text-center">時刻</th>
