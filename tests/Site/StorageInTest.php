@@ -32,10 +32,7 @@ class StorageInTest extends TestCase
     public function testAdd()
     {
         //  テストデータを作成する
-        $model = Storage::create([
-            'hinban'            =>  str_random(10),
-            'chikouguhinban'    =>  str_random(10)
-        ]);
+        $model = factory(App\Storage::class)->create();
   
         $this->visit('/storage/in/create')
             ->type($model->id, 'id')
