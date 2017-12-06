@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         //  担当者
         $this->call(PICTableSeeder::class);
 
+        //  エクセルデータをインポートする
+        $this->call(ImportTableSeeder::class);
+
         //  在庫データ
         /*  テスト用
         factory(App\Storage::class, 10)->create()
