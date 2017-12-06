@@ -46,9 +46,14 @@ class ImportTableSeeder extends Seeder
             //  確認処理
             if (empty($input['hinban']))
                 continue;
-            $model = Storage::where('chikouguhinban', $input['chikouguhinban'])->first();
-            if($model)
-                continue;
+
+            if (!empty($input['chikouguhinban']))
+            {
+                $model = Storage::where('chikouguhinban', $input['chikouguhinban'])->first();
+                if($model)
+                    continue;                
+            }
+
             $model = Storage::where('hinban', $input['hinban'])->first();
             if($model)
                 continue;
