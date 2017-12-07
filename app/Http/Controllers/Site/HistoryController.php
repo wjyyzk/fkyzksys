@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Site;
 
 //  データベース
-use App\History;
-use App\M_Type;
-use App\M_Hinban_Type;
+use App\Models\History;
+use App\Models\Masters\M_Type;
+use App\Models\Masters\M_Hinban_Type;
 
 /**
  *  【コントローラ】履歴
@@ -13,7 +13,7 @@ use App\M_Hinban_Type;
 class HistoryController extends MasterSite
 {
     /**
-     *	ホーム
+     *  ホーム
      *  @return     view
      */
     public function index()
@@ -28,11 +28,19 @@ class HistoryController extends MasterSite
         //  在庫リストを取得する
         $models = $history->filter();
 
+        //  ページを移動するため
+        if (\Request::ajax()) {
+            return \Response::json(view('site/history/list')
+                ->with('models', $models)
+                ->with('hinban_types', $hinban_types)
+                ->render());
+        }
+
         //  マニュアルでPaginationを設定したから、ページのリンク先を設定しなければならない
         //  例：/url?param
         $models->setPath('history');
 
-    	return view('site/history/index')
+        return view('site/history/index')
             ->with('models', $models)
             ->with('types', $types)
             ->with('hinban_types', $hinban_types);

@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Session;
 
+//  バリデータ
 use App\Http\Requests;
-use App\StorageIn;
-use App\StorageOut;
+use App\Models\StorageIn;
+use App\Models\StorageOut;
 
 /**
  *  【コントローラ】アップロード

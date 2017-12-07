@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models\Masters;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *	【マスタ】入出庫種類
+ *	【マスタ】品種
  */
-class M_Type extends Model
+class M_Hinban_Type extends Model
 {
     /**
      * アイテム
@@ -18,8 +18,8 @@ class M_Type extends Model
     {
         return [
             '0'		=>	'全て',
-            '1'		=>  '入庫',
-            '2'		=>  '出庫'
+            '1'		=>  '新品',
+            '2'		=>  '中古'
         ];
     }
 }

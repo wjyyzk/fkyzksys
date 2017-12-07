@@ -10,8 +10,8 @@ use App\Http\Requests;
 use App\Http\Requests\Admin\UserRequest;
 
 //  データベース
-use App\User;
-use App\M_Role;
+use App\Models\User;
+use App\Models\Masters\M_Role;
 
 /*
  *  【管理コントローラ】ユーザー
@@ -43,6 +43,14 @@ class UserController extends MasterAdmin
 
         //  ユーザーリストを取得する
         $users = User::filter();
+
+        //  ページを移動するため
+        if (\Request::ajax()) {
+            return \Response::json(view('admin/user/list')
+                ->with('m_roles', $m_roles)
+                ->with('users', $users)
+                ->render());
+        }
 
         return view('admin/user/index')
             ->with('m_roles', $m_roles)

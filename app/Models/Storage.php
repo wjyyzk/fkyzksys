@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Request;
 use Illuminate\Database\Eloquent\Model;
@@ -55,7 +55,7 @@ class Storage extends Model
 	 */
 	public function merchant()
 	{
-		return $this->belongsTo('App\Merchant', 'gyousha');
+		return $this->belongsTo('App\Models\Merchant', 'gyousha');
 	}	
 
 	/**
@@ -63,7 +63,7 @@ class Storage extends Model
 	 */
 	public function picharge()
 	{
-		return $this->belongsTo('App\PIC', 'pic');
+		return $this->belongsTo('App\Models\PIC', 'pic');
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Storage extends Model
 	 */
 	public function history_seppen()
 	{
-		return $this->hasMany('App\HistorySeppen');
+		return $this->hasMany('App\Models\HistorySeppen');
 	}
 
 	/**
@@ -79,7 +79,7 @@ class Storage extends Model
 	 */
 	public function storage_in()
 	{
-		return $this->hasMany('App\StorageIn');
+		return $this->hasMany('App\Models\StorageIn');
 	}
 
 	/**
@@ -87,7 +87,7 @@ class Storage extends Model
 	 */
 	public function stockIn()
 	{
-		return $this->hasOne('App\StorageIn')
+		return $this->hasOne('App\Models\StorageIn')
 				->selectRaw('storage_id, sum(stock) as stock_in')
 				->where('hinban_type', '=', 1)
 				->groupBy('storage_id');
@@ -113,7 +113,7 @@ class Storage extends Model
 	 */
 	public function oldStockIn()
 	{
-		return $this->hasOne('App\StorageIn')
+		return $this->hasOne('App\Models\StorageIn')
 				->selectRaw('storage_id, sum(stock) as old_stock_in')
 				->where('hinban_type', '=', 2)
 				->groupBy('storage_id');
@@ -139,7 +139,7 @@ class Storage extends Model
 	 */
 	public function storage_out()
 	{
-		return $this->hasMany('App\StorageOut');
+		return $this->hasMany('App\Models\StorageOut');
 	}
 
 	/**
@@ -147,7 +147,7 @@ class Storage extends Model
 	 */
 	public function stockOut()
 	{
-		return $this->hasOne('App\StorageOut')
+		return $this->hasOne('App\Models\StorageOut')
 				->selectRaw('storage_id, sum(stock) as stock_out')
 				->where('hinban_type', '=', 1)
 				->groupBy('storage_id');
@@ -173,7 +173,7 @@ class Storage extends Model
 	 */
 	public function oldStockOut()
 	{
-		return $this->hasOne('App\StorageOut')
+		return $this->hasOne('App\Models\StorageOut')
 				->selectRaw('storage_id, sum(stock) as old_stock_out')
 				->where('hinban_type', '=', 2)
 				->groupBy('storage_id');

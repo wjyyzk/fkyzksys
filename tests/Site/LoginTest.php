@@ -51,7 +51,7 @@ class LoginTest extends TestCase
             ->see('ログインに失敗しました。');
 
         //  削除したユーザーの場合
-        $user = factory(App\User::class, 1)->create();
+        $user = factory(App\Models\User::class, 1)->create();
         $user->delete();
 
         $this->visit('/login')

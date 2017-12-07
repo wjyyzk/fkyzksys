@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\Admin\PICRequest;
 
 //  モデル
-use App\PIC;
+use App\Models\PIC;
 
 /**
  *  【管理コントローラ】担当者
@@ -35,6 +35,13 @@ class PICController extends MasterAdmin
     {
         //  モデルを取得する
         $models = PIC::filter();
+
+        //  ページを移動するため
+        if (\Request::ajax()) {
+            return \Response::json(view('admin/pic/list')
+                ->with('models', $models)
+                ->render());
+        }
 
         return view('admin/pic/index')
             ->with('models', $models);

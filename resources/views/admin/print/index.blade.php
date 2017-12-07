@@ -25,23 +25,21 @@
             <div class="col-lg-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <a href="#" class="panel-title" data-toggle="collapse" data-target="#search">検索</a>
+                        <p class="panel-title">検索</p>
                     </div>
-                    <div id="search" class="panel-collapse collapse">
+                    {!! Form::open(array(
+                        'method' => 'GET',
+                        'url' => '/admin/print/index', 
+                        'class' => 'form-horizontal')) !!}
+
+                        {{ csrf_field() }}
                         <div class="panel-body">
-                            <div class="col-lg-12">
-
-                                {!! Form::open(array(
-                                    'method' => 'GET',
-                                    'url' => '/admin/print/index', 
-                                    'class' => 'form-horizontal')) !!}
-
-                                    {{ csrf_field() }}
-
-                                    <!-- 品番 -->
+                            <div class="row">
+                                <!-- 品番 -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">品番</label>
-                                        <div class="col-md-10">
+                                        <label class="col-md-3 control-label">品番</label>
+                                        <div class="col-md-9">
                                             {!! Form::tel('sHinban', Request::get('sHinban'), 
                                             array(
                                                 'id' => 'sHinban',
@@ -50,10 +48,12 @@
                                             )) !!}
                                         </div>
                                     </div>
-                                    <!-- 治工具品番 -->
+                                </div>
+                                <!-- 治工具品番 -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">治工具品番</label>
-                                        <div class="col-md-10">
+                                        <label class="col-md-3 control-label">治工具品番</label>
+                                        <div class="col-md-9">
                                             {!! Form::tel('sChikouguhinban', Request::get('sChikouguhinban'), 
                                             array(
                                                 'id' => 'sChikouguhinban',
@@ -62,15 +62,17 @@
                                             )) !!}
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-primary" value="検索" />
-                                    <a class="btn btn-primary" href="/admin/print/index">リセット</a>
-
-                                {!! Form::close() !!}
-
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="submit" id="search" name="search" class="btn btn-primary" value="検索" />
+                                    <a class="btn btn-primary" href="/admin/print/index">リセット</a>                                    
+                                </div>
                             </div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
+                    {!! Form::close() !!}
                 </div>
                 <!-- /.panel -->
             </div>
@@ -87,34 +89,8 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            @if($models->count() > 0)
-                                <a name="table"></a>
-                                {{ $models->appends(request()->input())->fragment('table')->links() }}
-                                <table class="table table-hover text-center">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">品番</th>
-                                            <th class="text-center">治工具品番</th>
-                                            <th class="text-center">印刷</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($models as $model)
-                                        <tr>
-                                            <td class="text-left">{{ $model->hinban }}</td>
-                                            <td>{{ $model->chikouguhinban }}</td>
-                                            <td>
-                                            	<a href="/admin/print/{{ $model->id }}" target="_blank">印刷</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $models->appends(request()->input())->fragment('table')->links() }}
-                            @else
-                                <label>データがありません。</label>
-                            @endif
+                        <div class="lists table-responsive">
+                            @include('admin.print.list')
                         </div>
                         <!-- /.table-responsive -->
                     </div>

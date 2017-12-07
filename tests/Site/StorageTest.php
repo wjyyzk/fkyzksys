@@ -28,14 +28,24 @@ class StorageTest extends TestCase
      */
     public function testSearchStorage()
     {
-        $model = factory(App\Storage::class)->make();
+        $model = factory(App\Models\Storage::class)->create();
 
         if($model)
         {
+            //  品番
             $this->visit('/storage/index')
                 ->type($model->hinban, 'sHinban')
                 ->press('検索')
-                ->see($model->hinban)
+                ->see($model->chikouguhinban);
+
+            //  治工具品番
+            $this->visit('/storage/index')
+                ->type($model->chikouguhinban, 'sChikouguhinban')
+                ->press('検索')
+                ->see($model->hinban);
+
+            //  リセット
+            $this->visit('/storage/index')
                 ->click("#reset")
                 ->seePageIs('/storage/index');            
         }

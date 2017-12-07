@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PICTableSeeder::class);
 
         //  エクセルデータをインポートする
-        $this->call(ImportTableSeeder::class);
+        //$this->call(ImportTableSeeder::class);
 
         //  在庫データ
         /*  テスト用

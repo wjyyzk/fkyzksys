@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Request;
 use Illuminate\Database\Eloquent\Model;
@@ -42,7 +42,7 @@ class PIC extends Model
      */
     public function storage()
     {
-        return $this->hasMany('App\Storage', 'pic');
+        return $this->hasMany('App\Models\Storage', 'pic');
     }
     
     /**

@@ -25,23 +25,23 @@
             <div class="col-lg-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <a href="#" class="panel-title" data-toggle="collapse" data-target="#search">検索</a>
+                        <p class="panel-title">検索</p>
                     </div>
-                    <div id="search" class="panel-collapse collapse">
+
+                    {!! Form::open(array(
+                        'method' => 'GET',
+                        'url' => '/admin/pic/index', 
+                        'class' => 'form-horizontal')) !!}
+
+                        {{ csrf_field() }}
+
                         <div class="panel-body">
-                            <div class="col-lg-12">
-
-                                {!! Form::open(array(
-                                    'method' => 'GET',
-                                    'url' => '/admin/pic/index', 
-                                    'class' => 'form-horizontal')) !!}
-
-                                    {{ csrf_field() }}
-
-                                    <!-- ユーザー名 -->
+                            <div class="row">
+                                <!-- ユーザー名 -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">担当者</label>
-                                        <div class="col-md-10">
+                                        <label class="col-md-3 control-label">担当者</label>
+                                        <div class="col-md-9">
                                             {!! Form::text('sName', Request::get('sName'), 
                                             array(
                                                 'id' => 'sName',
@@ -50,15 +50,19 @@
                                             )) !!}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <input type="submit" class="btn btn-primary" value="検索" />
-                                    <a id="reset" class="btn btn-primary" href="/admin/pic/index">リセット</a>
-
-                                {!! Form::close() !!}
-
+                                    <a id="reset" class="btn btn-primary" href="/admin/pic/index">リセット</a>                                        
+                                </div>
                             </div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
+
+                    {!! Form::close() !!}
+
                 </div>
                 <!-- /.panel -->
             </div>
@@ -75,40 +79,8 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            @if($models->count() > 0)
-                                <a name="table"></a>
-                                {{ $models->appends(request()->input())->fragment('table')->links() }}
-                                <table class="table table-hover text-center">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">担当者</th>
-                                            <th class="text-center">編集</th>
-                                            <th class="text-center">削除</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($models as $model)
-                                        <tr>
-                                            <td>{{ $model->name }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.pic.edit', [$model->id]) }}" class="btn btn-outline btn-warning">編集</a>
-                                            </td>
-                                            <td>
-                                                {{ Form::open(['route' => ['admin.pic.destroy', $model->id], 'method' => 'delete']) }}
-                                                <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
-                                                    削除
-                                                </button>
-                                                {{ Form::close() }}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $models->appends(request()->input())->fragment('table')->links() }}
-                            @else
-                                <label>データがありません。</label>
-                            @endif
+                        <div class="lists table-responsive">
+                            @include('admin.pic.list')
                         </div>
                         <!-- /.table-responsive -->
                     </div>

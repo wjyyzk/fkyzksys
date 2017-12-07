@@ -12,7 +12,7 @@ use App\Http\Requests;
 use App\Http\Requests\Admin\MerchantRequest;
 
 //  モデル
-use App\Merchant;
+use App\Models\Merchant;
 
 /**
  *  【管理コントローラ】業者
@@ -46,6 +46,13 @@ class MerchantController extends MasterAdmin
 
         //  モデルを取得する
         $models = Merchant::filter();
+
+        //  ページを移動するため
+        if (\Request::ajax()) {
+            return \Response::json(view('admin/merchant/list')
+                ->with('models', $models)
+                ->render());
+        }
 
         return view('admin/merchant/index')->with('models', $models);
     }

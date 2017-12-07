@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 //  モデル
-use App\Storage;
+use App\Models\Storage;
 
 /**
  *  【管理コントローラ】印刷
@@ -19,6 +19,13 @@ class PrintController extends MasterAdmin
     {
         //  在庫リストを取得する
         $models = Storage::Filter();
+
+        //  ページを移動するため
+        if (\Request::ajax()) {
+            return \Response::json(view('admin/print/list')
+                ->with('models', $models)
+                ->render());
+        }
 
         //  画面を表示する
         return view('admin/print/index')

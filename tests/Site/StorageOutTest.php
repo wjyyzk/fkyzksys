@@ -4,8 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\Storage;
-use App\StorageOut;
+use App\Models\Storage;
+use App\Models\StorageOut;
 
 /**
  *  【テスト】出庫
@@ -32,10 +32,7 @@ class StorageOutTest extends TestCase
     public function testAdd()
     {
         //  テストデータを作成する
-        $model = Storage::create([
-            'hinban'            =>  str_random(10),
-            'chikouguhinban'    =>  str_random(10)
-        ]);
+        $model = factory(Storage::class)->create();
 
         $this->visit('/storage/out/create')
             ->type($model->id, 'id')

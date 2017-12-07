@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 
 //  モデル
-use App\User;
+use App\Models\User;
 
 /**
  *  【コントローラ】ログイン

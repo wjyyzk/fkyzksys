@@ -25,23 +25,22 @@
             <div class="col-lg-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <a href="#" class="panel-title" data-toggle="collapse" data-target="#search">検索</a>
+                        <p class="panel-title">検索</p>
                     </div>
-                    <div id="search" class="panel-collapse collapse">
+
+                    {!! Form::open(array(
+                        'method' => 'GET',
+                        'url' => '/admin/user/index', 
+                        'class' => 'form-horizontal')) !!}
+                        {{ csrf_field() }}
+
                         <div class="panel-body">
-                            <div class="col-lg-12">
-
-                                {!! Form::open(array(
-                                    'method' => 'GET',
-                                    'url' => '/admin/user/index', 
-                                    'class' => 'form-horizontal')) !!}
-
-                                    {{ csrf_field() }}
-
-                                    <!-- ユーザー名 -->
+                            <div class="row">
+                                <!-- ユーザー名 -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">ユーザー</label>
-                                        <div class="col-md-10">
+                                        <label class="col-md-3 control-label">ユーザー</label>
+                                        <div class="col-md-9">
                                             {!! Form::text('sUsername', Request::get('sUsername'), 
                                             array(
                                                 'id' => 'sUsername',
@@ -49,29 +48,33 @@
                                                 'maxlength' => '20'
                                             )) !!}
                                         </div>
-                                    </div>
-
-                                    <!-- 管理レベル -->
+                                    </div>                  
+                                </div>
+                                <!-- 管理レベル -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">管理レベル</label>
-                                        <div class="col-md-10">
+                                        <label class="col-md-3 control-label">管理レベル</label>
+                                        <div class="col-md-9">
                                             {!! Form::select('sRole', $m_roles, Request::get('sRole'), 
                                             array(
                                                 'id' => 'sRole',
                                                 'class' => 'form-control hankaku'
                                             )) !!}
                                         </div>
-                                    </div>
-
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <input type="submit" class="btn btn-primary" value="検索" />
                                     <a id="reset" class="btn btn-primary" href="/admin/user/index">リセット</a>
-
-                                {!! Form::close() !!}
-
+                                </div>
                             </div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
+
+                    {!! Form::close() !!}
+
                 </div>
                 <!-- /.panel -->
             </div>
@@ -88,49 +91,14 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            @if($users->count() > 0)
-                                <a name="table"></a>
-                                {{ $users->appends(request()->input())->fragment('table')->links() }}
-                                <table class="table table-hover text-center">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">ユーザー</th>
-                                            <th class="text-center">管理レベル</th>
-                                            <th class="text-center">編集</th>
-                                            <th class="text-center">削除</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($users as $user)
-                                        <tr>
-                                            <td>{{ $user->username }}</td>
-                                            <td>{{ $user->role }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.user.edit', [$user->id]) }}" class="btn btn-outline btn-warning">編集</a>
-                                            </td>
-                                            <td>
-                                                {{ Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) }}
-                                                <button type="submit" id="delete" name="delete" class="btn btn-outline btn-danger" onclick="return confirm('データを削除しますか。')">
-                                                    削除
-                                                </button>
-                                                {{ Form::close() }}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $users->appends(request()->input())->fragment('table')->links() }}
-                            @else
-                                <label>データがありません。</label>
-                            @endif                            
+                        <div class="lists table-responsive">
+                            @include('admin.user.list')
                         </div>
                         <!-- /.table-responsive -->
                     </div>
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
-
             </div>
             <!-- /.col-lg-12 -->
         </div>

@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\Admin\HistorySeppenRequest;
 
 //  データベース
-use App\HistorySeppen;
+use App\Models\HistorySeppen;
 
 /*
  *  【管理コントローラ】設変履歴

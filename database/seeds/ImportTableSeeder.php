@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Storage;
-use App\Merchant;
-use App\PIC;
+use App\Models\Storage;
+use App\Models\Merchant;
+use App\Models\PIC;
 
 class ImportTableSeeder extends Seeder
 {

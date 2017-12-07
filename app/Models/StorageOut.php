@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *	【モデル】入庫
+ *	【モデル】出庫
  */
-class StorageIn extends Model
+class StorageOut extends Model
 {
 	//  テーブル名
-	protected $table = "T_storage_in";
+	protected $table = "T_storage_out";
 
 	//	TimeStamps無効にする
 	public $timestamps = false;
@@ -33,17 +33,17 @@ class StorageIn extends Model
 	 */
 	public function storage()
 	{
-		return $this->belongsTo('App\Storage');
+		return $this->belongsTo('App\Models\Storage');
 	}
 
 	/**
 	 *	モデルを取得する
 	 *	@param 		input
-	 *	@return 	model 
+	 *	@return 	model	 
 	 */
 	public function scopeItem($query, $input)
 	{
-		return StorageIn::where('date', '=', $input['date'])
+		return StorageOut::where('date', '=', $input['date'])
 				->where('time', '=', $input['time'])
 				->where('storage_id', '=', $input['storage_id']);
 	}

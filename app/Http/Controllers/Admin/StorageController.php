@@ -12,10 +12,10 @@ use Request;
 use App\Http\Requests\Admin\StorageRequest;
 
 //  モデル
-use App\Storage;
-use App\Merchant;
-use App\PIC;
-use App\M_Order;
+use App\Models\Storage;
+use App\Models\Merchant;
+use App\Models\PIC;
+use App\Models\Masters\M_Order;
 
 /**
  *  【管理コントローラ】在庫リスト
@@ -64,7 +64,7 @@ class StorageController extends MasterAdmin
 
         //  並び順の初期化
         if(!(Request::has('sOrder') && Request::get('sOrder')))
-            Request::replace(array('sOrder' => 'hinban'));
+            Request::merge(array('sOrder' => 'hinban'));
 
         //  エクセルを出力する
         if (Input::get('excel'))
@@ -80,6 +80,14 @@ class StorageController extends MasterAdmin
 
         //  在庫リストを取得する
         $models = $storage->Filter();
+
+        //  ページを移動するため
+        if (\Request::ajax()) {
+            return \Response::json(view('admin/storage/list')
+                ->with('m_merchants', $m_merchants)
+                ->with('models', $models)
+                ->render());
+        }
 
         //  画面を表示する
         return view('admin/storage/index')

@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {

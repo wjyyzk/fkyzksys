@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Request;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +29,7 @@ class HistorySeppen extends Model
      */
     public function storage()
     {
-        return $this->belongsTo('App\Storage');
+        return $this->belongsTo('App\Models\Storage');
     }
 
     /**

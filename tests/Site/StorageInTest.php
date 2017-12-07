@@ -4,8 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\Storage;
-use App\StorageIn;
+use App\Models\Storage;
+use App\Models\StorageIn;
 
 /**
  *  【テスト】入庫
@@ -32,7 +32,7 @@ class StorageInTest extends TestCase
     public function testAdd()
     {
         //  テストデータを作成する
-        $model = factory(App\Storage::class)->create();
+        $model = factory(Storage::class)->create();
   
         $this->visit('/storage/in/create')
             ->type($model->id, 'id')

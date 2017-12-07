@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 //  モデル
-use App\Storage;
+use App\Models\Storage;
 
 /**
  *  【API】在庫リスト

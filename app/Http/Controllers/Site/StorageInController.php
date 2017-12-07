@@ -8,8 +8,8 @@ use Session;
 use App\Http\Requests\StockInRequest;
 
 //  モデル
-use App\StorageIn;
-use App\M_Hinban_Type;
+use App\Models\StorageIn;
+use App\Models\Masters\M_Hinban_Type;
 
 /**
  *	【コントローラ】入庫
