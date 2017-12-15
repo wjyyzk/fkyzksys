@@ -21,8 +21,24 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+//  業者
+$factory->define(App\Models\Merchant::class, function (Faker\Generator $faker) {
+    return [
+        'name'              => $faker->word,
+        'furigana'          => $faker->word
+    ];
+});
+
+//  担当者
+$factory->define(App\Models\PIC::class, function (Faker\Generator $faker) {
+    return [
+        'name'              => $faker->word,
+        'furigana'          => $faker->word
+    ];
+});
+
 //  在庫テーブル
-$factory->define(App\Models\Storage::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Storage::class, function (Faker\Generator $faker) use ($factory) {
     return [
         'hinban'            =>  $faker->word,
         'seppenfugou'       =>  $faker->word,
@@ -33,13 +49,13 @@ $factory->define(App\Models\Storage::class, function (Faker\Generator $faker) {
         'other'             =>  $faker->boolean($changeOfGettingTrue = 50),
         'chikouguhinban'    =>  $faker->word,
         'zuuban'            =>  $faker->word,
-        'gyousha'           =>  $faker->word,
+        'gyousha'           =>  $factory->create('App\Models\Merchant')->id,
         'unit_price'        =>  $faker->randomDigit,
         'shashu'            =>  $faker->word,
         'bui'               =>  $faker->word,
         'lock'              =>  $faker->word,
         'comment'           =>  $faker->word,
-        'pic'               =>  $faker->lastName,
+        'pic'               =>  $factory->create('App\Models\PIC')->id,
         'whq'               =>  $faker->randomDigit,
         'created_at'        =>  date("Y-m-d H:i:s"),
         'updated_at'        =>  date("Y-m-d H:i:s")
@@ -52,6 +68,7 @@ $factory->define(App\Models\StorageIn::class, function (Faker\Generator $faker) 
         'storage_id'        =>  $factory->create('App\Models\Storage')->id,
         'date'              =>  date("Y-m-d"),
         'time'              =>  date("H:i:s"),
+        'hinban_type'       =>  1,
         'stock'             =>  $faker->randomDigit
     ];
 });
@@ -62,6 +79,7 @@ $factory->define(App\Models\StorageOut::class, function (Faker\Generator $faker)
         'storage_id'        =>  $factory->create('App\Models\Storage')->id,
         'date'              =>  date("Y-m-d"),
         'time'              =>  date("H:i:s"),
+        'hinban_type'       =>  1,
         'stock'             =>  $faker->randomDigit
     ];
 });

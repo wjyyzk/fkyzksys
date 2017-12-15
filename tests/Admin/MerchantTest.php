@@ -43,16 +43,27 @@ class MerchantTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $mockdata = str_random(10);
+        $name = str_random(10);
+        $furigana = str_random(10);
 
         $this->visit('/admin/merchant/create')
-            ->type($mockdata, 'name')
-            ->type('フリガナ', 'furigana')
+            ->type($name, 'name')
+            ->type($furigana, 'furigana')
             ->press('登録')
             ->seePageIs('/admin/merchant/index')
             ->see('データを作成しました。');
 
-        $this->seeInDatabase('merchant', ['name' => $mockdata]);
+        //  最新情報を取得する
+        $model = Merchant::where('name', $name)->first();
+        if($model)
+        {
+            //  名前
+            $this->assertEquals($model->name, $name);
+            //  ふりがな
+            $this->assertEquals($model->furigana, $furigana);
+        }
+        else
+            $this->assertTrue(false);
     }
 
     /**
@@ -65,7 +76,8 @@ class MerchantTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $model = Merchant::first();
+        //  テストデータを作成する
+        $model = factory(App\Models\Merchant::class)->create();
 
         $this->visit('/admin/merchant/index')
             ->type($model->name, 'sName')
@@ -85,16 +97,29 @@ class MerchantTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $model = Merchant::orderBy('id', 'desc')->first();
+        //  テストデータを作成する
+        $model = factory(App\Models\Merchant::class)->create();
 
-        $mockdata = str_random(10);
+        $name = str_random(10);
+        $furigana = str_random(10);
 
         //  データを更新する
         $this->visit('/admin/merchant/'.$model->id.'/edit')
-            ->type($mockdata, 'name')
+            ->type($name, 'name')
+            ->type($furigana, 'furigana')
             ->press('登録');
 
-        $this->seeInDatabase('merchant', ['name' => $mockdata]);
+        //  最新情報を取得する
+        $model = Merchant::where('name', $name)->first();
+        if($model)
+        {
+            //  名前
+            $this->assertEquals($model->name, $name);
+            //  ふりがな
+            $this->assertEquals($model->furigana, $furigana);
+        }
+        else
+            $this->assertTrue(false);
     }
 
     /**
@@ -106,6 +131,9 @@ class MerchantTest extends TestCase
     {
         //  ログイン
         $this->getUser();
+
+        //  テストデータを作成する
+        factory(App\Models\Merchant::class)->create();
 
         //  一番上の削除ボタンを押す
         $this->visit('/admin/merchant/index')

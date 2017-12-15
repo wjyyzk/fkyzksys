@@ -129,7 +129,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <input id="search" name="search" type="submit" class="btn btn-primary" value="検索" />
-                                    <a class="btn btn-primary" href="/history">リセット</a>                                
+                                    <a id="reset" name="reset" class="btn btn-primary" href="/history">リセット</a>                                
                                 </div>
                             </div>
                         </div>

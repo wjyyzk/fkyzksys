@@ -12,15 +12,6 @@ use App\Models\PIC;
 class PICTest extends TestCase
 {
     /**
-     *  テストデータを取得する
-     *  @return pic
-     */
-    public function getModelTest($input) 
-    {
-        return PIC::where('name', '=', $input)->first();
-    }
-
-    /**
     * ルートテスト
     *
     * @return void
@@ -52,16 +43,27 @@ class PICTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $mockdata = str_random(10);
+        $name = str_random(10);
+        $furigana = str_random(10);
 
         $this->visit('/admin/pic/create')
-            ->type($mockdata, 'name')
-            ->type('フリガナ', 'furigana')
+            ->type($name, 'name')
+            ->type($furigana, 'furigana')
             ->press('登録')
             ->seePageIs('/admin/pic/index')
             ->see('データを作成しました。');
 
-        $this->seeInDatabase('pic', ['name' => $mockdata]);
+        //  最新情報を取得する
+        $model = PIC::where('name', $name)->first();
+        if($model)
+        {
+            //  名前
+            $this->assertEquals($model->name, $name);
+            //  ふりがな
+            $this->assertEquals($model->furigana, $furigana);
+        }
+        else
+            $this->assertTrue(false);
     }
 
     /**
@@ -74,10 +76,13 @@ class PICTest extends TestCase
         //  ログイン
         $this->getUser();
 
+        //  テストデータを作成する
+        $model = factory(App\Models\PIC::class)->create();
+
         $this->visit('/admin/pic/index')
-            ->type('髙岡', 'sName')
+            ->type($model->name, 'sName')
             ->press('検索')
-            ->see('髙岡')
+            ->see($model->name)
             ->click("#reset")
             ->seePageIs('/admin/pic/index');
     }
@@ -92,15 +97,29 @@ class PICTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $model = $this->getModelTest('髙岡');
+        //  テストデータを作成する
+        $model = factory(App\Models\PIC::class)->create();
+
+        $name = str_random(10);
+        $furigana = str_random(10);
 
         //  データを更新する
         $this->visit('/admin/pic/'.$model->id.'/edit')
-            ->type('髙岡', 'name')
-            ->type('タカオカ', 'furigana')
+            ->type($name, 'name')
+            ->type($furigana, 'furigana')
             ->press('登録');
 
-        $this->seeInDatabase('pic', ['name' => '髙岡']);
+        //  最新情報を取得する
+        $model = PIC::where('name', $name)->first();
+        if($model)
+        {
+            //  名前
+            $this->assertEquals($model->name, $name);
+            //  ふりがな
+            $this->assertEquals($model->furigana, $furigana);
+        }
+        else
+            $this->assertTrue(false);
     }
 
     /**
@@ -112,6 +131,9 @@ class PICTest extends TestCase
     {
         //  ログイン
         $this->getUser();
+
+        //  テストデータを作成する
+        factory(App\Models\PIC::class)->create();
 
         //  一番上の削除ボタンを押す
         $this->visit('/admin/pic/index')

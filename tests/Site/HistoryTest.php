@@ -33,21 +33,45 @@ class HistoryTest extends TestCase
         if($model)
         {
             //  品番
-            $this->visit('/storage/index')
+            $this->visit('/history')
                 ->type($model->hinban, 'sHinban')
                 ->press('検索')
                 ->see($model->chikouguhinban);
 
             //  治工具品番
-            $this->visit('/storage/index')
+            $this->visit('/history')
                 ->type($model->chikouguhinban, 'sHinban')
                 ->press('検索')
                 ->see($model->hinban);
 
+            //  開始日付
+            $this->visit('/history')
+                ->type($model->date, 'sStartDate')
+                ->press('検索')
+                ->see($model->hinban);
+
+            //  終了日付
+            $this->visit('/history')
+                ->type($model->date, 'sEndDate')
+                ->press('検索')
+                ->see($model->hinban);
+
+            //  状態
+            $this->visit('/history')
+                ->select($model->hinban_type, 'sHinbanType')
+                ->press('検索')
+                ->see($model->hinban);
+
+            //  入出庫
+            $this->visit('/history')
+                ->select(1, 'sType')
+                ->press('検索')
+                ->see($model->hinban);
+
             //  リセット
-            $this->visit('/storage/index')
+            $this->visit('/history')
                 ->click("#reset")
-                ->seePageIs('/storage/index');            
+                ->seePageIs('/history');
         }
         else
         {

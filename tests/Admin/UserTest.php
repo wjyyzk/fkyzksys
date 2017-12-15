@@ -12,15 +12,6 @@ use App\Models\User;
 class UserTest extends TestCase
 {
     /**
-     *  テストデータを取得する
-     *  @return user
-     */
-    public function getUserTest($input) 
-    {
-        return User::where('username', '=', $input)->first();
-    }
-
-    /**
     * ルートテスト
     *
     * @return void
@@ -75,10 +66,13 @@ class UserTest extends TestCase
         //  ログイン
         $this->getUser();
 
+        //  テストデータを作成する
+        $model = factory(App\Models\User::class)->create();
+
         $this->visit('/admin/user/index')
-            ->type('admin', 'sUsername')
+            ->type($model->username, 'sUsername')
             ->press('検索')
-            ->see('admin')
+            ->see($model->username)
             ->click("#reset")
             ->seePageIs('/admin/user/index');
     }
@@ -93,19 +87,20 @@ class UserTest extends TestCase
         //  ログイン
         $this->getUser();
 
-        $userTest = $this->getUserTest('admin');
+        //  テストデータを作成する
+        $model = factory(App\Models\User::class)->create();
 
         //  データを更新する
-        $this->visit('/admin/user/'.$userTest->id.'/edit')
-            ->type('admin', 'password')
-            ->type('admin', 'password_conf')
+        $this->visit('/admin/user/'.$model->id.'/edit')
+            ->type('test', 'password')
+            ->type('test', 'password_conf')
             ->press('登録');
 
         //  更新したデータでログインする
         $this->visit('/logout')
             ->visit('/login')
-            ->type('admin', 'username')
-            ->type('admin', 'password')
+            ->type($model->username, 'username')
+            ->type('test', 'password')
             ->press('ログイン')
             ->seePageIs('/admin/storage/index');
     }
@@ -119,6 +114,9 @@ class UserTest extends TestCase
     {
         //  ログイン
         $this->getUser();
+
+        //  テストデータを作成する
+        factory(App\Models\User::class)->create();
 
         //  一番上の削除ボタンを押す
         $this->visit('/admin/user/index')

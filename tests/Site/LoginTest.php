@@ -27,10 +27,12 @@ class LoginTest extends TestCase
      * @return void
      */
     public function testValidLogin()
-    {        
+    {
+        $model = factory(App\Models\User::class)->create();
+
         $this->visit('/login')
-            ->type('admin', 'username')
-            ->type('admin', 'password')
+            ->type($model->username, 'username')
+            ->type('test', 'password')
             ->press('ログイン')
             ->seePageIs('/admin/storage/index');
     }
@@ -51,7 +53,7 @@ class LoginTest extends TestCase
             ->see('ログインに失敗しました。');
 
         //  削除したユーザーの場合
-        $user = factory(App\Models\User::class, 1)->create();
+        $user = factory(App\Models\User::class)->create();
         $user->delete();
 
         $this->visit('/login')

@@ -39,7 +39,7 @@ class UserController extends MasterAdmin
         $m_roles = (new M_Role)
         			->attributes();
 
-        $m_roles = array_prepend($m_roles, '全');
+        $m_roles = array_prepend($m_roles, '全て');
 
         //  ユーザーリストを取得する
         $users = User::filter();
