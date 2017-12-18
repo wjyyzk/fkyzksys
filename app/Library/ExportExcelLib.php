@@ -3,7 +3,7 @@
 namespace App\Library;
 
 use Maatwebsite\Excel\Facades\Excel;
-use App\Storage;
+use App\Models\Storage;
 
 /**
  *	エクセルに出力処理
