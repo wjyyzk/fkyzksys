@@ -37,7 +37,7 @@
                     @else
                     @endif
                 </td>
-                <td>{{ number_format($model->unit_price, 0, "", ".") }}</td>
+                <td>{{ number_format($model->unit_price, 0, "", ",") }}</td>
                 <td>{{ $model->stockIn - $model->stockOut }}</td>
                 <td>{{ $model->oldStockIn - $model->oldStockOut }}</td>
                 @if (Auth::user()->role == '管理者')
